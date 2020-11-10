@@ -1,14 +1,16 @@
 const exec = require('child_process').exec;
 var adb = require('adbkit')
 var client = adb.createClient();
+var commandExists = require('command-exists');
+
 
 
 module.exports =
 {
     getDevice,
-    execShellCommand,
     trackDevices,
-    returnError
+    checkDeps,
+    checkMount
 
     // ...
 }
@@ -18,6 +20,7 @@ module.exports =
 // Implementation ----------------------------------
 
 async function getDevice(){
+    console.log("getDevice()")
     let device
     let devices = await client.listDevices()
     if (devices.length === 0) {
@@ -50,7 +53,7 @@ function execShellCommand(cmd) {
 
 
 function trackDevices(){
-    console.log('Tracking started')
+    console.log("trackDevices()")
     client.trackDevices()
         .then(function(tracker) {
             tracker.on('add', function(device) {
@@ -71,8 +74,32 @@ function trackDevices(){
         })
 }
 
+async function checkMount(){
+    console.log("checkMount()")
+    return false;
+}
+
+async function checkDeps(){
+    console.log("checkDeps()")
+    try {
+        exists = await commandExists('adb');
+    }
+    catch (e) {
+        returnError("ADB global installation not found.")
+        return
+    }
+    try {
+        exists = await commandExists('rclone');
+    }
+    catch (e) {
+        returnError("RCLONE global installation not found.")
+        return
+    }
+    return
+}
 
 function returnError(message){
+    console.log("returnError()")
     global.win.loadURL(`file://${__dirname}/views/error.twig`)
     twig.view = {
         message: message,

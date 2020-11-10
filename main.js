@@ -4,11 +4,8 @@ global.twig = require('electron-twig');
 
 var tools = require("./functions")
 
-let device;
 
 
-var adb = require('adbkit')
-var client = adb.createClient();
 
 
 // Point it to the current directory as a static server
@@ -23,28 +20,17 @@ ipcMain.on('get_device', async (event, arg) => {
 })
 
 ipcMain.on('check_mount', async (event, arg) => {
-    event.reply('check_mount', `{"success":false}`)
+    event.reply('check_mount', `{"success":${await tools.checkMount()}}`)
 })
 
 ipcMain.on('check_deps', async (event, arg) => {
-    var adbpath = await tools.execShellCommand('which adb')
-    if (adbpath.length == 0) {
-        returnError("ADB global installation not found.")
-    } else {
-        adbpath=adbpath.trim();
-    }
-    var rclonepath = await tools.execShellCommand('which rclone')
-    if (rclonepath.length == 0) {
-        tools.returnError("RCLONE global installation not found.")
-    } else {
-        rclonepath=rclonepath.trim();
-    }
-    event.reply('check_deps', `{"success":true, "adb": "${adbpath}", "rclone": "${rclonepath}"}`)
+    await tools.checkDeps()
+
+    // IF DEPS OK LAUNCH CHECKDIVICES OTHERWISE NO
+    tools.trackDevices()
+
+    event.reply('check_deps', `{"success":true}`)
 })
-
-
-
-tools.trackDevices()
 
 
 
@@ -69,25 +55,16 @@ function createWindow () {
 }
 
 
-app.whenReady().then(createWindow)
 
+// DEFAULT
+app.whenReady().then(createWindow)
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
 })
-
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow()
     }
 })
-
-
-
-function returnError(message){
-    win.loadURL(`file://${__dirname}/views/error.twig`)
-    twig.view = {
-        message: message,
-    }
-}

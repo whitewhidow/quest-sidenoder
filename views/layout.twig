@@ -82,9 +82,9 @@
     <script>
       $(document).ready(function() {
         console.log("ONLOAD");
+        ipcRenderer.send('check_deps', 'bla');
         ipcRenderer.send('check_mount', 'bla');
         ipcRenderer.send('get_device', 'bla');
-        ipcRenderer.send('check_deps', 'bla');
       });
     </script>
   {% endblock %}

@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "adbkit": "^2.11.1",
+    "command-exists": "^1.2.9",
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
     "jquery": "^3.5.1"
