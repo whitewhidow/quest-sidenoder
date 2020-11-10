@@ -27,7 +27,8 @@ jobs:
         run: |
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
-          sudo npm install -g npx  --unsafe-perm=true --allow-root
+          sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
+          electron-packager ./ sidenode --all
           sudo npm run make
 
 
@@ -37,9 +38,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: linux64-deb
-          path: /home/runner/work/quest-sidenoder/out/make/deb/x64
+          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: linux64-rpm
-          path: /home/runner/work/quest-sidenoder/out/make/rpm/x64
+          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64
