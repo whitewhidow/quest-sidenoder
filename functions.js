@@ -65,7 +65,6 @@ function trackDevices(){
                 console.log('Device %s was unplugged', `{"success":false}`)
             })
             tracker.on('end', function() {
-                //win.webContents.send('get_device',device.id);
                 console.log('Tracking stopped')
             })
         })
