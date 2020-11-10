@@ -7,6 +7,8 @@ module.exports =
 {
     getDevice,
     execShellCommand,
+    trackDevices,
+    returnError
 
     // ...
 }
@@ -44,4 +46,35 @@ function execShellCommand(cmd) {
             resolve(stdout? stdout : stderr);
         });
     });
+}
+
+
+function trackDevices(){
+    console.log('Tracking started')
+    client.trackDevices()
+        .then(function(tracker) {
+            tracker.on('add', function(device) {
+                win.webContents.send('get_device',`{"success":${device.id}`);
+                console.log('Device %s was plugged in', `{"success":${device.id}`)
+            })
+            tracker.on('remove', function(device) {
+                win.webContents.send('get_device',`{"success":false}`);
+                console.log('Device %s was unplugged', `{"success":false}`)
+            })
+            tracker.on('end', function() {
+                //win.webContents.send('get_device',device.id);
+                console.log('Tracking stopped')
+            })
+        })
+        .catch(function(err) {
+            console.error('Something went wrong:', err.stack)
+        })
+}
+
+
+function returnError(message){
+    global.win.loadURL(`file://${__dirname}/views/error.twig`)
+    twig.view = {
+        message: message,
+    }
 }

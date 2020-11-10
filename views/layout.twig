@@ -23,24 +23,12 @@
 
 
 
-
-
-
-
-
-
-
-
-    ipcRenderer.on('get_device', (event, arg) => {
-        console.log("get_device msg came FROM BE to fe: "+arg) // prints "ping"
-
-    })
-
-    //ipcRenderer.send('get_device', 'bla')
-
-
-
-
+    function checkMount() {
+      $("#mountrefresh").addClass("fa-spin");
+      $("#mountbtn").removeClass("btn-danger");
+      $("#mountbtn").addClass("btn-warning");
+      ipcRenderer.send('check_mount', 'bla');
+    }
 
 
     ipcRenderer.on('check_mount', (event, arg) => {
@@ -52,8 +40,6 @@
         $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-success");
         $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br>Connected.`)
-        //CHANGE TEXT
-        alert("kkkkk");
       } else {
         $("#mountrefresh").removeClass("fa-spin");
         $("#mountbtn").removeClass("btn-warning");
@@ -62,39 +48,46 @@
       }
     });
 
-    function checkMount() {
-      $("#mountrefresh").addClass("fa-spin");
-      $("#mountbtn").removeClass("btn-danger");
-      $("#mountbtn").addClass("btn-warning");
-      ipcRenderer.send('check_mount', 'bla');
-    }
+
+
 
     function checkDevice() {
       $("#devicerefresh").addClass("fa-spin");
       $("#devicebtn").removeClass("btn-danger");
       $("#devicebtn").addClass("btn-warning");
-      fetch('http://localhost:3000/get_device')
-              .then(response => response.json())
-              .then(data => {
-                if (data.success == "true") {
-                  location.reload();
-                } else {
-                  $("#devicerefresh").removeClass("fa-spin");
-                  $("#devicebtn").removeClass("btn-warning");
-                  $("#devicebtn").addClass("btn-danger");
-                }
-              });
+      ipcRenderer.send('get_device', 'bla');
     }
 
-
-
-    $(document).ready(function() {
-      console.log("ONLOAD");
-      ipcRenderer.send('check_mount', 'bla');
+    ipcRenderer.on('get_device', (event, arg) => {
+      console.log("get_device msg came FROM BE to fe: "+arg); // prints "ping"
+      console.log(JSON.parse(arg));
+      if (JSON.parse(arg).success) {
+        $("#devicerefresh").removeClass("fa-spin");
+        $("#devicebtn").removeClass("btn-warning");
+        $("#devicebtn").removeClass("btn-danger");
+        $("#devicebtn").addClass("btn-success");
+        $("#devicebtn").html(`<i id="devicerefresh" class="fa fa-check-circle-o"></i> | Quest status:</br>Connected.`)
+      } else {
+        $("#devicerefresh").removeClass("fa-spin");
+        $("#devicebtn").removeClass("btn-warning");
+        $("#devicebtn").addClass("btn-danger");
+      }
     });
 
 
+
   </script>
+
+  {% block onload %}
+    <script>
+      $(document).ready(function() {
+        console.log("ONLOAD");
+        ipcRenderer.send('check_mount', 'bla');
+        ipcRenderer.send('get_device', 'bla');
+        ipcRenderer.send('check_deps', 'bla');
+      });
+    </script>
+  {% endblock %}
 
 </head>
 <body>
@@ -102,11 +95,13 @@
 {{ test }}
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" href="/">Q-S-L</a>
+  <a class="navbar-brand" href="index.twig">Q-S-L</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
+  {% block navbar %}
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       {#
@@ -136,16 +131,14 @@
 
       <span type="button"  id="mountbtn" onclick="checkMount()" class="btn btn-lg btn-danger" disabled><i  id="mountrefresh" class="fa fa-refresh"></i> | Mount status:</br>Disconnected.</span>
   &nbsp;
-      {% if device %}
-        <button type="button" class="btn btn-lg btn-success" disabled><i class="fa fa-check-circle-o"></i> | Quest status:</br>Connected: {{ device }}</button>
-      {% else %}
+
         <span type="button" id="devicebtn" onclick="checkDevice()" class="btn btn-lg btn-danger"  disabled><i id="devicerefresh" class="fa fa-refresh"></i> | Quest status:</br>Disconnected.</span>
-      {% endif %}
 
       {# <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> #}
     </form>
 
   </div>
+  {% endblock %}
 </nav>
 
 
