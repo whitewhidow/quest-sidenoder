@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
+  <script>window.$ = window.jQuery = require('jquery');</script>
+
+  <title>Quest-Sideloader-Linux</title>
+
+
+
+
+  <script>
+    const { ipcRenderer } = require('electron')
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ipcRenderer.on('get_device', (event, arg) => {
+        console.log("get_device msg came FROM BE to fe: "+arg) // prints "ping"
+
+    })
+
+    //ipcRenderer.send('get_device', 'bla')
+
+
+
+
+
+
+    ipcRenderer.on('check_mount', (event, arg) => {
+      console.log("check_mount msg came FROM BE to fe: "+arg); // prints "ping"
+      console.log(JSON.parse(arg));
+      if (JSON.parse(arg).success) {
+        $("#mountrefresh").removeClass("fa-spin");
+        $("#mountbtn").removeClass("btn-warning");
+        $("#mountbtn").removeClass("btn-danger");
+        $("#mountbtn").addClass("btn-success");
+        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br>Connected.`)
+        //CHANGE TEXT
+        alert("kkkkk");
+      } else {
+        $("#mountrefresh").removeClass("fa-spin");
+        $("#mountbtn").removeClass("btn-warning");
+        $("#mountbtn").addClass("btn-danger");
+        alert('Mounting seems to have failed.')
+      }
+    });
+
+    function checkMount() {
+      $("#mountrefresh").addClass("fa-spin");
+      $("#mountbtn").removeClass("btn-danger");
+      $("#mountbtn").addClass("btn-warning");
+      ipcRenderer.send('check_mount', 'bla');
+    }
+
+    function checkDevice() {
+      $("#devicerefresh").addClass("fa-spin");
+      $("#devicebtn").removeClass("btn-danger");
+      $("#devicebtn").addClass("btn-warning");
+      fetch('http://localhost:3000/get_device')
+              .then(response => response.json())
+              .then(data => {
+                if (data.success == "true") {
+                  location.reload();
+                } else {
+                  $("#devicerefresh").removeClass("fa-spin");
+                  $("#devicebtn").removeClass("btn-warning");
+                  $("#devicebtn").addClass("btn-danger");
+                }
+              });
+    }
+
+
+
+    $(document).ready(function() {
+      console.log("ONLOAD");
+      ipcRenderer.send('check_mount', 'bla');
+    });
+
+
+  </script>
+
+</head>
+<body>
+
+{{ test }}
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" href="/">Q-S-L</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {#
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      #}
+      <li class="nav-item">
+        <a class="nav-link {% if not depsok %}disabled{% endif %}" href="/browse" >Browse</a>
+      </li>
+      {#
+      <li class="nav-item">
+        <a class="nav-link {% if not mountcheck %}disabled{% endif %}" href="/browse" >Browse drive</a>
+      </li>
+      #}
+      <li class="nav-item">
+        <a class="nav-link disabled" href="/installed">Uninstall APK's</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Settings</a>
+      </li>
+      {# <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> #}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+
+      <span type="button"  id="mountbtn" onclick="checkMount()" class="btn btn-lg btn-danger" disabled><i  id="mountrefresh" class="fa fa-refresh"></i> | Mount status:</br>Disconnected.</span>
+  &nbsp;
+      {% if device %}
+        <button type="button" class="btn btn-lg btn-success" disabled><i class="fa fa-check-circle-o"></i> | Quest status:</br>Connected: {{ device }}</button>
+      {% else %}
+        <span type="button" id="devicebtn" onclick="checkDevice()" class="btn btn-lg btn-danger"  disabled><i id="devicerefresh" class="fa fa-refresh"></i> | Quest status:</br>Disconnected.</span>
+      {% endif %}
+
+      {# <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> #}
+    </form>
+
+  </div>
+</nav>
+
+
+<div style="padding: 20px">
+{% block body %}{% endblock %}
+  <hr>
+  <center>
+    https://github.com/whitewhidow
+    <br>
+    https://t.me/whitewhidow
+    <br>
+  </center>
+</div>
+<!--
+
+ Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

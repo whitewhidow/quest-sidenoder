@@ -1,0 +1,35 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+
+    <a href="browse.twig">TEST</a>
+
+    <div class="card text-white bg-{% if depsok %}success{% else %}warning{% endif %}">
+        <div class="card-header">System check</div>
+        <div class="card-body">
+            <h5 class="card-title"><span class="badge badge-success">{{ platform }} Detected</span></h5>
+            <p class="card-text">
+
+                <span class="badge badge-success">TMP Detected: {{ tmpdir }}</span>
+                <br>
+                {% if adbpath %}
+                    <span class="badge badge-success">ADB Detected: {{ adbpath }}</span>
+                {% else %}
+                    <span class="badge badge-danger">ADB not found | PLEASE INSTALL ADB GLOBALLY</span>
+                {% endif %}
+                <br>
+                {% if rclonepath %}
+                    <span class="badge badge-success">RCLONE Detected: {{ rclonepath }}</span>
+                {% else %}
+                    <span class="badge badge-danger">RCLONE not found | PLEASE INSTALL RCLONE GLOBALLY</span>
+                {% endif %}
+
+            </p>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

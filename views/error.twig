@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+
+    <div class="card text-white bg-danger">
+        <div class="card-header">Error</div>
+        <div class="card-body">
+            <p class="card-text">
+
+            <h1>{{message}}</h1>
+            <h2>{{error.status}}</h2>
+            <pre>{{error.stack}}</pre>
+
+            </p>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

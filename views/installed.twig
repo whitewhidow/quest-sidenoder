@@ -1,0 +1,27 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+  <h3>Installed Apps</h3>
+
+  <table class="table table-condensed table-striped">
+    <thead>
+    <tr>
+      <th scope="col">APK</th>
+      <th scope="col">Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for installedApp in installed %}
+      <tr>
+        <td>{{ installedApp }}</td>
+        <td>
+          <button type="button" class="btn btn-danger"><i class="fa fa-remove"></i></button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}
