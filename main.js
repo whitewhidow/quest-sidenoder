@@ -6,6 +6,11 @@ global.mountFolder = require('path').join(tmpdir, 'mnt')
 global.platform = require('os').platform;
 global.homedir = require('os').homedir();
 
+var path = require('path')
+var fs = require('fs');
+
+
+const fsPromise = fs.promises;
 
 var tools = require("./functions")
 const { ipcMain } = require('electron')
@@ -53,6 +58,11 @@ ipcMain.on('get_dir', async (event, arg) => {
         folder=arg
     }
     list = await tools.getDir(folder)
+
+    list = list.map((item)=>item.name)
+
+
+
     response = {}
     response.success = true
     response.list = list

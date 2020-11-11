@@ -9,7 +9,7 @@ var fetch = require('node-fetch')
 var commandExists = require('command-exists');
 
 
-
+const promise = require('promise')
 
 
 module.exports =
@@ -163,7 +163,7 @@ async function mount(){
 
     console.log("voor")
 
-    exec(`rclone mount -vv --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
+    exec(`rclone mount --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             if (error.message.search("transport endpoint is not connected")) {
@@ -183,6 +183,48 @@ async function mount(){
 
 
 async function getDir(folder){
+
+
+
+
+
+
+
+
+    try {
+        const files = await fsPromise.readdir(folder, { withFileTypes: true });
+        let fileNames = await Promise.all(files.map(async (fileEnt) => {
+            const info = await fsPromise.lstat(folder + '/' + fileEnt.name);
+            return {
+                name: fileEnt.name,
+                isFile: fileEnt.isFile(),
+                info: info,
+                createdAt: new Date(info.mtimeMs)
+            }
+        }));
+
+        fileNames.sort((a, b) => {
+            return b.createdAt - a.createdAt;
+        });
+        //console.log(fileNames)
+        return fileNames;
+    } catch (error) {
+        console.log("entering catch block");
+        console.log(error);
+        //returnError(e.message)
+        console.log("leaving catch block");
+        return false
+    }
+
+
+
+
+
+
+
+
+
+
         console.log(`getDir(${folder})`)
         try {
             list = await fsPromise.readdir(`${folder}`);

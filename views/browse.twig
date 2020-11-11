@@ -31,7 +31,7 @@
       $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')">../ (up one directory)</a><td></tr>`)
       for (item in list) {
         let name=list[item]
-        let row = $("#listTable tbody").append(`<tr><td><a onclick="getDir('${path}/${name}')">${name}</a><td></tr>`)
+        let row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + path + "/" + name + "\")'>" + `${name}</a><td></tr>`)
         console.log("appended "+ name);
       }
       $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')">../ (up one directory)</a><td></tr>`)
