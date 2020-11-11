@@ -34,7 +34,7 @@ jobs:
 
           sudo npm run make
 
-          sudo ls ./out/*/*/*/*
+
 
         #sudo chmod 777 -R /usr/local/lib/node_modules
         #sudo chmod 777 -R /home/runner
@@ -45,5 +45,5 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNode-darwin-x64
-          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/darwin/x64
+          name: SideNode-osx-x64-zip
+          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64
