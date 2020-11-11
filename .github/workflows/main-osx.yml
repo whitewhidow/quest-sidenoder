@@ -34,7 +34,7 @@ jobs:
 
           sudo npm run make
 
-
+          sudo ls ./out/*/*/*/*
 
         #sudo chmod 777 -R /usr/local/lib/node_modules
         #sudo chmod 777 -R /home/runner
