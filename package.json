@@ -38,9 +38,7 @@
         },
         {
           "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin", "win32"
-          ]
+          "config": {}
         },
         {
           "name": "@electron-forge/maker-deb",
