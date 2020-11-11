@@ -59,15 +59,15 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNode-linux64-deb
+          name: SideNode-linux-x64-deb
           path: /tmp/builds/deb/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNode-linux64-rpm
+          name: SideNode-linux-x64-rpm
           path: /tmp/builds/rpm/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNode-win32-x64-zip
+          name: SideNode-win-x64-zip
           path: /tmp/builds/win32/x64

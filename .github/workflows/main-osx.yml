@@ -45,5 +45,5 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: linux64-deb
-          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64
+          name: SideNode-darwin-x64
+          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/darwin/x64
