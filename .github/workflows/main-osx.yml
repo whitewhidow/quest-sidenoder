@@ -30,28 +30,21 @@ jobs:
           npm install macos-alias
           npm install appdmg
           npm run make
+          npm i electron-installer-dmg
+          electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
           ls ./out/*/*/*
       # Runs a single command using the runners shell
       - name: run make
         run: |
-          sudo npm i nan
 
 
-          sudo npm install  --unsafe-perm=true --allow-root
-          sudo npm install macos-alias
-
-          echo "----------------------------------------------------------------"
-
-          sudo chmod -R 777 /usr/local/lib/node_modules/electron-installer-dmg/node_modules/
-          sudo chmod -R 777 /usr/local/lib/node_modules
-
-          sudo npm i electron-installer-dmg -g
+          npm i electron-installer-dmg -g
 
           sudo npm i appdmg -g
 
-          sudo npm run make
+          npm run make
 
-          sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
+          electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
 
 
           ls ./out/*/*/*
