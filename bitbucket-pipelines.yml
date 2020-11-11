@@ -13,8 +13,8 @@ pipelines:
             - node
           script:
             - npm install
-            - sudo apt install dpkg
-            - sudo apt install fakeroot
+            - apt install dpkg
+            - apt install fakeroot
             - npm run make
             - npm run-script pack
             - npm run-script dist
