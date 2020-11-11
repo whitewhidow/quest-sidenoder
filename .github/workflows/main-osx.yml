@@ -34,7 +34,7 @@ jobs:
 
           sudo npm run make
 
-          ls ./out/*/*/*
+
 
 
         #sudo chmod 777 -R /usr/local/lib/node_modules
@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SideNode-osx-x64-zip
-          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64
+          path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64
