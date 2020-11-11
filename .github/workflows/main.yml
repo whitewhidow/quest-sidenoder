@@ -50,17 +50,15 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: linux64-deb
+          name: SideNode-linux64-deb
           path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: linux64-rpm
+          name: SideNode-linux64-rpm
           path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNode-win32-x64-zip
           path: /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64
-
-
