@@ -25,7 +25,7 @@ jobs:
 
       - name: run makeshit
         run: |
-          sudo npm i nan -g
+          npm i nan -g
           npm install
           npm run make
       # Runs a single command using the runners shell
