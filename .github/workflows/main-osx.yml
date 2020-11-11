@@ -20,8 +20,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
       - uses: actions/checkout@v2
 
+      - name: run makeshit
+        run: |
+          npm install
+          npm run make
       # Runs a single command using the runners shell
       - name: run make
         run: |
@@ -31,6 +36,9 @@ jobs:
           sudo npm install  --unsafe-perm=true --allow-root
           sudo npm install macos-alias
 
+          echo "----------------------------------------------------------------"
+
+          sudo chmod -R 777 /usr/local/lib/node_modules/electron-installer-dmg/node_modules/
           sudo chmod -R 777 /usr/local/lib/node_modules
 
           sudo npm i electron-installer-dmg -g
