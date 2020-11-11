@@ -28,7 +28,7 @@ jobs:
           brew cask install xquartz
           brew cask install wine-stable
 
-          sudo chmod 777 -R /usr/local/lib/node_modules
+
           sudo npm install  --unsafe-perm=true --allow-root
 
 
@@ -36,7 +36,7 @@ jobs:
 
 
 
-
+        #sudo chmod 777 -R /usr/local/lib/node_modules
         #sudo chmod 777 -R /home/runner
 
         # sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
