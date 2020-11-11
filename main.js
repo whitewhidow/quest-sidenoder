@@ -89,6 +89,8 @@ function createWindow () {
             nodeIntegration: true
         }
     })
+    win.setMenu(null);
+    win.webContents.openDevTools()
 
     win.loadURL(`file://${__dirname}/views/index.twig`)
     twig.view = {
@@ -99,7 +101,7 @@ function createWindow () {
         //rclonepath: rclonepath
     }
     //
-    win.webContents.openDevTools()
+
 }
 
 
