@@ -30,9 +30,16 @@ jobs:
           sudo chmod 777 -R /home/runner
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
-
-
           sudo npm run make
+
+          mkdir -p /tmp/builds
+          mkdir -p /tmp/builds/deb/x64
+          mkdir -p /tmp/builds/rpm/x64
+
+          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64/* /tmp/builds/deb/x64
+          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64/* /tmp/builds/rpm/x64
+
+          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out
 
       - name: electron-packager
         run: |
@@ -40,6 +47,8 @@ jobs:
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
           sudo chown root /home/runner
           sudo electron-packager ./ SideNode --platform=win32 --arch=x64
+          mkdir -p /tmp/builds/win32/x64
+          mv /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64/* /tmp/builds/win32/x64
 
 
 
@@ -51,14 +60,14 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SideNode-linux64-deb
-          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64
+          path: /tmp/builds/deb/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNode-linux64-rpm
-          path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64
+          path: /tmp/builds/rpm/x64
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNode-win32-x64-zip
-          path: /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64
+          path: /tmp/builds/win32/x64
