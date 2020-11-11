@@ -33,13 +33,13 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electrontest"
+            "name": "Sidenode"
           }
         },
         {
           "name": "@electron-forge/maker-zip",
           "platforms": [
-            "darwin"
+            "darwin", "win32"
           ]
         },
         {

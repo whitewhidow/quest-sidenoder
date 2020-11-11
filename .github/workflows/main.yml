@@ -28,7 +28,7 @@ jobs:
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
-          electron-packager ./ sidenode --all
+          sudo electron-packager ./ sidenode --all
           sudo npm run make
 
 
