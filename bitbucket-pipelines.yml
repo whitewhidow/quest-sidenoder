@@ -16,4 +16,5 @@ pipelines:
             - npm run-script pack
             - npm run-script dist
           artifacts:
-            - dist/SideNoder-*.AppImage
+            - dist/SideNoder*.AppImage
+            - dist/SideNoder*.snap
