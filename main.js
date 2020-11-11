@@ -13,7 +13,12 @@ const { ipcMain } = require('electron')
 
 
 ipcMain.on('get_device', async (event, arg) => {
-    event.reply('get_device', `{"success":${await tools.getDevice()}}`)
+    device = await tools.getDevice()
+    if (device) {
+        event.reply('get_device', `{"success":"${await tools.getDevice()}"}`)
+    } else {
+        event.reply('get_device', `{"success":false}`)
+    }
 })
 
 ipcMain.on('check_deps', async (event, arg) => {

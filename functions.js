@@ -66,7 +66,7 @@ function trackDevices(){
     client.trackDevices()
         .then(function(tracker) {
             tracker.on('add', function(device) {
-                win.webContents.send('get_device',`{"success":${device.id}`);
+                win.webContents.send('get_device',`{"success":"${device.id}"}`);
                 console.log('Device %s was plugged in', `{"success":${device.id}`)
             })
             tracker.on('remove', function(device) {
