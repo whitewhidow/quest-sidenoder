@@ -13,6 +13,7 @@ pipelines:
             - node
           script:
             - npm install
+            - npm run make
             - npm run-script pack
             - npm run-script dist
           artifacts:
