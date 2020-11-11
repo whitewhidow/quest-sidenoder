@@ -30,12 +30,17 @@ jobs:
 
 
           sudo npm install  --unsafe-perm=true --allow-root
+
+          sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install macos-alias
 
+          sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm i electron-installer-dmg -g
 
+          sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm run make
 
+          sudo chmod 777 -R /usr/local/lib/node_modules
           sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
 
 
