@@ -26,6 +26,7 @@ jobs:
       - name: run make
         run: |
           sudo apt install wine64
+          sudo apt install mono-complete
           sudo chmod 777 -R /home/runner
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
