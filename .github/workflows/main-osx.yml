@@ -32,9 +32,10 @@ jobs:
           sudo npm install  --unsafe-perm=true --allow-root
 
           sudo chmod 777 -R /usr/local/lib/node_modules 2> /dev/null
+          sudo npm i -g nan
           sudo npm install macos-alias -g
 
-          sudo npm i -g nan
+
 
 
 
