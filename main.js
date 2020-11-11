@@ -19,10 +19,6 @@ ipcMain.on('get_device', async (event, arg) => {
     event.reply('get_device', `{"success":${await tools.getDevice()}}`)
 })
 
-ipcMain.on('check_mount', async (event, arg) => {
-    event.reply('check_mount', `{"success":${await tools.checkMount()}}`)
-})
-
 ipcMain.on('check_deps', async (event, arg) => {
     await tools.checkDeps()
 
@@ -32,8 +28,17 @@ ipcMain.on('check_deps', async (event, arg) => {
     event.reply('check_deps', `{"success":true}`)
 })
 
+ipcMain.on('mount', async (event, arg) => {
+    await tools.mount()
+    setTimeout(async function(){ event.reply('check_mount', `{"success":${await tools.checkMount()}}`) }, 2000);
 
 
+})
+
+ipcMain.on('check_mount', async (event, arg) => {
+    checkmount = await tools.checkMount();
+    event.reply('check_mount', `{"success":${await tools.checkMount()}}`)
+})
 
 
 

@@ -1,8 +1,17 @@
 const exec = require('child_process').exec;
 var adb = require('adbkit')
 var client = adb.createClient();
+const fs = require('fs');
+const fsPromise = fs.promises;
+
+var fetch = require('node-fetch')
+
 var commandExists = require('command-exists');
 
+
+const tmpdir = require('os').tmpdir()
+const mountFolder = require('path').join(tmpdir, 'mnt')
+var platform = require('os').platform;
 
 
 module.exports =
@@ -10,7 +19,8 @@ module.exports =
     getDevice,
     trackDevices,
     checkDeps,
-    checkMount
+    checkMount,
+    mount,
 
     // ...
 }
@@ -75,6 +85,16 @@ function trackDevices(){
 
 async function checkMount(){
     console.log("checkMount()")
+    try {
+        await fsPromise.readdir(`${mountFolder}`);
+        return true;
+    }
+    catch (e) {
+        console.log("entering catch block");
+        console.log(e);
+        console.log("leaving catch block");
+        return false
+    }
     return false;
 }
 
@@ -104,3 +124,56 @@ function returnError(message){
         message: message,
     }
 }
+
+
+
+
+async function mount(){
+    if (`${platform}` != "win64" && `${platform}` != "win32") {
+        await execShellCommand(`umount ${mountFolder}`);
+        await execShellCommand(`fusermount -uz ${mountFolder}`);
+        console.log(mountFolder);
+        await fs.mkdir(mountFolder, {}, ()=>{})
+        console.log(mountFolder);
+    }
+    let content = await fetch("https://raw.githubusercontent.com/whitewhidow/quest-sideloader-linux/main/extras/k")
+    content = await content.text()
+    let buff = Buffer.from(content, 'base64');
+    const key = buff.toString('ascii');
+
+    kpath = require('path').join(tmpdir, "k")
+    console.log(kpath)
+    fs.writeFileSync(kpath, key)
+
+
+    content = await fetch("https://raw.githubusercontent.com/whitewhidow/quest-sideloader-linux/main/extras/c")
+    content = await content.text()
+    buff = Buffer.from(content, 'base64');
+    let config = buff.toString('ascii');
+
+    config = config.replace("XXX", kpath);
+    cpath = require('path').join(tmpdir, "c")
+    console.log(cpath)
+
+    fs.writeFileSync(cpath, config)
+
+    console.log("voor")
+
+    exec(`rclone mount -vv --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            if (error.message.search("transport endpoint is not connected")) {
+                console.log("GEVONDE")
+            }
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+    });
+
+    console.log("na")
+}
+

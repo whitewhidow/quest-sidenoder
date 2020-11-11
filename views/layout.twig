@@ -27,12 +27,12 @@
       $("#mountrefresh").addClass("fa-spin");
       $("#mountbtn").removeClass("btn-danger");
       $("#mountbtn").addClass("btn-warning");
-      ipcRenderer.send('check_mount', 'bla');
+      ipcRenderer.send('mount', 'bla');
     }
 
 
     ipcRenderer.on('check_mount', (event, arg) => {
-      console.log("check_mount msg came FROM BE to fe: "+arg); // prints "ping"
+      console.log("check_mount responded: "+arg); // prints "ping"
       console.log(JSON.parse(arg));
       if (JSON.parse(arg).success) {
         $("#mountrefresh").removeClass("fa-spin");

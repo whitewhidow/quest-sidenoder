@@ -8,7 +8,8 @@
     "command-exists": "^1.2.9",
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
