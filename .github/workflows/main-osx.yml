@@ -25,7 +25,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: run make
         run: |
-          brew cask install wine
+          brew cask install wine-stable
           brew install mono
           sudo chmod 777 -R /home/runner
           sudo chmod 777 -R /usr/local/lib/node_modules
