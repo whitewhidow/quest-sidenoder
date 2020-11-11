@@ -48,7 +48,7 @@ jobs:
           sudo chown root /home/runner
           sudo electron-packager ./ SideNode --platform=win32 --arch=x64
           mkdir -p /tmp/builds/win32/x64
-          mv /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64/* /tmp/builds/win32/x64
+          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64/* /tmp/builds/win32/x64
 
 
 
