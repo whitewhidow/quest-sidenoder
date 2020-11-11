@@ -3,7 +3,7 @@
 #  This template allows you to validate your NodeJS code.
 #  The workflow allows running tests and code linting on the default branch.
 
-image: atlassian/default-image:2
+image: node:10.15.3
 
 pipelines:
   default:
