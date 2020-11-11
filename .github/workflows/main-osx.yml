@@ -31,7 +31,7 @@ jobs:
           npm install appdmg
           npm run make
           npm i electron-installer-dmg -g
-          sudo chmod -R /usr/local/lib/node_modules/
+          sudo chmod -R 777 /usr/local/lib/node_modules/
           sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
           ls ./*/*/*/*
       # Runs a single command using the runners shell
