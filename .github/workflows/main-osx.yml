@@ -31,10 +31,11 @@ jobs:
           sudo npm install  --unsafe-perm=true --allow-root
           sudo npm install macos-alias
 
-          sudo chmod -R 777 /usr/local/lib/node_modules/electron-installer-dmg/node_modules/
           sudo chmod -R 777 /usr/local/lib/node_modules
 
           sudo npm i electron-installer-dmg -g
+
+          sudo npm i appdmg -g
 
           sudo npm run make
 
