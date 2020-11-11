@@ -1,20 +1,67 @@
 {% extends 'layout.twig' %}
 
+
+{% block onload %}
+  {{ parent() }}
+  <style>
+    a { cursor: pointer; }
+  </style>
+  <script>
+    $(document).ready(function() {
+      console.log("ONLOAD BROWSE");
+      ipcRenderer.send('get_dir', '');
+    });
+
+    ipcRenderer.on('start_sideload', (event, arg) => {
+      console.log("start_sideload msg came ! ");
+      alert("start sideload")
+    });
+
+    ipcRenderer.on('get_dir', (event, arg) => {
+      console.log("get_dir msg came: ");
+      $("#listTable tbody").html('');
+      if (arg.success) {
+        $("#path").html(arg.path)
+        loadDir(arg.path, arg.list)
+      }
+    });
+
+    function loadDir(path, list) {
+      let UpDir=path.substr(0, path.lastIndexOf("/"));
+      $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')">../ (up one directory)</a><td></tr>`)
+      for (item in list) {
+        let name=list[item]
+        let row = $("#listTable tbody").append(`<tr><td><a onclick="getDir('${path}/${name}')">${name}</a><td></tr>`)
+        console.log("appended "+ name);
+      }
+      $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')">../ (up one directory)</a><td></tr>`)
+    }
+
+    function getDir(newpath) {
+      ipcRenderer.send('get_dir', `${newpath}`);
+    }
+
+  </script>
+{% endblock %}
+
+
 {% block body %}
 
 
   <div class="card text-white bg-{% if mountcheck %}success{% else %}info{% endif %}">
-    <div class="card-header">Browsing <b><u>{{ path|replace({(mountFolder): "WHITEWHIDOW_QUEST:"}) }}</u></b></div>
+    <div class="card-header">Browsing <b><u id="path"></u></b></div>
     <div class="card-body">
       <p class="card-text">
 
 
 
-      <table class="table table-striped table-condensed">
+      <table class="table table-striped table-condensed" id="listTable">
         <tbody>
         {% for item in list %}
-          <tr>
+          <tr id="listTr">
+            {#
             <td  style="height: 20px"><a style="color: black; font-weight: bold" href="/browse?path={{ path }}/{{ item|replace({(path): ""}) }}">{{ item|replace({(path): ""}) }}</a></td>
+            #}
             {# <td>
           <button type="button" class="btn btn-danger"><i class="fa fa-upload"></i></button>
             #}

@@ -1,5 +1,17 @@
 {% extends 'layout.twig' %}
 
+
+{% block onload %}
+  {{ parent() }}
+  <script>
+    $(document).ready(function() {
+      console.log("ONLOAD BROWSE");
+      ipcRenderer.send('get_dir', '');
+    });
+  </script>
+{% endblock %}
+
+
 {% block body %}
 
 

@@ -9,9 +9,7 @@ var fetch = require('node-fetch')
 var commandExists = require('command-exists');
 
 
-const tmpdir = require('os').tmpdir()
-const mountFolder = require('path').join(tmpdir, 'mnt')
-var platform = require('os').platform;
+
 
 
 module.exports =
@@ -21,6 +19,7 @@ module.exports =
     checkDeps,
     checkMount,
     mount,
+    getDir
 
     // ...
 }
@@ -87,7 +86,11 @@ async function checkMount(){
     console.log("checkMount()")
     try {
         await fsPromise.readdir(`${mountFolder}`);
-        return true;
+        list = await getDir(`${mountFolder}`);
+        if (list.length > 0) {
+            return true
+        }
+        return false;
     }
     catch (e) {
         console.log("entering catch block");
@@ -114,6 +117,7 @@ async function checkDeps(){
         returnError("RCLONE global installation not found.")
         return
     }
+    win.webContents.send('check_deps',`{"success":true}`);
     return
 }
 
@@ -177,3 +181,19 @@ async function mount(){
     console.log("na")
 }
 
+
+async function getDir(folder){
+        console.log(`getDir(${folder})`)
+        try {
+            list = await fsPromise.readdir(`${folder}`);
+            //console.log(list)
+            return list;
+        }
+        catch (e) {
+            console.log("entering catch block");
+            console.log(e);
+            //returnError(e.message)
+            console.log("leaving catch block");
+            return false
+        }
+}

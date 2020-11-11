@@ -20,8 +20,18 @@
     const { ipcRenderer } = require('electron')
 
 
-
-
+    ipcRenderer.on('check_deps', (event, arg) => {
+      console.log("check_deps msg came: "+arg); // prints "ping"
+      console.log(JSON.parse(arg));
+      if (JSON.parse(arg).success) {
+        $("#adbCheckIndicator").removeClass("badge-danger");
+        $("#adbCheckIndicator").addClass("badge-success");
+        $("#adbCheckIndicator").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> ADB Installed.`)
+        $("#rcloneCheckIndicator").removeClass("badge-danger");
+        $("#rcloneCheckIndicator").addClass("badge-success");
+        $("#rcloneCheckIndicator").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> RCLONE Installed.`)
+      }
+      });
 
     function checkMount() {
       $("#mountrefresh").addClass("fa-spin");
@@ -109,7 +119,7 @@
       </li>
       #}
       <li class="nav-item">
-        <a class="nav-link {% if not depsok %}disabled{% endif %}" href="/browse" >Browse</a>
+        <a class="nav-link" href="browse.twig" >Browse</a>
       </li>
       {#
       <li class="nav-item">
@@ -117,7 +127,7 @@
       </li>
       #}
       <li class="nav-item">
-        <a class="nav-link disabled" href="/installed">Uninstall APK's</a>
+        <a class="nav-link disabled" href="#">Uninstall APK's</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Settings</a>

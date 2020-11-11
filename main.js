@@ -1,20 +1,17 @@
 const { app, BrowserWindow } = require('electron')
 global.twig = require('electron-twig');
 
+global.tmpdir = require('os').tmpdir()
+global.mountFolder = require('path').join(tmpdir, 'mnt')
+global.platform = require('os').platform;
+global.homedir = require('os').homedir();
+
 
 var tools = require("./functions")
-
-
-
-
-
-// Point it to the current directory as a static server
-//app.use(express.static('./static/'));
-// Listen on port 3000 for any traffic
-
-
-
 const { ipcMain } = require('electron')
+
+
+
 ipcMain.on('get_device', async (event, arg) => {
     event.reply('get_device', `{"success":${await tools.getDevice()}}`)
 })
@@ -41,11 +38,29 @@ ipcMain.on('check_mount', async (event, arg) => {
 })
 
 
+ipcMain.on('get_dir', async (event, arg) => {
+    if ((typeof arg === 'string') && arg.endsWith(".apk")) {
+        event.reply('start_sideload', `{"success":false}`)
+    }
+    if (!arg) {
+        folder=global.homedir
+    } else {
+        folder=arg
+    }
+    list = await tools.getDir(folder)
+    response = {}
+    response.success = true
+    response.list = list
+    response.path = folder
+    event.reply('get_dir', response)
+})
+
+
 
 function createWindow () {
     global.win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1000,
+        height: 800,
         webPreferences: {
             nodeIntegration: true
         }
@@ -53,7 +68,10 @@ function createWindow () {
 
     win.loadURL(`file://${__dirname}/views/index.twig`)
     twig.view = {
-        test: 'fooooooooooooo',
+        tmpdir: global.tmpdir,
+        platform: global.platform,
+        //adbpath: adbpath,
+        //rclonepath: rclonepath
     }
     //
     win.webContents.openDevTools()
