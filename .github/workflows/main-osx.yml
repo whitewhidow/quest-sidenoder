@@ -52,9 +52,9 @@ jobs:
           name: SideNoder-osx-x64-dmg
           path: /tmp/builds
 
-      - name: Upload linux Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: SideNoder-osx-x64-zip
-          path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/
+          #- name: Upload linux Build Artifact
+          #uses: actions/upload-artifact@v2
+          #with:
+        #name: SideNoder-osx-x64-zip
+          #path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/
           #path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64
