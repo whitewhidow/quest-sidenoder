@@ -21,4 +21,4 @@ pipelines:
               variables:
                 BITBUCKET_USERNAME: $BITBUCKET_USERNAME
                 BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-                FILENAME: "/opt/atlassian/pipelines/agent/build/dist/SideNoder-1.0.0.AppImage"
+                FILENAME: "dist/SideNoder-1.0.0.AppImage"
