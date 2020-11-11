@@ -50,9 +50,9 @@ jobs:
           sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
           sudo chown root /home/runner
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
-          sudo electron-packager ./ SideNode --platform=win32 --arch=x64
+          sudo electron-packager ./ SideNoder --platform=win32 --arch=x64
           mkdir -p /tmp/builds/win32/x64
-          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64/* /tmp/builds/win32/x64
+          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/SideNoder-win32-x64/* /tmp/builds/win32/x64
 
 
 
