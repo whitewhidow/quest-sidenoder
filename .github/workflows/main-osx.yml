@@ -25,8 +25,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: run make
         run: |
-          sudo apt install wine64
-          sudo apt install mono-complete
+          sudo brew cask install wine
+          sudo brew install mono
           sudo chmod 777 -R /home/runner
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
