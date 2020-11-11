@@ -37,7 +37,7 @@ jobs:
         run: |
 
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
-          electron-packager ./ SideNode --platform=win32 --arch=x64
+          sudo electron-packager ./ SideNode --platform=win32 --arch=x64
 
 
 
@@ -55,3 +55,10 @@ jobs:
         with:
           name: linux64-rpm
           path: /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64
+      - name: Upload linux Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNode-win32-x64-zip
+          path: /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-win32-x64
+
+
