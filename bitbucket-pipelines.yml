@@ -16,3 +16,10 @@ pipelines:
               - npm install
               - npm run-script pack
               - npm run-script dist
+        - step:
+            script:
+              - pipe: atlassian/bitbucket-upload-file:0.1.2
+                variables:
+                  BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+                  BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+                  FILENAME: "dist/SideNoder-1.0.0.AppImage"
