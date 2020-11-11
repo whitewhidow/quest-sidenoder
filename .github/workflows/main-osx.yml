@@ -27,7 +27,6 @@ jobs:
         run: |
           brew cask install xquartz
           brew cask install wine-stable
-          brew install mono
           sudo chmod 777 -R /home/runner
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
