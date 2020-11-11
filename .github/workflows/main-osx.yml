@@ -30,7 +30,7 @@ jobs:
 
 
           sudo npm install  --unsafe-perm=true --allow-root
-
+          sudo npm install macos-alias
 
           sudo npm run make
 
