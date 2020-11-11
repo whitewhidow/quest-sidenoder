@@ -1,5 +1,5 @@
 {
-  "name": "electrontest",
+  "name": "SideNoder",
   "version": "1.0.0",
   "description": "kanker",
   "main": "main.js",
@@ -33,7 +33,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Sidenode"
+            "name": "SideNoder"
           }
         },
         {
