@@ -36,7 +36,7 @@ jobs:
 
       - name: electron-packager
         run: |
-          sudo dpkg --add-architecture i386 && apt-get update && sudo apt-get install wine32
+          sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
           sudo electron-packager ./ SideNode --platform=win32 --arch=x64
 
