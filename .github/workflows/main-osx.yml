@@ -30,9 +30,9 @@ jobs:
           npm install macos-alias
           npm install appdmg
           npm run make
-          npm i electron-installer-dmg -g
-          sudo chmod -R 777 /usr/local/lib/node_modules/
-          sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
+      #    npm i electron-installer-dmg -g
+      #    sudo chmod -R 777 /usr/local/lib/node_modules/
+      #    sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
           ls SideNoder.dmg
           mkdir -p /tmp/builds
           sudo mv SideNoder.dmg /tmp/builds
@@ -49,7 +49,7 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-osx-x64-xxx
+          name: SideNoder-osx-x64-dmg
           path: /tmp/builds
 
       - name: Upload linux Build Artifact
