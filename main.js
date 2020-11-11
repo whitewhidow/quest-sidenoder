@@ -59,13 +59,22 @@ ipcMain.on('get_dir', async (event, arg) => {
     }
     list = await tools.getDir(folder)
 
-    list = list.map((item)=>item.name)
+    incList = []
+
+    list.forEach((item)=>{
+        if (!item.isFile) {
+            incList.push(item)
+        }
+        if ((item.isFile && item.name.endsWith(".apk")) || (item.isFile && item.name.endsWith(".obb"))) {
+            incList.push(item)
+        }
+    })
 
 
 
     response = {}
     response.success = true
-    response.list = list
+    response.list = incList
     response.path = folder
     event.reply('get_dir', response)
 })

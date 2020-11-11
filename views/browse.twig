@@ -30,7 +30,7 @@
       let UpDir=path.substr(0, path.lastIndexOf("/"));
       $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')">../ (up one directory)</a><td></tr>`)
       for (item in list) {
-        let name=list[item]
+        let name=list[item].name
         let row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + path + "/" + name + "\")'>" + `${name}</a><td></tr>`)
         console.log("appended "+ name);
       }
