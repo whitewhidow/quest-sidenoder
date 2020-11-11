@@ -32,7 +32,7 @@ jobs:
           npm run make
           npm i electron-installer-dmg -g
           electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
-          ls ./out/*/*/*
+          ls ./*/*/*/*
       # Runs a single command using the runners shell
       - name: run make
         run: |
