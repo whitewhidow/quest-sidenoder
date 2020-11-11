@@ -32,10 +32,17 @@ jobs:
           sudo npm install  --unsafe-perm=true --allow-root
           sudo npm install macos-alias
 
+          sudo npm i electron-installer-dmg -g
+
           sudo npm run make
+
+          sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
+
 
           ls ./out/*/*/*
 
+
+        #sudo npm run make
 
         #sudo chmod 777 -R /usr/local/lib/node_modules
         #sudo chmod 777 -R /home/runner
@@ -48,11 +55,13 @@ jobs:
         with:
           name: SideNoder-osx-x64-xxx
           path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64
+
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-osx-x64-zip
-          path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin
+          path: /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64
+
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
