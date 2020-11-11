@@ -30,6 +30,7 @@ jobs:
           npm install macos-alias
           npm install appdmg
           npm run make
+          ls ./out/*/*/*
       # Runs a single command using the runners shell
       - name: run make
         run: |
