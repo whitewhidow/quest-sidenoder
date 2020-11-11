@@ -50,6 +50,12 @@
         $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-success");
         $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br>Connected.`)
+        $("#mountbtn").onclick = function() {return false;}
+
+        $("#mountBadge").removeClass("badge-warning");
+        $("#mountBadge").addClass("badge-success");
+        $("#mountBadge").html(`<a onclick="getDir('{{ mountFolder  }}')"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
+
       } else {
         $("#mountrefresh").removeClass("fa-spin");
         $("#mountbtn").removeClass("btn-warning");

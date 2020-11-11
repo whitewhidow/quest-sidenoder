@@ -94,6 +94,7 @@ function createWindow () {
     twig.view = {
         tmpdir: global.tmpdir,
         platform: global.platform,
+        mountFolder: global.mountFolder
         //adbpath: adbpath,
         //rclonepath: rclonepath
     }
