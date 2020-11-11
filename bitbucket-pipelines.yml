@@ -7,19 +7,18 @@ image: node:10.15.3
 
 pipelines:
   default:
-    - parallel:
-        - step:
-            name: Build and Test
-            caches:
-              - node
-            script:
-              - npm install
-              - npm run-script pack
-              - npm run-script dist
-        - step:
-            script:
-              - pipe: atlassian/bitbucket-upload-file:0.1.2
-                variables:
-                  BITBUCKET_USERNAME: $BITBUCKET_USERNAME
-                  BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-                  FILENAME: "dist/SideNoder-1.0.0.AppImage"
+      - step:
+          name: Build and Test
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run-script pack
+            - npm run-script dist
+      - step:
+          script:
+            - pipe: atlassian/bitbucket-upload-file:0.3.2
+              variables:
+                BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+                BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+                FILENAME: "/opt/atlassian/pipelines/agent/build/dist/SideNoder-1.0.0.AppImage"
