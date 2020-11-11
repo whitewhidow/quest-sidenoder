@@ -25,6 +25,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: npm install
         run: |
+          sudo apt install wine64
           sudo chmod 777 -R /usr/local/lib/node_modules
           sudo npm install  --unsafe-perm=true --allow-root
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
