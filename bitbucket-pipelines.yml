@@ -15,7 +15,7 @@ pipelines:
             - npm install
             - npm run-script pack
             - npm run-script dist
-            - npm install electron-packager
+            - npm install electron-packager -g
             - electron-packager ./ SideNoder --platform=win32 --arch=x64
           artifacts:
             - dist/SideNoder*.AppImage
