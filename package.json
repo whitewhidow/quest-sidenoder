@@ -1,7 +1,7 @@
 {
   "name": "SideNoder",
   "version": "1.0.0",
-  "description": "kanker",
+  "description": "SideNoder",
   "main": "main.js",
   "dependencies": {
     "adbkit": "^2.11.1",
