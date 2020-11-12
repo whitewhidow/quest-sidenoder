@@ -83,7 +83,13 @@
             row = $("#listTable tbody").append("<tr><td><i class=\"fa fa-file-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}<td></tr>`)
           }
         } else {
-          row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
+          if (  (new RegExp(".*\\[steam:")).test(fullPath)  ) {
+            imagepath="https://cdn.cloudflare.steamstatic.com/steam/apps/"+fullPath.split('[steam:')[1]+"/capsule_sm_120.jpg"
+            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"><td></tr>`)
+          } else {
+            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
+          }
+
         }
         console.log("appended "+ name);
       }
