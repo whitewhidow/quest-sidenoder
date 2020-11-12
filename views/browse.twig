@@ -9,8 +9,16 @@
   <script>
     $(document).ready(function() {
       console.log("ONLOAD BROWSE");
+      //open start dir
       ipcRenderer.send('get_dir', '');
+      //setup listener for confirm btn, takes path form data dir, and sends start_sideload
+      $("#confirmSideloadButton").on("click", function(){
+        $('#confirmModal').modal('hide');
+        ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
+      });
     });
+
+
 
     ipcRenderer.on('start_sideload', (event, arg) => {
       console.log("start_sideload msg came ! ");
@@ -25,6 +33,9 @@
       }
     });
 
+
+
+
     ipcRenderer.on('ask_sideload', (event, arg) => {
       console.log("ask_sideload msg came ! ");
       console.log(arg)
@@ -38,17 +49,18 @@
         $('#confirmModal').modal('show');
         $("#confirmModal > div > div > div.modal-body").html("Do you want to sideload: <br><b>"+file+"</b>")
 
-        $("#confirmSideloadButton").on("click", function(){
-          $('#confirmModal').modal('hide');
-          ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
-        });
+
 
       }
     });
 
-    function confirmAskSideload() {
-      ipcRenderer.send('start_sideload', '');
+    // call get_dir when selection is made
+    function getDir(newpath) {
+      ipcRenderer.send('get_dir', `${newpath}`);
     }
+
+
+    //when dir listing comes back, list it
     ipcRenderer.on('get_dir', (event, arg) => {
       console.log("get_dir msg came: ");
       $("#listTable tbody").html('');
@@ -66,7 +78,7 @@
         fullPath = list[item].filePath.replace("\\", "/")
         if (list[item].isFile) {
           if (list[item].name.endsWith(".apk")) {
-            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath+ "\")'><i class=\"fa fa-upload\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
+            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath+ "\")'><b><i class=\"fa fa-upload\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</b></a><td></tr>`)
           }else{
             row = $("#listTable tbody").append("<tr><td><i class=\"fa fa-file-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}<td></tr>`)
           }
@@ -78,10 +90,6 @@
       $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')"><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
-    function getDir(newpath) {
-      ipcRenderer.send('get_dir', `${newpath}`);
-    }
-
   </script>
 {% endblock %}
 
@@ -91,8 +99,8 @@
 
   <div class="card text-white bg-{% if mountcheck %}success{% else %}info{% endif %}">
     <div class="card-header">
-      Browsing <b><u id="path"></u></b>
-      <span id="mountBadge" class="badge badge-warning badge-xl pull-right push-right">Drive not mounted, browsing local content only</span>
+      <h2 class="pull-left push-left">Browsing <b><u id="path"></u></b></h2>
+      <h2 class="pull-right push-right"><span id="mountBadge" class="badge badge-warning badge-md">Drive not mounted, browsing local content only</span></h2>
     </div>
     <div class="card-body">
       <p class="card-text">

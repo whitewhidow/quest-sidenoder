@@ -81,8 +81,8 @@
 
     ipcRenderer.on('get_device', (event, arg) => {
       console.log("get_device msg came FROM BE to fe: "+arg); // prints "ping"
-      console.log(JSON.parse(arg));
-      if (JSON.parse(arg).success) {
+      console.log(arg);
+      if (arg.success) {
         $("#devicerefresh").removeClass("fa-spin");
         $("#devicebtn").removeClass("btn-warning");
         $("#devicebtn").removeClass("btn-danger");
@@ -103,18 +103,14 @@
     <script>
       $(document).ready(function() {
         console.log("ONLOAD");
-        ipcRenderer.send('check_deps', 'bla');
-        //ipcRenderer.send('check_mount', 'bla');
-        checkMount()
+        ipcRenderer.send('check_mount', 'bla');
+        //checkMount()
         ipcRenderer.send('get_device', 'bla');
 
         console.log("setup ask device listener")
         ipcRenderer.on('ask_device', (event, arg) => {
           console.log("ask_device msg came ! ");
-          console.log(arg)
-          if (JSON.parse(arg).success) {
-            $('#deviceModal').modal('show');
-          }
+          $('#deviceModal').modal('show');
         });
 
       });

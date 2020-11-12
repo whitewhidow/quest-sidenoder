@@ -1,5 +1,19 @@
 {% extends 'layout.twig' %}
 
+
+{% block onload %}
+  {{ parent() }}
+<script>
+    $(document).ready(function() {
+        console.log("ONLOAD INDEX");
+        console.log("sending check_deps")
+        ipcRenderer.send('check_deps', 'bla');
+    });
+</script>
+{% endblock %}
+
+
+
 {% block body %}
 
 

@@ -16,13 +16,14 @@ const promise = require('promise')
 
 module.exports =
 {
-    getDevice,
+    getDeviceSync,
     trackDevices,
     checkDeps,
     checkMount,
     mount,
     getDir,
-    returnError
+    returnError,
+    getDeviceSync
 
     // ...
 }
@@ -31,20 +32,21 @@ module.exports =
 
 // Implementation ----------------------------------
 
-async function getDevice(){
-    console.log("getDevice()")
-    let device
-    let devices = await client.listDevices()
-    if (devices.length === 0) {
-        return false
-    }
-    console.log("getdevices:")
-    console.log(devices)
-    device = devices[0]["id"];
-    return device;
+function getDeviceSync(){
+    client.listDevices()
+        .then(function(devices) {
+            console.log("getDevice()")
+            if (devices.length > 0) {
+                global.adbDevice = devices[0].id
+                win.webContents.send('get_device',`{"success":"${devices[0].id}"}`);
+            }
+            global.adbDevice = false
+            win.webContents.send('get_device',`{"success":false}`);
+        })
+        .catch(function(err) {
+            console.error('Something went wrong:', err.stack)
+        })
 }
-
-
 
 
 /**

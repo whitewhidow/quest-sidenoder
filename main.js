@@ -6,28 +6,25 @@ global.tmpdir = global.tmpdir.replace(/\\/g,"/");
 global.mountFolder = global.tmpdir+"/mnt";
 global.platform = require('os').platform;
 global.homedir = require('os').homedir();
-
-var path = require('path')
-var fs = require('fs');
+global.adbDevice = false
 
 
-const fsPromise = fs.promises;
 
 var tools = require("./functions")
 const { ipcMain } = require('electron')
 
 
 
-ipcMain.on('get_device', async (event, arg) => {
-    device = await tools.getDevice()
-    if (device) {
-        event.reply('get_device', `{"success":"${await tools.getDevice()}"}`)
-    } else {
-        event.reply('get_device', `{"success":false}`)
-    }
+ipcMain.on('get_device', (event, arg) => {
+    console.log("get_device received");
+    resp = {"success": global.adbDevice}
+    event.reply('get_device', resp)
+
 })
 
 ipcMain.on('check_deps', async (event, arg) => {
+    console.log("check_deps received");
+
     await tools.checkDeps()
 
     // IF DEPS OK LAUNCH CHECKDIVICES OTHERWISE NO
@@ -37,24 +34,26 @@ ipcMain.on('check_deps', async (event, arg) => {
 })
 
 ipcMain.on('mount', async (event, arg) => {
-    await tools.mount()
+    await tools.mount();
     setTimeout(async function(){ event.reply('check_mount', `{"success":${await tools.checkMount()}}`) }, 2000);
-
-
+    return;
 })
 
 ipcMain.on('check_mount', async (event, arg) => {
     checkmount = await tools.checkMount();
-    event.reply('check_mount', `{"success":${await tools.checkMount()}, "mountFolder": "${global.mountFolder}"}`)
+    event.reply('check_mount', `{"success":${checkmount}, "mountFolder": "${global.mountFolder}"}`)
+    return
 })
 
 ipcMain.on('start_sideload', async (event, arg) => {
-    if (!await tools.getDevice()) {
-        tools.returnError("This action cannot be performed without a device attached.")
+    console.log("start_sideload received");
+    if (!global.adbDevice) {
+        console.log("Missing device, sending ask_device")
+        event.reply('ask_device', ``)
+        //tools.returnError("This action cannot be performed without a device attached.")
         return
     }
     event.reply('start_sideload', `{"success":true, "path": "${arg}"}`)
-    //actual sideload
     return
 })
 
