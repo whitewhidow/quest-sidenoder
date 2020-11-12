@@ -19,7 +19,8 @@ module.exports =
     checkDeps,
     checkMount,
     mount,
-    getDir
+    getDir,
+    returnError
 
     // ...
 }

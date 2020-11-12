@@ -6,15 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
   <script>window.$ = window.jQuery = require('jquery');</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
   <title>Quest-Sideloader-Linux</title>
 
 
-
+  <style>
+    a { cursor: pointer; }
+  </style>
 
   <script>
     const { ipcRenderer } = require('electron')
@@ -100,6 +106,16 @@
         ipcRenderer.send('check_deps', 'bla');
         ipcRenderer.send('check_mount', 'bla');
         ipcRenderer.send('get_device', 'bla');
+
+        console.log("setup ask device listener")
+        ipcRenderer.on('ask_device', (event, arg) => {
+          console.log("ask_device msg came ! ");
+          console.log(arg)
+          if (JSON.parse(arg).success) {
+            $('#deviceModal').modal('show');
+          }
+        });
+
       });
     </script>
   {% endblock %}
@@ -167,8 +183,32 @@
     <br>
   </center>
 </div>
-<!--
 
+
+
+
+<div class="modal fade" id="deviceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please connect a device first</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This action cannot be performed without a device attached.
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="confirmDeviceButton" class="btn btn-primary">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
  Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -14,9 +14,41 @@
 
     ipcRenderer.on('start_sideload', (event, arg) => {
       console.log("start_sideload msg came ! ");
-      alert("start sideload")
+      console.log(arg)
+      if (JSON.parse(arg).success) {
+        var path = JSON.parse(arg).path
+        var lastslashindex = path.lastIndexOf('/');
+        var file= path.substring(lastslashindex  + 1)
+
+        $('#sideloadModal').modal('show');
+        $("#sideloadModal > div > div > div.modal-body > #sideloadText").html("Processing: <br><b>"+file+"</b>")
+      }
     });
 
+    ipcRenderer.on('ask_sideload', (event, arg) => {
+      console.log("ask_sideload msg came ! ");
+      console.log(arg)
+      if (JSON.parse(arg).success) {
+
+        var path = JSON.parse(arg).path
+        var lastslashindex = path.lastIndexOf('/');
+        var file= path.substring(lastslashindex  + 1)
+
+        $("#confirmSideloadButton").data('path', path)
+        $('#confirmModal').modal('show');
+        $("#confirmModal > div > div > div.modal-body").html("Do you want to sideload: <br><b>"+file+"</b>")
+
+        $("#confirmSideloadButton").on("click", function(){
+          $('#confirmModal').modal('hide');
+          ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
+        });
+
+      }
+    });
+
+    function confirmAskSideload() {
+      ipcRenderer.send('start_sideload', '');
+    }
     ipcRenderer.on('get_dir', (event, arg) => {
       console.log("get_dir msg came: ");
       $("#listTable tbody").html('');
@@ -90,6 +122,58 @@
   </div>
 
 
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="sideloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><i  id="mountrefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
+        </div>
+        <div class="modal-body">
+          <span id="sideloadText"></span>
+          <br>
+          <span class="badge badge-warning badge-md">Check device</span>
+          <br>
+          <span class="badge badge-warning badge-md">Install APK</span>
+          <br>
+          <span class="badge badge-warning badge-md">Copy OBB's</span>
+          <br>
+          <span class="badge badge-warning badge-md">Done OBB's</span>
+          <br>
+        </div>
+        <div class="modal-footer">
+          {# <button type="button" class="btn btn-secondary disabled" data-dismiss="modal">Close</button> #}
+          <button type="button" class="btn btn-primary disabled">Please wait for the process to finish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" id="confirmSideloadButton" class="btn btn-primary disabled">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

@@ -48,10 +48,21 @@ ipcMain.on('check_mount', async (event, arg) => {
     event.reply('check_mount', `{"success":${await tools.checkMount()}, "mountFolder": "${global.mountFolder}"}`)
 })
 
+ipcMain.on('start_sideload', async (event, arg) => {
+    if (!await tools.getDevice()) {
+        tools.returnError("This action cannot be performed without a device attached.")
+        return
+    }
+    event.reply('start_sideload', `{"success":true, "path": "${arg}"}`)
+    //actual sideload
+    return
+})
+
 
 ipcMain.on('get_dir', async (event, arg) => {
     if ((typeof arg === 'string') && arg.endsWith(".apk")) {
-        event.reply('start_sideload', `{"success":false}`)
+        event.reply('ask_sideload', `{"success":true, "path": "${arg}"}`)
+        return
     }
     if (!arg) {
         folder=global.homedir
