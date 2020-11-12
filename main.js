@@ -2,7 +2,8 @@ const { app, BrowserWindow } = require('electron')
 global.twig = require('electron-twig');
 
 global.tmpdir = require('os').tmpdir()
-global.mountFolder = require('path').join(tmpdir, 'mnt')
+global.tmpdir = global.tmpdir.replace(/\\/g,"/");
+global.mountFolder = global.tmpdir+"/mnt";
 global.platform = require('os').platform;
 global.homedir = require('os').homedir();
 
@@ -44,7 +45,7 @@ ipcMain.on('mount', async (event, arg) => {
 
 ipcMain.on('check_mount', async (event, arg) => {
     checkmount = await tools.checkMount();
-    event.reply('check_mount', `{"success":${await tools.checkMount()}}`)
+    event.reply('check_mount', `{"success":${await tools.checkMount()}, "mountFolder": "${global.mountFolder}"}`)
 })
 
 

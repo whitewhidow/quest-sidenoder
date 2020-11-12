@@ -5,7 +5,7 @@ const fs = require('fs');
 const fsPromise = fs.promises;
 
 var fetch = require('node-fetch')
-
+var path = require('path')
 var commandExists = require('command-exists');
 
 
@@ -194,12 +194,13 @@ async function getDir(folder){
     try {
         const files = await fsPromise.readdir(folder, { withFileTypes: true });
         let fileNames = await Promise.all(files.map(async (fileEnt) => {
-            const info = await fsPromise.lstat(folder + '/' + fileEnt.name);
+            const info = await fsPromise.lstat(path.join(folder, fileEnt.name));
             return {
                 name: fileEnt.name,
                 isFile: fileEnt.isFile(),
                 info: info,
-                createdAt: new Date(info.mtimeMs)
+                createdAt: new Date(info.mtimeMs),
+                filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),
             }
         }));
 

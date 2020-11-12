@@ -54,7 +54,7 @@
 
         $("#mountBadge").removeClass("badge-warning");
         $("#mountBadge").addClass("badge-success");
-        $("#mountBadge").html(`<a onclick="getDir('{{ mountFolder  }}')"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
+        $("#mountBadge").html(`<a onclick="getDir('${JSON.parse(arg).mountFolder}')"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
 
       } else {
         $("#mountrefresh").removeClass("fa-spin");
