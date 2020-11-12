@@ -4,14 +4,16 @@
 
 ORIPATH=$PWD
 cd /tmp/mnt
-#echo -ne '' > "$ORIPATH/synced.txt"
+echo -ne '' > "$ORIPATH/synced.txt"
 COUNT=0
+FAILCOUNT=0
 ALLCOUNT=$(ls -l -d */ | grep "^d" | wc -l)
 
 
 
 for d in ./*/; do
 
+  ((COUNT++))
 
   if [[ ! ($d =~ .*\ steam:.*) ]]; then
 
@@ -39,13 +41,19 @@ for d in ./*/; do
 
     link=$(curl  -G --silent --data-urlencode "vrsupport=1" --data-urlencode "term=$SEARCH" -L "https://store.steampowered.com/search/" | sed -En '/search_capsule"><img/s/.*src="([^"]*)".*/\1/p' | head -n 1)
 
-    if [[ "$link" != *".jpg" ]];then
-      echo "NOT A REAL IMAGE"
+    link=${link%%\?*}
+
+    echo "$link"
+
+    if [[ "$link" != *".jpg" ]] || [[ "$link" == *"/bundles/"* ]] ;then
+      echo "NOT A REAL IMAGE -> $link"
+      ((FAILCOUNT++))
       cd ..
       continue
     fi
 
-    link=$(echo "$link" | rev | cut -c14- | rev)
+
+    sleep 3
 
 
 
@@ -55,10 +63,12 @@ for d in ./*/; do
       ID=${link%%/capsule_*}
       ID=${ID##*apps/}
       echo "ID FOUND: $ID"
-      echo "d: ${d::-1}"
+      DIRZ=${d::-1}
+      echo "d: $DIRZ"
       cd ../
-      mv "${d::-1}" "${d::-1} steam:$ID"
-      echo "${d::-1}/**" | cut -c 3- >> "$ORIPATH/synced.txt"
+      mv "$DIRZ" "${d::-1} steam:$ID"
+      echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/synced.txt"
+      #${var%%SubStr*}
     else
       cd ../
     fi
@@ -68,10 +78,12 @@ for d in ./*/; do
     #sleep 3
 
   else
-    echo "skipping $d already fixed"
+    DIRZ=${d::-1}
+    DIRZ=${DIRZ%%\ steam:*}
+    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/synced.txt"
+    echo "skipping $DIRZ already fixed"
   fi
 done
 
-mkdir -p /tmp/badges/
-cp "$ORIPATH/imagelist.txt" /tmp/badges 2> /dev/null
-
+echo "$COUNT items looped"
+echo "$FAILCOUNT items failed"

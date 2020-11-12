@@ -1,4 +1,4 @@
-![screen](.github/screen.png)
+![screen](.github/screen.gif)
 
 ## Dependencies:
 

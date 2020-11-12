@@ -35,7 +35,7 @@ ipcMain.on('check_deps', async (event, arg) => {
 
 ipcMain.on('mount', async (event, arg) => {
     await tools.mount();
-    setTimeout(async function(){ event.reply('check_mount', `{"success":${await tools.checkMount()}}`) }, 2000);
+    setTimeout(async function(){ event.reply('check_mount', `{"success":${await tools.checkMount()}, "mountFolder": "${global.mountFolder}"}`) }, 2000);
     return;
 })
 
