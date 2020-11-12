@@ -3,6 +3,8 @@ var adb = require('adbkit')
 var client = adb.createClient();
 const fs = require('fs');
 const fsPromise = fs.promises;
+var platform = require('os').platform;
+
 
 var fetch = require('node-fetch')
 var path = require('path')
@@ -134,6 +136,11 @@ function returnError(message){
 
 
 async function mount(){
+
+    if (await checkMount(`${mountFolder}`)) {
+        return
+    }
+
     if (`${platform}` != "win64" && `${platform}` != "win32") {
         await execShellCommand(`umount ${mountFolder}`);
         await execShellCommand(`fusermount -uz ${mountFolder}`);
@@ -164,7 +171,13 @@ async function mount(){
 
     console.log("voor")
 
-    exec(`rclone mount --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
+    if (`${platform}` === "darwin") {
+        var mountCmd = "cmount"
+    } else {
+        var mountCmd = "mount"
+    }
+
+    exec(`rclone ${mountCmd} --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             if (error.message.search("transport endpoint is not connected")) {

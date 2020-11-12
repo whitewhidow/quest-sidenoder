@@ -104,7 +104,8 @@
       $(document).ready(function() {
         console.log("ONLOAD");
         ipcRenderer.send('check_deps', 'bla');
-        ipcRenderer.send('check_mount', 'bla');
+        //ipcRenderer.send('check_mount', 'bla');
+        checkMount()
         ipcRenderer.send('get_device', 'bla');
 
         console.log("setup ask device listener")
