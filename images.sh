@@ -4,7 +4,7 @@
 
 ORIPATH=$PWD
 cd /tmp/mnt
-#echo '' > "$ORIPATH/synced.txt"
+#echo -ne '' > "$ORIPATH/synced.txt"
 COUNT=0
 ALLCOUNT=$(ls -l -d */ | grep "^d" | wc -l)
 
@@ -14,6 +14,8 @@ for d in ./*/; do
 
 
   if [[ ! ($d =~ .*\ steam:.*) ]]; then
+
+
 
     cd "$d"
 
@@ -28,17 +30,27 @@ for d in ./*/; do
     SEARCH=${SEARCH%%[0-9].[0-9].*}
     SEARCH=${SEARCH%%v[0-9][0-9]*}
     SEARCH=${SEARCH%%v[0-9][0-9].*}
-    echo "term: $SEARCH"
 
 
 
-    echo -e "Generating for $d\n"
+
+    echo "Generating $SEARCH for $d"
 
 
     link=$(curl  -G --silent --data-urlencode "vrsupport=1" --data-urlencode "term=$SEARCH" -L "https://store.steampowered.com/search/" | sed -En '/search_capsule"><img/s/.*src="([^"]*)".*/\1/p' | head -n 1)
+
+    if [[ "$link" != *".jpg" ]];then
+      echo "NOT A REAL IMAGE"
+      cd ..
+      continue
+    fi
+
     link=$(echo "$link" | rev | cut -c14- | rev)
 
-    if [[ "$link" != "" ]] && [[ $link =~ .*\.jpg$ ]];then
+
+
+
+    if [[ "$link" != "" ]] && [[ "$link" == *"jpg" ]];then
 
       ID=${link%%/capsule_*}
       ID=${ID##*apps/}
@@ -57,7 +69,6 @@ for d in ./*/; do
 
   else
     echo "skipping $d already fixed"
-    echo "${d::-1}/**" | cut -c 3- >> "$ORIPATH/synced.txt"
   fi
 done
 
