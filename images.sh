@@ -4,14 +4,16 @@
 
 ORIPATH=$PWD
 cd /tmp/mnt
-echo '' > "$ORIPATH/imagelist.txt"
+#echo '' > "$ORIPATH/synced.txt"
 COUNT=0
 ALLCOUNT=$(ls -l -d */ | grep "^d" | wc -l)
 
 
 
 for d in ./*/; do
-  if [[ ! ($d =~ .*\[steam:.*) ]]; then
+
+
+  if [[ ! ($d =~ .*\ steam:.*) ]]; then
 
     cd "$d"
 
@@ -33,7 +35,7 @@ for d in ./*/; do
     echo -e "Generating for $d\n"
 
 
-    link=$(curl  -G  --data-urlencode "vrsupport=1" --data-urlencode "term=$SEARCH" -L "https://store.steampowered.com/search/" | sed -En '/search_capsule"><img/s/.*src="([^"]*)".*/\1/p' | head -n 1)
+    link=$(curl  -G --silent --data-urlencode "vrsupport=1" --data-urlencode "term=$SEARCH" -L "https://store.steampowered.com/search/" | sed -En '/search_capsule"><img/s/.*src="([^"]*)".*/\1/p' | head -n 1)
     link=$(echo "$link" | rev | cut -c14- | rev)
 
     if [[ "$link" != "" ]] && [[ $link =~ .*\.jpg$ ]];then
@@ -43,14 +45,19 @@ for d in ./*/; do
       echo "ID FOUND: $ID"
       echo "d: ${d::-1}"
       cd ../
-      mv "${d::-1}" "${d::-1} [steam:$ID"
+      mv "${d::-1}" "${d::-1} steam:$ID"
+      echo "${d::-1}/**" | cut -c 3- >> "$ORIPATH/synced.txt"
     else
       cd ../
     fi
-    sleep 5
+
+
+
+    #sleep 3
 
   else
     echo "skipping $d already fixed"
+    echo "${d::-1}/**" | cut -c 3- >> "$ORIPATH/synced.txt"
   fi
 done
 
