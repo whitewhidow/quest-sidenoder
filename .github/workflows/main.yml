@@ -50,7 +50,7 @@ jobs:
           sudo npm install electron-packager -g
           electron-packager ./ SideNode --platform=darwin --arch=x64 --out=dist
 
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder/SideNode-darwin-x64
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist
           zip -r /tmp/builds/darwin/x64/SideNoder-darwin-x64.zip *
 
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
