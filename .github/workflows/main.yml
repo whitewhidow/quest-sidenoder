@@ -37,9 +37,9 @@ jobs:
           mkdir -p /tmp/builds/rpm/x64
 
           tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar /home/runner/work/quest-sidenoder/quest-sidenoder/dist/SideNoder*.AppImage
+          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
 
-
-          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out
+          electron-packager ./ SideNode --platform=darwin --arch=x64 --out=dist
 
       - name: electron-packager
         run: |
