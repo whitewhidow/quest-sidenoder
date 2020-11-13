@@ -16,6 +16,10 @@
         $('#confirmModal').modal('hide');
         ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
       });
+      $("#sideloadDoneBtn").on("click", function(){
+        $('#sideloadModal').modal('hide');
+        location.reload();
+      });
     });
 
 
@@ -181,7 +185,7 @@
         </div>
         <div class="modal-footer">
           {# <button type="button" class="btn btn-secondary disabled" data-dismiss="modal">Close</button> #}
-          <button type="button" id="sideloadDoneBtn"  data-dismiss="modal" class="btn btn-primary disabled">Please wait for the process to finish</button>
+          <button type="button" id="sideloadDoneBtn" class="btn btn-primary disabled">Please wait for the process to finish</button>
         </div>
       </div>
     </div>
