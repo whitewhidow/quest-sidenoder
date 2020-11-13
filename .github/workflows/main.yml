@@ -38,7 +38,6 @@ jobs:
 
           tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar /home/runner/work/quest-sidenoder/quest-sidenoder/dist/SideNoder*.AppImage
 
-        #sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/dist/SideNoder*.AppImage /tmp/builds/AppImage/x64
 
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out
 
@@ -63,13 +62,8 @@ jobs:
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/SideNoder-win32-x64/
           zip -r /tmp/builds/win32/x64/SideNoder-win32-x64.zip *
 
-        # sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/SideNoder-win32-x64/* /tmp/builds/win32/x64
 
 
-
-
-        # sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
-        # sudo electron-packager ./ sidenode --all
 
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
