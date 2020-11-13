@@ -42,6 +42,7 @@ jobs:
           tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar SideNoder*.AppImage
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
 
+          sudo npm install electron-packager -g
           electron-packager ./ SideNode --platform=darwin --arch=x64 --out=dist
 
       - name: electron-packager
