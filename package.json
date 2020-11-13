@@ -1,6 +1,6 @@
 {
   "name": "SideNoder",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha",
   "description": "SideNoder",
   "main": "main.js",
   "dependencies": {
