@@ -97,3 +97,8 @@ jobs:
         with:
           name: SideNoder-win-x64
           path: /tmp/builds/win32/x64/SideNoder-win32-x64.zip
+      - name: Upload osx Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-osx-x64
+          path: /tmp/builds/win32/x64/SideNoder-darwin-x64.zip
