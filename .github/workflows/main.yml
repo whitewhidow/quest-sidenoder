@@ -101,4 +101,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-osx-x64
-          path: /tmp/builds/win32/x64/SideNoder-darwin-x64.zip
+          path: /tmp/builds/darwin/x64/SideNoder-darwin-x64.zip
