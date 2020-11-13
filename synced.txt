@@ -20,6 +20,7 @@ Ballista v20.42/**
 BanditSix v1.1.0.130/**
 Basket VR v0.2/**
 Beat Saber v.1.12.2-131 -VRP (with DLC)/**
+Beat Saber v1.13.0-147 -VRP (with DLC)/**
 Blair Witch v1.05.33 -QuestUnderground/**
 Blaston v1.1.93836-101093836 -VRP/**
 Bonfire v1.0.466-Q2Patched -QuestUnderground/**
@@ -145,6 +146,7 @@ Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
 Racket Nx v1.4.4 -QuestUnderground/**
 Real VR Fishing v1.413 Q1&2 -QuestUnderground/**
+Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
 Reflex Unit 2 v4.2/**
 Refuge VR v0.1/**
