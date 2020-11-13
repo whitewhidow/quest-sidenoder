@@ -36,7 +36,10 @@ jobs:
           mkdir -p /tmp/builds/AppImage/x64
           mkdir -p /tmp/builds/rpm/x64
 
-          tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar /home/runner/work/quest-sidenoder/quest-sidenoder/dist/SideNoder*.AppImage
+
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist/
+
+          tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar SideNoder*.AppImage
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
 
           electron-packager ./ SideNode --platform=darwin --arch=x64 --out=dist
@@ -68,7 +71,7 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-AppImage
+          name: SideNoder-linux-x64-AppImage-tar
           path: /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar
 
 
@@ -76,5 +79,5 @@ jobs:
       - name: Upload windows Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-win-x64-zip
+          name: SideNoder-win-x64-exe-zip
           path: /tmp/builds/win32/x64/SideNoder-win32-x64.zip
