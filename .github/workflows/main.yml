@@ -34,12 +34,16 @@ jobs:
 
           mkdir -p /tmp/builds
           mkdir -p /tmp/builds/AppImage/x64
-          mkdir -p /tmp/builds/rpm/x64
+          mkdir -p /tmp/builds/snap/x64
 
 
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist/
 
           tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar SideNoder*.AppImage
+          tar -cvf /tmp/builds/snap/x64/SideNoder-linux-x64-snap.tar SideNoder*.snap
+
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder
+
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
 
           sudo npm install electron-packager -g
@@ -74,7 +78,11 @@ jobs:
         with:
           name: SideNoder-linux-x64-AppImage
           path: /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar
-
+      - name: Upload linux Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-linux-x64-snap
+          path: /tmp/builds/snap/x64/SideNoder-linux-x64-snap.tar
 
 
       - name: Upload windows Build Artifact
