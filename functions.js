@@ -38,10 +38,10 @@ function getDeviceSync(){
             console.log("getDevice()")
             if (devices.length > 0) {
                 global.adbDevice = devices[0].id
-                win.webContents.send('get_device',`{"success":"${devices[0].id}"}`);
+                win.webContents.send('get_device',`{success:"${devices[0].id}"}`);
             } else {
                 global.adbDevice = false
-                win.webContents.send('get_device',`{"success":false}`);
+                win.webContents.send('get_device',{success: false});
             }
         })
         .catch(function(err) {
@@ -79,11 +79,14 @@ function trackDevices(){
         .then(function(tracker) {
             tracker.on('add', function(device) {
                 win.webContents.send('get_device',`{success:"${device.id}"}`);
+                global.adbDevice = device.id
                 console.log('Device %s was plugged in', `{success:${device.id}`)
             })
             tracker.on('remove', function(device) {
-                win.webContents.send('get_device',`{success:false}`);
-                console.log('Device %s was unplugged', `{success:false}`)
+                global.adbDevice = false
+                resp = {success: global.adbDevice}
+                win.webContents.send('get_device',resp);
+                console.log('Device %s was unplugged', resp)
             })
             tracker.on('end', function() {
                 console.log('Tracking stopped')
@@ -100,14 +103,17 @@ async function checkMount(){
         await fsPromise.readdir(`${mountFolder}`);
         list = await getDir(`${mountFolder}`);
         if (list.length > 0) {
+            global.mounted = true
             return true
         }
+        global.mounted = false
         return false;
     }
     catch (e) {
         console.log("entering catch block");
         console.log(e);
         console.log("leaving catch block");
+        global.mounted = false
         return false
     }
     return false;

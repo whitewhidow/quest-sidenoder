@@ -7,7 +7,7 @@ global.mountFolder = global.tmpdir+"/mnt";
 global.platform = require('os').platform;
 global.homedir = require('os').homedir();
 global.adbDevice = false
-
+global.mounted = false
 
 
 var tools = require("./functions")
@@ -17,7 +17,7 @@ const { ipcMain } = require('electron')
 
 ipcMain.on('get_device', async (event, arg) => {
     console.log("get_device received");
-    await tools.getDeviceSync()
+    //await tools.getDeviceSync()
     resp = {success: global.adbDevice}
     event.reply('get_device', resp)
 
@@ -41,8 +41,8 @@ ipcMain.on('mount', async (event, arg) => {
 })
 
 ipcMain.on('check_mount', async (event, arg) => {
-    checkmount = await tools.checkMount();
-    event.reply('check_mount', `{"success":${checkmount}, "mountFolder": "${global.mountFolder}"}`)
+    await tools.checkMount();
+    event.reply('check_mount', `{"success":${global.mounted}, "mountFolder": "${global.mountFolder}"}`)
     return
 })
 
@@ -57,7 +57,7 @@ ipcMain.on('start_sideload', async (event, arg) => {
     }
     event.reply('start_sideload', `{"success":true, "path": "${arg}"}`)
     tools.sideloadFolder(`${arg}`)
-    event.reply('get_device', `{"success":true}`)
+    event.reply('get_device', `{success:true}`)
     return
 })
 
