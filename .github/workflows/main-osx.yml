@@ -46,7 +46,7 @@ jobs:
         # sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
         # sudo electron-packager ./ sidenode --all
 
-      - name: Upload linux Build Artifact
+      - name: Upload osx Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-osx-x64-dmg
