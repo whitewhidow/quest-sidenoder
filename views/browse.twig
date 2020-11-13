@@ -113,7 +113,7 @@
     ipcRenderer.on('sideload_done', (event, arg) => {
       $(".sideloadDoneBadge").removeClass("badge-warning").addClass("badge-success");
       $("#sideloadDoneBtn").removeClass("disabled").removeClass("btn-primary").addClass("btn-success").html("Done")
-      $("#sideloadRefresh").removeClass("fa-refresh").removeClass("fa-refresh").addClass("fa-check-circle-o")
+      $("#sideloadRefresh").removeClass("fa-refresh").removeClass("fa-spin").addClass("fa-check-circle-o")
     });
 
   </script>
