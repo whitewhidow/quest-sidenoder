@@ -71,7 +71,7 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-AppImage-tar
+          name: SideNoder-linux-x64-AppImage
           path: /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar
 
 
@@ -79,5 +79,5 @@ jobs:
       - name: Upload windows Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-win-x64-exe-zip
+          name: SideNoder-win-x64
           path: /tmp/builds/win32/x64/SideNoder-win32-x64.zip
