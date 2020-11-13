@@ -15,6 +15,7 @@ pipelines:
             - npm install
             - npm run-script pack
             - npm run-script dist
+            - electron-packager ./ SideNode --platform=win32 --arch=x64 --out=dist --overwrite
           artifacts:
             - dist/SideNoder*.AppImage
             - dist/SideNoder*.snap
