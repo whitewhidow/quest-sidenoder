@@ -23,7 +23,7 @@ module.exports =
     mount,
     getDir,
     returnError,
-    getDeviceSync
+    sideloadFolder
 
     // ...
 }
@@ -39,9 +39,10 @@ function getDeviceSync(){
             if (devices.length > 0) {
                 global.adbDevice = devices[0].id
                 win.webContents.send('get_device',`{"success":"${devices[0].id}"}`);
+            } else {
+                global.adbDevice = false
+                win.webContents.send('get_device',`{"success":false}`);
             }
-            global.adbDevice = false
-            win.webContents.send('get_device',`{"success":false}`);
         })
         .catch(function(err) {
             console.error('Something went wrong:', err.stack)
@@ -60,7 +61,13 @@ function execShellCommand(cmd) {
             if (error) {
                 console.warn(error);
             }
-            resolve(stdout? stdout : stderr);
+            if (stdout) {
+                console.log(stdout)
+                resolve(stdout);
+            } else {
+                console.log(stderr)
+                resolve(stderr);
+            }
         });
     });
 }
@@ -71,12 +78,12 @@ function trackDevices(){
     client.trackDevices()
         .then(function(tracker) {
             tracker.on('add', function(device) {
-                win.webContents.send('get_device',`{"success":"${device.id}"}`);
-                console.log('Device %s was plugged in', `{"success":${device.id}`)
+                win.webContents.send('get_device',`{success:"${device.id}"}`);
+                console.log('Device %s was plugged in', `{success:${device.id}`)
             })
             tracker.on('remove', function(device) {
-                win.webContents.send('get_device',`{"success":false}`);
-                console.log('Device %s was unplugged', `{"success":false}`)
+                win.webContents.send('get_device',`{success:false}`);
+                console.log('Device %s was unplugged', `{success:false}`)
             })
             tracker.on('end', function() {
                 console.log('Tracking stopped')
@@ -147,8 +154,10 @@ async function mount(){
         await execShellCommand(`umount ${mountFolder}`);
         await execShellCommand(`fusermount -uz ${mountFolder}`);
         console.log(mountFolder);
-        await fs.mkdir(mountFolder, {}, ()=>{})
+        await fs.mkdir(mountFolder, {}, ()=>{}) // folder must exist on windows
         console.log(mountFolder);
+    } else {
+        await execShellCommand(`rmdir ${mountFolder}`); // folder must NOT exist on windows
     }
     let content = await fetch("https://raw.githubusercontent.com/whitewhidow/quest-sideloader-linux/main/extras/k")
     content = await content.text()
@@ -202,11 +211,6 @@ async function getDir(folder){
 
 
 
-
-
-
-
-
     try {
         const files = await fsPromise.readdir(folder, { withFileTypes: true });
         let fileNames = await Promise.all(files.map(async (fileEnt) => {
@@ -233,26 +237,107 @@ async function getDir(folder){
         return false
     }
 
-
-
-
-
-
-
-
-
-
-        console.log(`getDir(${folder})`)
-        try {
-            list = await fsPromise.readdir(`${folder}`);
-            //console.log(list)
-            return list;
-        }
-        catch (e) {
-            console.log("entering catch block");
-            console.log(e);
-            //returnError(e.message)
-            console.log("leaving catch block");
-            return false
-        }
 }
+
+async function getObbsDir(folder){
+        const files = await fsPromise.readdir(folder, { withFileTypes: true });
+        let fileNames = await Promise.all(files.map(async (fileEnt) => {
+            const info = await fsPromise.lstat(path.join(folder, fileEnt.name));
+                return {
+                    name: fileEnt.name,
+                    isFile: fileEnt.isFile(),
+                    info: info,
+                    createdAt: new Date(info.mtimeMs),
+                    filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),
+                }
+        }));
+        incList = []
+        fileNames.forEach((item)=>{
+            if (!item.isFile) {
+                incList.push(item)
+            }
+        })
+    if (incList.length === 0) {return false}
+    if (incList.length > 1) {returnError("Too many subfolders found");return;}
+        return incList[0].name;
+}
+
+async function getObbs(folder){
+    const files = await fsPromise.readdir(folder, { withFileTypes: true });
+    let fileNames = await Promise.all(files.map(async (fileEnt) => {
+        return path.join(folder, fileEnt.name).replace(/\\/g,"/")
+    }));
+    return fileNames;
+}
+
+async function sideloadFolder(location) {
+    console.log("sideloadFolder()")
+    if (location.endsWith(".apk")) {
+        apkfile = location;
+        location=path.dirname(location);
+    } else {
+        returnError("not an apk file")
+    }
+
+    console.log("be sideload: "+apkfile)
+
+
+    //await execShellCommand(`umount ${mountFolder}`);
+
+    console.log('doing adb install');
+    await execShellCommand(`adb install -g -d "${apkfile}"`);
+    win.webContents.send('sideload_apk_done',`{"success":true}`);
+
+
+
+
+
+    obbFolder = await getObbsDir(location);
+    obbFiles = [];
+    if ( obbFolder ) {
+        console.log("obbFolder: "+obbFolder)
+        console.log('doing onn rm');
+        await execShellCommand(`adb shell rm -r "/sdcard/Android/obb/${obbFolder}"`);
+
+        obbFiles = await getObbs(location+"/"+obbFolder);
+        if (obbFiles.length > 0) {
+            console.log("obbFiles: "+obbFiles)
+
+            // await execShellCommand(`adb push "${location}/${obbFolder}" "/sdcard/Download/obb/${obbFolder}"`);
+            //
+            //
+            // console.log("SLEEP")
+            // return
+
+            for (const item of obbFiles) {
+                console.log("obb File: "+item)
+                console.log('doing obb push');
+                var n = item.lastIndexOf('/');
+                var name = item.substring(n + 1);
+                if (`${platform}` != "win64" && `${platform}` != "win32") {
+                    nullcmd = "> /dev/null"
+                } else {
+                    nullcmd = "> null"
+                }
+                console.log(`adb push "${item}" "/sdcard/Download/obb/${name}" ${nullcmd}`);
+                await execShellCommand(`adb push "${item}" "/sdcard/Download/obb/${obbFolder}/${name}" ${nullcmd}`);
+            }
+            win.webContents.send('sideload_copy_obb_done',`{"success":true}`);
+            console.log('doing shell mv');
+            await execShellCommand(`adb shell mv "/sdcard/Download/obb/${obbFolder}" "/sdcard/Android/obb/${obbFolder}"`);
+            win.webContents.send('sideload_move_obb_done',`{"success":true}`);
+
+        }
+    } else {
+        win.webContents.send('sideload_copy_obb_done',`{"success":true}`);
+        win.webContents.send('sideload_move_obb_done',`{"success":true}`);
+
+    }
+    win.webContents.send('sideload_done',`{"success":true}`);
+    console.log('DONE');
+    return;
+}
+
+
+
+

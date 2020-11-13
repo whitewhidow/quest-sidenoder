@@ -96,6 +96,22 @@
       $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')"><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
+
+    ipcRenderer.on('sideload_apk_done', (event, arg) => {
+      $(".apkDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_copy_obb_done', (event, arg) => {
+      $(".copyObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_copy_obb_done', (event, arg) => {
+      $(".moveObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_done', (event, arg) => {
+      $(".sideloadDoneBadge").removeClass("badge-warning").addClass("badge-success");
+      $("#sideloadDoneBtn").removeClass("disabled").removeClass("btn-primary").addClass("btn-success").html("Done")
+      $("#sideloadRefresh").removeClass("fa-refresh").removeClass("fa-refresh").addClass("fa-check-circle-o")
+    });
+
   </script>
 {% endblock %}
 
@@ -147,23 +163,25 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><i  id="mountrefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><i  id="sideloadRefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
         </div>
         <div class="modal-body">
           <span id="sideloadText"></span>
           <br>
-          <span class="badge badge-warning badge-md">Check device</span>
+          <span class="deviceBadge badge badge-warning badge-md">Check device</span>
           <br>
-          <span class="badge badge-warning badge-md">Install APK</span>
+          <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
           <br>
-          <span class="badge badge-warning badge-md">Copy OBB's</span>
+          <span class="copyObbDoneBadge badge badge-warning badge-md">Copy OBB's</span>
           <br>
-          <span class="badge badge-warning badge-md">Done OBB's</span>
+          <span class="moveObbDoneBadge badge badge-warning badge-md">Move OBB's</span>
+          <br>
+          <span class="sideloadDoneBadge badge badge-warning badge-md">Sideload finished</span>
           <br>
         </div>
         <div class="modal-footer">
           {# <button type="button" class="btn btn-secondary disabled" data-dismiss="modal">Close</button> #}
-          <button type="button" class="btn btn-primary disabled">Please wait for the process to finish</button>
+          <button type="button" id="sideloadDoneBtn"  data-dismiss="modal" class="btn btn-primary disabled">Please wait for the process to finish</button>
         </div>
       </div>
     </div>

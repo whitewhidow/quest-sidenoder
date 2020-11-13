@@ -80,18 +80,24 @@
     }
 
     ipcRenderer.on('get_device', (event, arg) => {
-      console.log("get_device msg came FROM BE to fe: "+arg); // prints "ping"
+      console.log("get_device msg came FROM BE to fe:"); // prints "ping"
       console.log(arg);
-      if (arg.success) {
+      if (arg.success !== false) {
+        console.log('GETDEVICE SUCESS')
         $("#devicerefresh").removeClass("fa-spin");
         $("#devicebtn").removeClass("btn-warning");
         $("#devicebtn").removeClass("btn-danger");
         $("#devicebtn").addClass("btn-success");
         $("#devicebtn").html(`<i id="devicerefresh" class="fa fa-check-circle-o"></i> | Quest status:</br>Connected.`)
+
+        $(".deviceBadge").removeClass("badge-warning");
+        $(".deviceBadge").addClass("badge-success");
+
       } else {
         $("#devicerefresh").removeClass("fa-spin");
         $("#devicebtn").removeClass("btn-warning");
         $("#devicebtn").addClass("btn-danger");
+        $("#devicebtn").html(`<i id="devicerefresh" class="fa fa-check-circle-o"></i> | Quest status:</br>Disconnected.`)
       }
     });
 

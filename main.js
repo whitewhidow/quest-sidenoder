@@ -15,9 +15,10 @@ const { ipcMain } = require('electron')
 
 
 
-ipcMain.on('get_device', (event, arg) => {
+ipcMain.on('get_device', async (event, arg) => {
     console.log("get_device received");
-    resp = {"success": global.adbDevice}
+    await tools.getDeviceSync()
+    resp = {success: global.adbDevice}
     event.reply('get_device', resp)
 
 })
@@ -49,11 +50,14 @@ ipcMain.on('start_sideload', async (event, arg) => {
     console.log("start_sideload received");
     if (!global.adbDevice) {
         console.log("Missing device, sending ask_device")
-        event.reply('ask_device', ``)
         //tools.returnError("This action cannot be performed without a device attached.")
+
+        event.reply('ask_device', ``)
         return
     }
     event.reply('start_sideload', `{"success":true, "path": "${arg}"}`)
+    tools.sideloadFolder(`${arg}`)
+    event.reply('get_device', `{"success":true}`)
     return
 })
 
@@ -71,7 +75,6 @@ ipcMain.on('get_dir', async (event, arg) => {
     list = await tools.getDir(folder)
 
     incList = []
-
     list.forEach((item)=>{
         if (!item.isFile) {
             incList.push(item)
