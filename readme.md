@@ -1,7 +1,7 @@
 ![screen](.github/screen.gif)
 
 ### Installation:
-Download binaries:
+Download and run one of the available binaries:
 ```
 https://github.com/whitewhidow/quest-sidenoder/releases/new
 ```
@@ -12,7 +12,9 @@ cd quest-sidenoder/
 npm install
 npm start
 ```
+Please report any issues here :
 
+https://github.com/whitewhidow/quest-sidenoder/issues
 
 ## Dependencies:
 
