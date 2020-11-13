@@ -25,6 +25,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: run make
         run: |
+
+          sudo npm install
+          sudo npm run-script pack
+          sudo npm run-script dist
+
           sudo apt install wine64
 
           sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
