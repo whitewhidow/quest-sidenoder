@@ -30,30 +30,29 @@ jobs:
           sudo npm run-script pack
           sudo npm run-script dist
 
-          sudo apt install wine64
 
-          sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
-          sudo chown root /home/runner
-
-          sudo apt install mono-complete
-          sudo chmod 777 -R /home/runner
-          sudo chmod 777 -R /usr/local/lib/node_modules
-          sudo npm install  --unsafe-perm=true --allow-root
-          sudo npm run make
 
           mkdir -p /tmp/builds
-          mkdir -p /tmp/builds/deb/x64
+          mkdir -p /tmp/builds/AppImage/x64
           mkdir -p /tmp/builds/rpm/x64
 
-          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64/* /tmp/builds/deb/x64
-          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64/* /tmp/builds/rpm/x64
+          sudo mv /home/runner/work/quest-sidenoder/quest-sidenoder/dist/SideNoder*.AppImage /tmp/builds/AppImage/x64
 
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out
 
       - name: electron-packager
         run: |
+
+          sudo apt install wine64
+
+
           sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
+          sudo apt install mono-complete
+
           sudo chown root /home/runner
+          sudo chmod 777 -R /home/runner
+          sudo chmod 777 -R /usr/local/lib/node_modules
+
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
           sudo electron-packager ./ SideNoder --platform=win32 --arch=x64
           mkdir -p /tmp/builds/win32/x64
@@ -68,13 +67,11 @@ jobs:
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-deb
-          path: /tmp/builds/deb/x64
-      - name: Upload linux Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: SideNoder-linux-x64-rpm
-          path: /tmp/builds/rpm/x64
+          name: SideNoder-linux-x64-AppImage
+          path: /tmp/builds/AppImage/x64
+
+
+
       - name: Upload linux Build Artifact
         uses: actions/upload-artifact@v2
         with:
