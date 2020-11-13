@@ -1,5 +1,21 @@
 ![screen](.github/screen.gif)
 
+### Installation:
+Download and run one of the available binaries:
+```
+https://github.com/whitewhidow/quest-sidenoder/releases/new
+```
+or clone the repo, and run the app (requires node) :
+```
+git clone https://github.com/whitewhidow/quest-sidenoder.git
+cd quest-sidenoder/
+npm install
+npm start
+```
+Please report any issues here :
+
+https://github.com/whitewhidow/quest-sidenoder/issues
+
 ## Dependencies:
 
 #### mac/osx:
