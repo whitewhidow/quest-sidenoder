@@ -32,7 +32,7 @@ curl https://rclone.org/install.sh | sudo bash
 #### mac/osx:
 Install adb and rclone using these commands:
 ```
-brew install android platform-tools
+brew install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
 ```
 
