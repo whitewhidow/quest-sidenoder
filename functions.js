@@ -231,14 +231,19 @@ async function getDir(folder){
         const files = await fsPromise.readdir(folder, { withFileTypes: true });
         let fileNames = await Promise.all(files.map(async (fileEnt) => {
             const info = await fsPromise.lstat(path.join(folder, fileEnt.name));
-            return {
-                name: fileEnt.name,
-                isFile: fileEnt.isFile(),
-                info: info,
-                createdAt: new Date(info.mtimeMs),
-                filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),
-            }
-        }));
+                if (  (new RegExp(".*\ -steam-")).test(fileEnt.name)  ) {
+                    steamid = fileEnt.name.split('steam-')[1]
+                } else {steamid=false;}
+                return {
+                    name: fileEnt.name,
+                    isFile: fileEnt.isFile(),
+                    steamId: steamid,
+                    info: info,
+                    createdAt: new Date(info.mtimeMs),
+                    filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),
+                }
+            })
+        );
 
         fileNames.sort((a, b) => {
             return b.createdAt - a.createdAt;

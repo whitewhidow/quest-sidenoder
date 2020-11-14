@@ -15,7 +15,7 @@ for d in ./*/; do
 
   ((COUNT++))
 
-  if [[ ! ($d =~ .*\ steam:.*) ]]; then
+  if [[ ! ($d =~ .*\ -steam-.*) ]]; then
 
 
 
@@ -66,7 +66,15 @@ for d in ./*/; do
       DIRZ=${d::-1}
       echo "d: $DIRZ"
       cd ../
-      mv "$DIRZ" "${d::-1} steam:$ID"
+
+      #old_mtime=$(stat -c%Y "$DIRZ")
+
+      mv "$DIRZ" "${d::-1} -steam-$ID"
+
+      #touch -t"$old_mtime" "${d::-1} -steam-$ID"
+
+
+
       echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
       #${var%%SubStr*}
     else
@@ -75,14 +83,16 @@ for d in ./*/; do
 
 
 
-    #sleep 3
+
 
   else
     DIRZ=${d::-1}
-    DIRZ=${DIRZ%%\ steam:*}
+    DIRZ=${DIRZ%%\ -steam*}
     echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
     echo "skipping $DIRZ already fixed"
   fi
+
+  sleep 5
 done
 
 echo "$COUNT items looped"
