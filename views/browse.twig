@@ -140,7 +140,12 @@
       $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
-
+    ipcRenderer.on('sideload_aapt_done', (event, arg) => {
+      $(".aaptDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_uninstall_done', (event, arg) => {
+      $(".uninstallDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
     ipcRenderer.on('sideload_apk_done', (event, arg) => {
       $(".apkDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
@@ -215,6 +220,10 @@
           <span id="sideloadText"></span>
           <br>
           <span class="deviceBadge badge badge-warning badge-md">Check device</span>
+          <br>
+          <span class="aaptDoneBadge badge badge-warning badge-md">Read Packageinfo</span>
+          <br>
+          <span class="uninstallDoneBadge badge badge-warning badge-md">Uninstall APK</span>
           <br>
           <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
           <br>

@@ -142,7 +142,7 @@ async function checkDeps(){
         exists = await commandExists('aapt');
     }
     catch (e) {
-        //returnError("AAPT global installation not found.")
+        console.log("AAPT global installation not found.")
         //return
     }
     win.webContents.send('check_deps',`{"success":true}`);
@@ -295,27 +295,36 @@ async function sideloadFolder(location) {
         returnError("not an apk file")
     }
 
-    console.log("be sideload: "+apkfile)
+    console.log("start sideload: "+apkfile)
 
 
-    //await execShellCommand(`umount ${mountFolder}`);
+
+    packageinfo = await packageInfo(`"${apkfile}"`, (err, data) => {
+        if (err) {
+            returnError("AAPT failed to read the package")
+        } else {
+            console.log(data);
+        }
+    });
+    win.webContents.send('sideload_aapt_done',`{"success":true}`);
 
 
-    // await packageInfo(`"${apkfile}"`, (err, data) => {
-    //     if (err) {
-    //         // something went wrong
-    //     } else {
-    //         console.log(data);
-    //     }
-    // });
+    console.log('doing adb UNinstall');
+    try {
+        await execShellCommand(`adb uninstall "${packageinfo.packageName}"`);
+    }  catch (e) {
+        console.log(e);
+    }
+    win.webContents.send('sideload_uninstall_done',`{"success":true}`);
 
-
-    // win.webContents.send('sideload_done',`{"success":true}`);
-    // return;
 
     console.log('doing adb install');
-    await execShellCommand(`adb install -g -d "${apkfile}"`);
-    win.webContents.send('sideload_apk_done',`{"success":true}`);
+    try {
+        await execShellCommand(`adb install -g -d "${apkfile}"`);
+        win.webContents.send('sideload_apk_done',`{"success":true}`);
+    }  catch (e) {
+        console.log(e);
+    }
 
 
 
@@ -326,18 +335,16 @@ async function sideloadFolder(location) {
     if ( obbFolder ) {
         console.log("obbFolder: "+obbFolder)
         console.log('doing onn rm');
-        await execShellCommand(`adb shell rm -r "/sdcard/Android/obb/${obbFolder}"`);
-
+        try {
+            await execShellCommand(`adb shell rm -r "/sdcard/Android/obb/${obbFolder}"`);
+        }  catch (e) {
+            console.log(e);
+        }
         obbFiles = await getObbs(location+"/"+obbFolder);
         if (obbFiles.length > 0) {
             console.log("obbFiles: "+obbFiles)
 
-            // await execShellCommand(`adb push "${location}/${obbFolder}" "/sdcard/Download/obb/${obbFolder}"`);
-            //
-            //
-            // console.log("SLEEP")
-            // return
-
+            //TODO, make name be packageName instead of foldername
             for (const item of obbFiles) {
                 console.log("obb File: "+item)
                 console.log('doing obb push');
@@ -348,7 +355,6 @@ async function sideloadFolder(location) {
                 } else {
                     nullcmd = "> null"
                 }
-                console.log(`adb push "${item}" "/sdcard/Download/obb/${name}" ${nullcmd}`);
                 await execShellCommand(`adb push "${item}" "/sdcard/Download/obb/${obbFolder}/${name}" ${nullcmd}`);
             }
             win.webContents.send('sideload_copy_obb_done',`{"success":true}`);
