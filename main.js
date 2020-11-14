@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 global.twig = require('electron-twig');
-
 global.tmpdir = require('os').tmpdir()
 global.tmpdir = global.tmpdir.replace(/\\/g,"/");
 global.mountFolder = global.tmpdir+"/mnt";
@@ -12,6 +11,16 @@ global.mounted = false
 
 var tools = require("./functions")
 const { ipcMain } = require('electron')
+
+
+packageInfo = require('node-aapt')
+ipcMain.on('test', async (event, arg) => {
+   // packageinfo = await tools.getPackageInfo(arg);
+
+
+    event.reply('log', '');
+    return
+})
 
 
 

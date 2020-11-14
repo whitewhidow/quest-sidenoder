@@ -92,7 +92,7 @@ for d in ./*/; do
     echo "skipping $DIRZ already fixed"
   fi
 
-  sleep 5
+  #sleep 5
 done
 
 echo "$COUNT items looped"

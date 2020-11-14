@@ -32,6 +32,10 @@
       ipcRenderer.send('mount', 'bla');
     }
 
+    ipcRenderer.on('log', (event, arg) => {
+      console.log("log came")
+      console.log(arg)
+    });
 
     ipcRenderer.on('check_mount', (event, arg) => {
       console.log("check_mount responded: "+arg); // prints "ping"

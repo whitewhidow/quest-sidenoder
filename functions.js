@@ -26,8 +26,7 @@ module.exports =
     mount,
     getDir,
     returnError,
-    sideloadFolder
-
+    sideloadFolder,
     // ...
 }
 
@@ -142,8 +141,10 @@ async function checkDeps(){
         exists = await commandExists('aapt');
     }
     catch (e) {
-        console.log("AAPT global installation not found.")
-        //return
+        if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
+            returnError("AAPT global installation not found.")
+            return
+        }
     }
     win.webContents.send('check_deps',`{"success":true}`);
     return
@@ -303,15 +304,13 @@ async function sideloadFolder(location) {
     console.log("start sideload: "+apkfile)
 
 
-
-    packageinfo = await packageInfo(`"${apkfile}"`, (err, data) => {
-        if (err) {
-            returnError("AAPT failed to read the package")
-        } else {
-            console.log(data);
-        }
-    });
-    win.webContents.send('sideload_aapt_done',`{"success":true}`);
+    try {
+        packageinfo = await getPackageInfo(apkfile)
+        win.webContents.send('sideload_aapt_done',`{"success":true}`);
+    }  catch (e) {
+        console.log(e);
+        returnError("AAPT failed to read the package")
+    }
 
 
     console.log('doing adb UNinstall');
@@ -380,4 +379,25 @@ async function sideloadFolder(location) {
 
 
 
+async function getPackageInfo(apkPath) {
 
+    if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
+        packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
+        packageLine = packageStuff.match(/package: (.*)/g);
+        packageName = packageStuff.match(/name='([a-zA-Z.]*)'/g);
+        packageName = packageName[0].split("'")[1]
+        versionCode = packageStuff.match(/versionCode='([0-9a-zA-Z.]*)'/g);
+        versionCode = versionCode[0].split("'")[1]
+        versionName = packageStuff.match(/versionName='([0-9a-zA-Z.]*)'/g);
+        versionName = versionName[0].split("'")[1]
+        info = {packageName: packageName, versionCode: versionCode, versionName: versionName}
+        return info
+    } else {
+        info = await packageInfo(`"${apkPath}"`, (err, data) => {
+            if (err) {
+                returnError("AAPT failed to read the package")
+            }
+        });
+        return info
+    }
+}
