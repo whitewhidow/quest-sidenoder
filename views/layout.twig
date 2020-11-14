@@ -25,20 +25,6 @@
   <script>
     const { ipcRenderer } = require('electron')
 
-
-    ipcRenderer.on('check_deps', (event, arg) => {
-      console.log("check_deps msg came: "+arg); // prints "ping"
-      console.log(JSON.parse(arg));
-      if (JSON.parse(arg).success) {
-        $("#adbCheckIndicator").removeClass("badge-danger");
-        $("#adbCheckIndicator").addClass("badge-success");
-        $("#adbCheckIndicator").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> ADB Installed.`)
-        $("#rcloneCheckIndicator").removeClass("badge-danger");
-        $("#rcloneCheckIndicator").addClass("badge-success");
-        $("#rcloneCheckIndicator").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> RCLONE Installed.`)
-      }
-      });
-
     function checkMount() {
       $("#mountrefresh").addClass("fa-spin");
       $("#mountbtn").removeClass("btn-danger");

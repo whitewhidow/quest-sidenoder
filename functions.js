@@ -11,6 +11,9 @@ var path = require('path')
 var commandExists = require('command-exists');
 
 
+const packageInfo = require('node-aapt');
+
+
 const promise = require('promise')
 
 
@@ -139,8 +142,8 @@ async function checkDeps(){
         exists = await commandExists('aapt');
     }
     catch (e) {
-        returnError("AAPT global installation not found.")
-        return
+        //returnError("AAPT global installation not found.")
+        //return
     }
     win.webContents.send('check_deps',`{"success":true}`);
     return
@@ -296,6 +299,19 @@ async function sideloadFolder(location) {
 
 
     //await execShellCommand(`umount ${mountFolder}`);
+
+
+    // await packageInfo(`"${apkfile}"`, (err, data) => {
+    //     if (err) {
+    //         // something went wrong
+    //     } else {
+    //         console.log(data);
+    //     }
+    // });
+
+
+    // win.webContents.send('sideload_done',`{"success":true}`);
+    // return;
 
     console.log('doing adb install');
     await execShellCommand(`adb install -g -d "${apkfile}"`);
