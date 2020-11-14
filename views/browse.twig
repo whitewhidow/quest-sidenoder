@@ -7,6 +7,21 @@
     a { cursor: pointer; }
   </style>
   <script>
+
+    function fixIcons(){
+      $( ".browse-folder" ).hover(
+              function() {
+                console.log("HOVER");
+                $(this).find( "i" ).removeClass("fa-folder-o")
+                $(this).find( "i" ).addClass("fa-folder-open-o")
+              }, function() {
+                $(this).find( "i" ).addClass("fa-folder-o")
+                $(this).find( "i" ).removeClass("fa-folder-open-o")
+              }
+      );
+    }
+
+
     $(document).ready(function() {
       console.log("ONLOAD BROWSE");
       //open start dir
@@ -24,6 +39,9 @@
 
 
 
+
+
+
       function findString(str) {
         var strFound;
         strFound = self.find(str);
@@ -34,18 +52,13 @@
           strFound = self.find(str, 0, 1)
           while (self.find(str, 0, 1)) continue
         }
-
         if (!strFound) alert("String '" + str + "' not found!")
         return;
       };
-
       document.getElementById('f1').onsubmit = function() {
         findString(this.t1.value);
         return false;
       };
-
-
-
     });
 
 
@@ -95,35 +108,36 @@
       console.log("get_dir msg came: ");
       $("#listTable tbody").html('');
       if (arg.success) {
-        $("#path").html(arg.path)
-        loadDir(arg.path, arg.list)
+        $("#path").html(arg.path);
+        loadDir(arg.path, arg.list);
+        fixIcons();
       }
     });
 
     function loadDir(path, list) {
       let UpDir=path.substr(0, path.lastIndexOf("/"));
-      $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')"><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
+      $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
       for (item in list) {
         let name=list[item].name
         fullPath = list[item].filePath.replace("\\", "/").replace("", ":")
         if (list[item].isFile) {
           if (list[item].name.endsWith(".apk")) {
-            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath+ "\")'><b><i class=\"fa fa-upload\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</b></a><td></tr>`)
+            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath+ "\")'><b><i class=\"browse-file fa fa-upload\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</b></a><td></tr>`)
           }else{
-            row = $("#listTable tbody").append("<tr><td><i class=\"fa fa-file-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}<td></tr>`)
+            row = $("#listTable tbody").append("<tr><td><i class=\"browse-file fa fa-file-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}<td></tr>`)
           }
         } else {
           if (  (new RegExp(".*\ steam:")).test(fullPath)  ) {
             imagepath="https://cdn.cloudflare.steamstatic.com/steam/apps/"+fullPath.split(' steam:')[1]+"/capsule_sm_120.jpg"
-            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><a href="https://store.steampowered.com/app/${fullPath.split(' steam:')[1]}/" target=_blank><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"></a><td></tr>`)
+            row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><a href="https://store.steampowered.com/app/${fullPath.split(' steam:')[1]}/" target=_blank><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"></a><td></tr>`)
           } else {
-            row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
+            row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
           }
 
         }
         console.log("appended "+ name);
       }
-      $("#listTable tbody").append(`<tr><td><a onclick="getDir('${UpDir}')"><i class=\"fa fa-folder-open-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
+      $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
 

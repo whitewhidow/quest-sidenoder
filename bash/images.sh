@@ -4,7 +4,7 @@
 
 ORIPATH=$PWD
 cd /tmp/mnt
-echo -ne '' > "$ORIPATH/synced.txt"
+echo -ne '' > "$ORIPATH/../synced.txt"
 COUNT=0
 FAILCOUNT=0
 ALLCOUNT=$(ls -l -d */ | grep "^d" | wc -l)
@@ -67,7 +67,7 @@ for d in ./*/; do
       echo "d: $DIRZ"
       cd ../
       mv "$DIRZ" "${d::-1} steam:$ID"
-      echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/synced.txt"
+      echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
       #${var%%SubStr*}
     else
       cd ../
@@ -80,10 +80,12 @@ for d in ./*/; do
   else
     DIRZ=${d::-1}
     DIRZ=${DIRZ%%\ steam:*}
-    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/synced.txt"
+    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
     echo "skipping $DIRZ already fixed"
   fi
 done
 
 echo "$COUNT items looped"
 echo "$FAILCOUNT items failed"
+paplay /usr/share/sounds/ubuntu/ringtones/Bliss.ogg
+sleep 99
