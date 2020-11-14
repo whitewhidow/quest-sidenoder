@@ -21,10 +21,9 @@ https://github.com/whitewhidow/quest-sidenoder/issues
 
 
 #### linux:
-Install adb, aapt and rclone using these commands:
+Install adb and rclone using these commands:
 ```
 sudo apt install adb
-sudo apt install android-sdk-build-tools
 curl https://rclone.org/install.sh | sudo bash
 ```
 
@@ -36,11 +35,6 @@ Install adb and rclone using these commands:
 brew install android platform-tools
 curl https://rclone.org/install.sh | sudo bash
 ```
-Download aapt from here and add to $PATH:
-```
-https://androidaapt.com/
-```
-
 
 
 
