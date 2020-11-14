@@ -18,27 +18,41 @@ https://github.com/whitewhidow/quest-sidenoder/issues
 
 ## Dependencies:
 
+
+
+#### linux:
+Install adb, aapt and rclone using these commands:
+```
+sudo apt install adb
+sudo apt install android-sdk-build-tools
+curl https://rclone.org/install.sh | sudo bash
+```
+
+
+
 #### mac/osx:
-Install adb and rclone
+Install adb and rclone using these commands:
 ```
 brew install android platform-tools
 curl https://rclone.org/install.sh | sudo bash
 ```
+Download aapt from here and add to $PATH:
+```
+https://androidaapt.com/
+```
 
-#### linux:
-Install adb and rclone
-```
-sudo apt install adb
-curl https://rclone.org/install.sh | sudo bash
-```
+
+
+
 
 #### windows:
-Install adb and rclone GLOBALLY
+Download adb, aapt and rclone from here and add to $PATH:
 ```
-https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-amd64.zip
 https://dl.google.com/android/repository/platform-tools-latest-windows.zip
+https://androidaapt.com/
+https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-amd64.zip
 ```
-Install winfsp and reboot
+Install winfsp and reboot:
 ```
 https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi
 ```

@@ -135,6 +135,13 @@ async function checkDeps(){
         returnError("RCLONE global installation not found.")
         return
     }
+    try {
+        exists = await commandExists('aapt');
+    }
+    catch (e) {
+        returnError("AAPT global installation not found.")
+        return
+    }
     win.webContents.send('check_deps',`{"success":true}`);
     return
 }
