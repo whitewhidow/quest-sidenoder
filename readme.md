@@ -1,5 +1,6 @@
-![screen](.github/screen.gif)
+**SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset - comes **with pre-filled library.**
 
+![screen](.github/screen.gif)
 ### Installation:
 Download and run one of the available binaries:
 ```
