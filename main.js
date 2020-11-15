@@ -8,6 +8,7 @@ global.homedir = require('os').homedir();
 global.adbDevice = false
 global.mounted = false
 
+app.disableHardwareAcceleration()
 
 var tools = require("./functions")
 const { ipcMain } = require('electron')

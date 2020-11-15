@@ -86,6 +86,7 @@ Gladius v0.8.5 -VRP (Manual Install see readme)/**
 Gloomy Eyes v33 -QuestUnderground/**
 Gravity Lab v1.12.0-Q2Patched -QuestUnderground/**
 Gravity Sketch v5.0.1-qc.2017 -QuestUnderground/**
+Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
 Guided Tai Chi v1.2.35/**
 Gun Club VR v1.0.31.168-Q2Patched -QuestUnderground/**
 Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
@@ -103,6 +104,7 @@ Jigsaw 360 v3.0/**
 Job Simulator v1.4.0.4661 Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Journey Of The Gods v1.0.479431-Q2Patched-90Hz -QuestUnderground/**
 Keep Talking and Nobody Explodes v1.9.21.58 -QuestUnderground/**
+Keep Talking and Nobody Explodes v1.9.22.59 -QuestUnderground/**
 Kingdom of Blades v1.0.0/**
 Kingspray Graffiti v71.5 -QuestUnderground/**
 Knockout League v1.0 -QuestUnderground/**
@@ -171,6 +173,7 @@ Space Channel 5 VR v1.0.2.60108 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Space Pilot Alliance v2.6/**
 Space Pirate Trainer v1.64.164 -QuestUnderground/**
 Spaceteam VR v1.0/**
+SPHERES v1.36.37 -QuestUnderground/**
 Spice & Wolf VR v1.04/**
 Sports Scramble v1.0.88/**
 SUPERHOT VR v1.113(10-30) -QuestUnderground/**
