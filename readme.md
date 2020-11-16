@@ -1,5 +1,6 @@
-![screen](.github/screen.gif)
+**SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset - comes **with pre-filled library.**
 
+![screen](.github/screen.gif)
 ### Installation:
 Download and run one of the available binaries:
 ```
@@ -32,7 +33,7 @@ curl https://rclone.org/install.sh | sudo bash
 #### mac/osx:
 Install adb and rclone using these commands:
 ```
-brew install android platform-tools
+brew install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
 ```
 
