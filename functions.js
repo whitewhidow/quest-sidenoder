@@ -167,14 +167,16 @@ async function mount(){
         return
     }
 
-    if (`${platform}` != "win64" && `${platform}` != "win32") {
+
+    if (`${global.platform}` != "win64" && `${global.platform}` != "win32") {
         await execShellCommand(`umount ${mountFolder}`);
         await execShellCommand(`fusermount -uz ${mountFolder}`);
         console.log(mountFolder);
         await fs.mkdir(mountFolder, {}, ()=>{}) // folder must exist on windows
         console.log(mountFolder);
-    } else {
-        await execShellCommand(`rmdir ${mountFolder}`); // folder must NOT exist on windows
+    }
+    if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
+        await execShellCommand(`rmdir "${mountFolder}"`); // folder must NOT exist on windows
     }
     let content = await fetch("https://raw.githubusercontent.com/whitewhidow/quest-sideloader-linux/main/extras/k")
     content = await content.text()
