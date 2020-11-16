@@ -223,6 +223,7 @@ VR Aim Trainer v1.0/**
 VR Workout v0.9.8/**
 Walkabout Mini Golf v0.91.911 -QuestUnderground/**
 Waltz of the Wizard Extended Edition v1.5.3.348 -Q2-90Hz-CustomRes -QuestUnderground/**
+Waltz of the Wizard - Extended Edition v1.5.4.355 -QuestUnderground/**
 Wander v0.3394/**
 Wands v1.62 -QuestUnderground/**
 Where Thoughts Go v1.26 -QuestUnderground/**
