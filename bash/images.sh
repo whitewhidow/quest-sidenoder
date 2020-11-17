@@ -89,7 +89,7 @@ for d in ./*/; do
     DIRZ=${d::-1}
     DIRZ=${DIRZ%%\ -steam*}
     echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
-    echo "skipping $DIRZ already fixed"
+    #echo "skipping $DIRZ already fixed"
   fi
 
   #sleep 5
