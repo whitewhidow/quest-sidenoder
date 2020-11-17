@@ -4,7 +4,7 @@
 ### Installation:
 Download and run one of the available binaries:
 ```
-https://github.com/whitewhidow/quest-sidenoder/releases/new
+https://github.com/whitewhidow/quest-sidenoder/releases
 ```
 or clone the repo, and run the app (requires node) :
 ```
