@@ -15,7 +15,7 @@ npm start
 ```
 Please report any issues here :
 
-https://github.com/whitewhidow/quest-sidenoder/issues
+https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
 
 ## Dependencies:
 
