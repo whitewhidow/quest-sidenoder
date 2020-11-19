@@ -17,7 +17,7 @@ for d in ./*/; do
 
   if [[ ! ($d =~ .*\ -steam-.*) ]] && [[ ! ($d =~ .*\ -oculus-.*) ]]; then
 
-
+#sleep 3
 
     cd "$d"
 
@@ -54,7 +54,7 @@ for d in ./*/; do
     fi
 
 
-    sleep 3
+
 
 
 
@@ -89,11 +89,12 @@ for d in ./*/; do
   else
     DIRZ=${d::-1}
     DIRZ=${DIRZ%%\ -steam*}
+    DIRZ=${DIRZ%%\ -oculus*}
     echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
     #echo "skipping $DIRZ already fixed"
   fi
 
-  #sleep 5
+
 done
 
 echo "$COUNT items looped"

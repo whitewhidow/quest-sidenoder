@@ -188,7 +188,7 @@ Spice & Wolf VR v1.04/**
 Sports Scramble v1.0.88/**
 Star Shaman v10.0.9 (Quest 1+2)/**
 Star Shaman v10.0.9/**
-Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**
+Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP/**
 SUPERHOT VR v1.113(10-30) -QuestUnderground/**
 SUPERHOT VR v1.113-10-30 -QuestUnderground/**
 Swarm v473/**
@@ -233,7 +233,7 @@ Vader Immortal - Episode II v2.0.2-Q2Patched -QuestUnderground/**
 Vader Immortal - Episode I v1.1.0-Q2Patched -QuestUnderground/**
 Viking Days v1.0/**
 Virtual Virtual Reality v1.8.13.11-Q2Patched -QuestUnderground/**
-Void Racer - Extreme v1.08.108 -QuestUnderground -oculus-2874244485968712/**
+Void Racer - Extreme v1.08.108 -QuestUnderground/**
 Voxel Works v1.8.13/**
 VR Aim Trainer v1.0/**
 VR Workout v0.9.8/**
