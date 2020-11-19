@@ -13,6 +13,7 @@ Artifact v1.0.6/**
 ArtPlunge v201909211/**
 Attack on Quest v0.1.3/**
 Audica v1.0.3.1.127937901 Q2Patched-90Hz -QuestUnderground/**
+AUDICA v1.0.3.2.128543601 -QuestUnderground/**
 Audioshield v118 -QuestUnderground/**
 Audio Trip v0.131 -QuestUnderground/**
 Bait! v1.2/**
@@ -65,6 +66,7 @@ End Space v1.0.6.22 -QuestUnderground/**
 ENHANCE VR v2.0.0/**
 Escape Legacy v1.20/**
 Escape! v1.01/**
+Espire 1 VR Operative v1.6.289-1279 -VRP/**
 Espire 1 VR Operative v1.6.289 -QuestUnderground/**
 Exorcist Legion VR v1.0.9 -QuestUnderground/**
 Face Your Fears 1 and DLC v1.0.406218 (Spoofed as Pyramids Roller Coaster) (Q1 only) -QuestUnderground/**
@@ -83,16 +85,16 @@ Futbolin Revolution v1.0/**
 Gadgeteer v1.0.5-Q2Patched -QuestUnderground/**
 Ghost Giant v1.0.32-Q2Patched -QuestUnderground/**
 Gladius v0.8.5 -VRP (Manual Install see readme)/**
+Gladius v0.8.5 -VRP/**
 Gloomy Eyes v33 -QuestUnderground/**
 Gravity Lab v1.12.0-Q2Patched -QuestUnderground/**
-Gravity Sketch v5.0.1-qc.2017 -QuestUnderground/**
 Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
 Guided Tai Chi v1.2.35/**
 Gun Club VR v1.0.31.168-Q2Patched -QuestUnderground/**
 Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
+Half-Life VR v1.4.5 modified -DrBeef/**
 Half-Life VR v1.4.5 modified (manual install only)/**
 Hatsune Miku v3.01-10 -VRP/**
-Holopoint v1.0.13.122 Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Holopoint v1.0.14.123 -QuestUnderground/**
 Homestar VR v1.32 -QuestUnderground/**
 HouseFlipper VR v8.3/**
@@ -103,16 +105,19 @@ In Death - Unchained v1.1.1.24661807 -QuestUnderground/**
 Ironlights v108 -QuestUnderground/**
 Jigsaw 360 v3.0/**
 Job Simulator v1.4.0.4661 Q2Patched-90Hz-CustomRes -QuestUnderground/**
+Job Simulator v1.4.0.4665.36 -QuestUnderground/**
 Journey Of The Gods v1.0.479431-Q2Patched-90Hz -QuestUnderground/**
-Keep Talking and Nobody Explodes v1.9.21.58 -QuestUnderground/**
 Keep Talking and Nobody Explodes v1.9.22.59 -QuestUnderground/**
 Kingdom of Blades v1.0.0/**
+Kingspray Graffiti v71.5-725 (Alternative)/**
+Kingspray Graffiti v71.5-725 -VRP (save issue)/**
 Kingspray Graffiti v71.5 -QuestUnderground/**
 Knockout League v1.0 -QuestUnderground/**
 Laser Blaze v1.0.0/**
 Last Labyrinth v1.02.34 -QuestUnderground/**
 Layers of Fear v1.1 -QuestUnderground/**
 Lets Create! Pottery VR v1.0-503 -QuestUnderground/**
+Lets Create! Pottery VR v1.0-503 -VRP/**
 Let's Go Chopping v0.2/**
 Let's Play with Anna!/**
 Lies Beneath v1.0-55518/**
@@ -146,7 +151,9 @@ Pteranodon's Flight - The Flying Dinosaur Game v1.0/**
 Puzzling Places v1.0/**
 Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
+Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
 Racket Nx v1.4.4 -QuestUnderground/**
+Racket - Nx v1.4.6.91 -QuestUnderground/**
 Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
 Reflex Unit 2 v4.2/**
@@ -155,6 +162,7 @@ Relay v1.0.11/**
 République VR v1.2 -QuestUnderground/**
 Rest in Pieces v1.0/**
 Return to Castle Wolfenstein v1.0 -QuestUnderground (Manual Install)/**
+Return to Castle Wolfenstein v1.5 -DrBeef/**
 Rez Infinite v41.0/**
 Richie's Plank Experience v1.8.42.60-Q2Patch90Hz-QuestUnderground/**
 Robo Recall v1.0 -Q2Patched-90Hz -QuestUnderground/**
@@ -164,6 +172,7 @@ Secret of Harrow Manor 2 v0.24/**
 Shadow Point v1.1 -QuestUnderground/**
 Shooty Fruity v1.0 -QuestUnderground/**
 Shooty Skies Overdrive v1.03.75140 -QuestUnderground/**
+Shooty Skies Overdrive v1.03.78450 -QuestUnderground/**
 Shuttle Commander v0.64 -QuestUnderground/**
 SKYBOX VR Video Player v1.0.0.247 -QuestUnderground/**
 Skyworld - Kingdom Brawl v1.22/**
@@ -177,7 +186,11 @@ Spaceteam VR v1.0/**
 SPHERES v1.36.37 -QuestUnderground/**
 Spice & Wolf VR v1.04/**
 Sports Scramble v1.0.88/**
+Star Shaman v10.0.9 (Quest 1+2)/**
+Star Shaman v10.0.9/**
+Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**
 SUPERHOT VR v1.113(10-30) -QuestUnderground/**
+SUPERHOT VR v1.113-10-30 -QuestUnderground/**
 Swarm v473/**
 Sweet Escape VR v0.03/**
 Symphony of Stars v1.73/**
@@ -214,18 +227,21 @@ Tsuro - The Game of The Path v1.12.15 -QuestUnderground/**
 Ultrawings v2.02 -QuestUnderground/**
 Until You Fall v1.0.5.160981 -QuestUnderground/**
 Vacation Simulator v1.2.1-37562.64 Q2Patched-90Hz-CustomRes -QuestUnderground/**
+Vacation Simulator v1.3.0-37919 -QuestUnderground/**
 Vader Immortal - Episode III v3.0.2-Q2Patched -QuestUnderground/**
 Vader Immortal - Episode II v2.0.2-Q2Patched -QuestUnderground/**
 Vader Immortal - Episode I v1.1.0-Q2Patched -QuestUnderground/**
 Viking Days v1.0/**
 Virtual Virtual Reality v1.8.13.11-Q2Patched -QuestUnderground/**
+Void Racer - Extreme v1.08.108 -QuestUnderground -oculus-2874244485968712/**
 Voxel Works v1.8.13/**
 VR Aim Trainer v1.0/**
 VR Workout v0.9.8/**
 Walkabout Mini Golf v0.91.911 -QuestUnderground/**
-Waltz of the Wizard Extended Edition v1.5.3.348 -Q2-90Hz-CustomRes -QuestUnderground/**
+Walkabout Mini Golf v0.92.920 -QuestUnderground/**
 Waltz of the Wizard - Extended Edition v1.5.4.355 -QuestUnderground/**
 Wander v0.3394/**
 Wands v1.62 -QuestUnderground/**
 Where Thoughts Go v1.26 -QuestUnderground/**
+Wolves in the Walls v1.1375 -VRP/**
 Zombie World VR v1.0/**

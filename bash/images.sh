@@ -15,7 +15,7 @@ for d in ./*/; do
 
   ((COUNT++))
 
-  if [[ ! ($d =~ .*\ -steam-.*) ]]; then
+  if [[ ! ($d =~ .*\ -steam-.*) ]] && [[ ! ($d =~ .*\ -oculus-.*) ]]; then
 
 
 
@@ -32,6 +32,7 @@ for d in ./*/; do
     SEARCH=${SEARCH%%[0-9].[0-9].*}
     SEARCH=${SEARCH%%v[0-9][0-9]*}
     SEARCH=${SEARCH%%v[0-9][0-9].*}
+    SEARCH=${SEARCH%%v1*}
 
 
 
