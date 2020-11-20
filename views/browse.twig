@@ -128,7 +128,7 @@
           }
         } else {
           if (list[item].steamId) {
-            imagepath="https://cdn.cloudflare.steamstatic.com/steam/apps/"+list[item].steamId+"/capsule_sm_120.jpg"
+            imagepath="https://cdn.cloudflare.steamstatic.com/steam/apps/"+list[item].steamId+"/header.jpg"
             row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><a href="https://store.steampowered.com/app/${list[item].steamId}/" target=_blank><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"></a><td></tr>`)
           } else if (list[item].oculusId) {
             console.log("OCULUS "+list[item].oculusId)

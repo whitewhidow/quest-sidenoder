@@ -68,6 +68,7 @@ Escape Legacy v1.20/**
 Escape! v1.01/**
 Espire 1 VR Operative v1.6.289-1279 -VRP/**
 Espire 1 VR Operative v1.6.289 -QuestUnderground/**
+Espire 1 VR Operative v1.7.218-1546 -VRP/**
 Exorcist Legion VR v1.0.9 -QuestUnderground/**
 Face Your Fears 1 and DLC v1.0.406218 (Spoofed as Pyramids Roller Coaster) (Q1 only) -QuestUnderground/**
 Face Your Fears 1 and DLC v1.0.536957 (Spoofed as Neverthink) (Q2 only) -QuestUnderground/**
@@ -245,3 +246,4 @@ Wands v1.62 -QuestUnderground/**
 Where Thoughts Go v1.26 -QuestUnderground/**
 Wolves in the Walls v1.1375 -VRP/**
 Zombie World VR v1.0/**
+Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**

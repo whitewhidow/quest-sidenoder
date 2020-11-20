@@ -97,6 +97,8 @@ for d in ./*/; do
 
 done
 
+cat "$ORIPATH/../quotesynced.txt" >> "$ORIPATH/../synced.txt"
+
 echo "$COUNT items looped"
 echo "$FAILCOUNT items failed"
 paplay /usr/share/sounds/ubuntu/ringtones/Bliss.ogg
