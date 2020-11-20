@@ -117,6 +117,7 @@
     function loadDir(path, list) {
       let UpDir=path.substr(0, path.lastIndexOf("/"));
       $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
+      $("#browseCardBody").html('');
       for (item in list) {
         let name=list[item].name
         fullPath = list[item].filePath.replace("\\", "/").replace("", ":")
@@ -128,12 +129,35 @@
           }
         } else {
           if (list[item].steamId) {
-            imagepath="https://cdn.cloudflare.steamstatic.com/steam/apps/"+list[item].steamId+"/header.jpg"
+            imagepathbig="https://cdn.cloudflare.steamstatic.com/steam/apps/"+list[item].steamId+"/header.jpg"
+            imagepath="https://cdn.cloudflare.steamstatic.com/steam/apps/"+list[item].steamId+"/capsule_sm_120.jpg"
             row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><a href="https://store.steampowered.com/app/${list[item].steamId}/" target=_blank><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"></a><td></tr>`)
+            row = $("#browseCardBody").append(`<div class="col mb-4">
+          <div class="card h-100">
+            <img src="${imagepathbig}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="color: black">${name}</h5>
+              <p class="card-text">
+<a onclick='getDir("${fullPath}")'><span class="btn btn-outline-secondary btn-block">select</span></a>
+</p>
+            </div>
+          </div>
+        </div>`);
           } else if (list[item].oculusId) {
             console.log("OCULUS "+list[item].oculusId)
             imagepath="https://vrdb.app/oculus/images/"+list[item].oculusId+".jpg"
             row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><a href="https://www.oculus.com/experiences/quest/${list[item].oculusId}/" target=_blank><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"></a><td></tr>`)
+            row = $("#browseCardBody").append(`<div class="col mb-4">
+          <div class="card h-100">
+            <img src="${imagepath}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="color: black">${name}</h5>
+              <p class="card-text">
+<a onclick='getDir("${fullPath}")'><span class="btn btn-outline-secondary btn-block">select</span></a>
+</p>
+            </div>
+          </div>
+        </div>`);
           } else {
             row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
           }
@@ -184,6 +208,13 @@
         <input  class="form-control"  placeholder="Type a word and find occurrences using [ENTER]" type="text" name="t1" value="" />
       </form>
       <br>
+
+      <div id="browseCardBody" class="row row-cols-1 row-cols-md-3">
+
+      </div>
+
+
+
       <table class="table table-striped table-condensed" id="listTable">
         <tbody>
         {% for item in list %}
