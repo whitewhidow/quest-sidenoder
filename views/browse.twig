@@ -134,7 +134,9 @@
             row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><a href="https://store.steampowered.com/app/${list[item].steamId}/" target=_blank><img onerror="this.onerror=null; this.remove();" class='pull-right push-right' src="${imagepath}"></a><td></tr>`)
             row = $("#browseCardBody").append(`<div class="col mb-4">
           <div class="card h-100">
-            <img src="${imagepathbig}" class="card-img-top" alt="...">
+            <a href="https://store.steampowered.com/app/${list[item].steamId}/" target=_blank>
+<img src="${imagepathbig}" class="card-img-top" alt="...">
+</a>
             <div class="card-body">
               <h5 class="card-title" style="color: black">${name}</h5>
               <p class="card-text">
