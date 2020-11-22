@@ -2,3 +2,12 @@ Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**
 Domino's Vice VR v1.0/**
 Death Horizon - Reloaded v0.9.24.92 -QuestUnderground/**
 Apollo 11 v2.3.22 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
+Nature Treks VR v1.17-Q2Patch90Hz/**
+Myth - A Frozen Tale v1.0/**
+Coaster Combat v1.0/**
+Witchblood v1.0/**
+Let's Play with Anna!/**
+Half-Life VR **
+Lets Create! Pottery VR v1.0-503 -VRP/**
+SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
+Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP -oculus-3484270071659289 -versionCode-287306/**
