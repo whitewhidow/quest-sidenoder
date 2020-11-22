@@ -152,6 +152,7 @@ Ninja Legends v1.0.1068-Q2Patch90Hz -QuestUnderground/**
 Ocean Rift v1.68 -Q2Patched-90Hz -QuestUnderground/**
 OhShape [1.7.0.170] S2.11/**
 OhShape v1.7.0/**
+OhShape v1.7.0.170 -QuestUnderground/**
 OnStage Simulator v0.7.2/**
 Onward v1.0.9306 -QuestUnderground (extra obbs removed)/**
 Operation Serpens v0.2.2/**
@@ -217,13 +218,15 @@ Squid Seastar v0.1/**
 Star Shaman v10.0.9/**
 Star Shaman v10.0.9 (Quest 1+2)/**
 Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**
-Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP -oculus-3484270071659289 -versionCode-287306/**
+Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP/**
+Star Wars - Tales from the Galaxys Edge v1.0.1/**
 Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
 SUPERHOT VR v1.113-10-30 -QuestUnderground/**
 Supermedium v1.0/**
 Swarm v473/**
 Sweet Escape VR v0.03/**
 Symphony of Stars v1.73/**
+Synth Riders v2.3.2.a20.197 -VRP (Includes DLC)/**
 SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
 Synth Riders v2.3.3.a11.204 -QuestUndeground/**
 Tetris Effect v1.0.34-Q2Patch90Hz -QuestUnderground/**
@@ -241,6 +244,7 @@ The Thrill Of The Fight v200131.1q -QuestUnderground/**
 The Under Presents v1.260 -QuestUnderground/**
 The VR Titty Bar v1/**
 The Walking Dead Saints Sinners v187081 -QuestUnderground/**
+The Walking Dead - Saints & Sinners v187992.18799209 -QuestUnderground/**
 The Wizards v1.11.14 -QuestUnderground/**
 Thumper v1.00/**
 Tilt Brush v23.2-Q2Patch90Hz -QuestUnderground/**

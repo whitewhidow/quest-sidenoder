@@ -10,4 +10,7 @@ Let's Play with Anna!/**
 Half-Life VR **
 Lets Create! Pottery VR v1.0-503 -VRP/**
 SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
-Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP -oculus-3484270071659289 -versionCode-287306/**
+Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP/**
+Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
+OhShape v1.7.0.170 -QuestUnderground/**
+Synth Riders v2.3.2.a20.197 -VRP (Includes DLC)/**
