@@ -234,18 +234,43 @@ async function getDir(folder){
         const files = await fsPromise.readdir(folder, { withFileTypes: true });
         let fileNames = await Promise.all(files.map(async (fileEnt) => {
             const info = await fsPromise.lstat(path.join(folder, fileEnt.name));
-            steamid=false;oculusid=false;
+            steamid=false;oculusid=false;imagePath = false;versionCode="PROCESSING";infoLink = false;simpleName=fileEnt.name
+
 
             if (  (new RegExp(".*\ -steam-")).test(fileEnt.name)  ) {
-                    steamid = fileEnt.name.split('steam-')[1]
-                } else if (  (new RegExp(".*\ -oculus-")).test(fileEnt.name)  ) {
-                    oculusid = fileEnt.name.split('oculus-')[1]
-                } else {steamid=false;oculusid=false;}
+                //steamid = fileEnt.name.split('steam-')[1]
+                steamid = fileEnt.name.match(/-steam-([0-9]*)/)[1]
+                simpleName = fileEnt.name.split(' -steam-')[0]
+                imagePath = "https://cdn.cloudflare.steamstatic.com/steam/apps/"+steamid+"/header.jpg"
+                infoLink = "https://store.steampowered.com/app/"+steamid+"/"
+            }
+            if (  (new RegExp(".*\ -oculus-")).test(fileEnt.name)  ) {
+                //oculusid = fileEnt.name.split('oculus-')[1]
+                oculusid = fileEnt.name.match(/-oculus-([0-9]*)/)[1]
+                simpleName = fileEnt.name.split(' -oculus-')[0]
+                imagePath = "https://vrdb.app/oculus/images/"+oculusid+".jpg"
+                infoLink = "https://www.oculus.com/experiences/quest/"+oculusid+"/"
+            }
+            if (  (new RegExp(".*\ -versionCode-")).test(fileEnt.name)  ) {
+                //oculusid = fileEnt.name.split('oculus-')[1]
+                versionCode = fileEnt.name.match(/-versionCode-([0-9]*)/)[1]
+                simpleName = fileEnt.name.split(' -versionCode-')[0]
+            }
+
+            simpleName = fileEnt.name.split('-QuestUnderground')[0]
+            simpleName = simpleName.split(/v[0-9]\./)[0]
+            simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
+            simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]
+
                 return {
                     name: fileEnt.name,
+                    simpleName: simpleName,
                     isFile: fileEnt.isFile(),
                     steamId: steamid,
                     oculusId: oculusid,
+                    imagePath: imagePath,
+                    versionCode: versionCode,
+                    infoLink: infoLink,
                     info: info,
                     createdAt: new Date(info.mtimeMs),
                     filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),

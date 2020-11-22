@@ -77,6 +77,9 @@ ipcMain.on('get_dir', async (event, arg) => {
         event.reply('ask_sideload', `{"success":true, "path": "${arg}"}`)
         return
     }
+
+    //if only 1 apk inside, send straight to there
+
     if (!arg) {
         folder=global.homedir
     } else {
