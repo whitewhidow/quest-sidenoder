@@ -103,6 +103,8 @@ done
 
 cat "$ORIPATH/../quotesynced.txt" >> "$ORIPATH/../synced.txt"
 
+echo "" >> "$ORIPATH/../synced.txt"
+
 echo "$COUNT items looped"
 echo "$FAILCOUNT items failed"
 #echo "$(cat $ORIPATH/../quotesynced.txt | wc -l) from quotesynced.txt"

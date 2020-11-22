@@ -6,6 +6,42 @@
   <style>
     a { cursor: pointer; }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script>
+
+
+    async function  makeScreenshot(selector="body")
+    {
+      return new Promise((resolve, reject) => {
+        let node = document.querySelector(selector);
+
+        html2canvas(node, { onrendered: (canvas) => {
+            let pngUrl = canvas.toDataURL();
+            resolve(pngUrl);
+          }, allowTaint : true});
+      });
+    }
+
+    async function report() {
+      let screenshot = await makeScreenshot(); // png dataUrl
+      let img = document.querySelector(".screen");
+      img.src = screenshot;
+      var a = document.createElement("a"); //Create <a>
+      a.href = screenshot; //Image Base64 Goes here
+      a.download = "Image.png"; //File name Here
+      console.log(screenshot)
+
+      var fs = require("fs");
+
+      const base64Data = screenshot.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+      fs.writeFile("outt.png", base64Data, 'base64', (err) => {
+        console.log(err);
+      });
+      //a.click();
+      // ... show screenshot to user, allow to draw region
+      // and send screnshot with region coordinates to server
+    }
+  </script>
   <script>
 
     function fixIcons(){
@@ -121,6 +157,8 @@
       for (item in list) {
         let name=list[item].name
         fullPath = list[item].filePath.replace("\\", "/").replace("", ":")
+
+
         if (list[item].isFile) {
           if (list[item].name.endsWith(".apk")) {
             row = $("#listTable tbody").append("<tr><td><a onclick='getDir(\"" + fullPath+ "\")'><b><i class=\"browse-file fa fa-upload\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</b></a><td></tr>`)
@@ -129,7 +167,7 @@
           }
         } else {
           if (list[item].imagePath) {
-            row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
+            //row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
             row = $("#browseCardBody").append(`<div class="col mb-4">
           <div class="card h-100">
             <a href="${list[item].infoLink}" target=_blank>
@@ -142,12 +180,12 @@ ${list[item].simpleName}<br><br>
 <a onclick='getDir("${fullPath}")'><span class="btn btn-outline-secondary btn-block">select</span></a>
 </p>
             </div>
-            <div style="color: gray" class="card-footer">Version: ${list[item].versionCode}</div>
+            <div style="color: gray" class="card-footer">VersionCode: ${list[item].versionCode}</div>
           </div>
         </div>`);
-         } else {
-            row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
-          }
+           } else {
+              row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
+           }
 
         }
         //console.log("appended "+ name);
@@ -182,6 +220,10 @@ ${list[item].simpleName}<br><br>
 
 {% block body %}
 
+
+  <div class="container">
+    <img width="75%" class="screen" >
+  </div>
 
   <div class="card text-white bg-secondary">
     <div class="card-header">
