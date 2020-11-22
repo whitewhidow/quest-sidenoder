@@ -13,7 +13,6 @@ Arizona Sunshine v1.5.21549 -QuestUnderground/**
 Artifact v1.0.6/**
 ArtPlunge v201909211/**
 Attack on Quest v0.1.3/**
-Audica v1.0.3.1.127937901 Q2Patched-90Hz -QuestUnderground/**
 AUDICA v1.0.3.2.128543601 -QuestUnderground/**
 Audioshield v118 -QuestUnderground/**
 Audio Trip v0.131 -QuestUnderground/**
@@ -23,7 +22,6 @@ BanditSix v1.1.0.130/**
 Basket VR v0.2/**
 Beat Saber v1.13.0-147 -VRP (with DLC)/**
 Blair Witch v1.05.33 -QuestUnderground/**
-Blaston v1.1.93836-101093836 -VRP/**
 Blaston v1.3.96912.103096912 -QuestUnderground/**
 Bonfire v1.0.466-Q2Patched -QuestUnderground/**
 Box VR v1.18.188/**
@@ -87,7 +85,6 @@ Fruit Ninja v1.7.0.547288-Q2Patched -QuestUnderground/**
 Fujii v1.0.825 -QuestUnderground/**
 Futbolin Revolution v1.0/**
 Gadgeteer v1.0.14.76 -QuestUnderground/**
-Gadgeteer v1.0.5-Q2Patched -QuestUnderground/**
 Ghost Giant v1.0.32-Q2Patched -QuestUnderground/**
 Gladius v0.8.5 -VRP (Manual Install see readme)/**
 Gladius v0.8.5 -VRP/**
@@ -97,12 +94,9 @@ Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
 Guided Tai Chi v1.2.35/**
 Gun Club VR v1.0.31.168-Q2Patched -QuestUnderground/**
 Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
-Half-Life VR v1.4.5 modified -DrBeef/**
-Half-Life VR v1.4.5 modified (manual install only)/**
 Hatsune Miku v3.01-10 -VRP/**
 Holopoint v1.0.14.123 -QuestUnderground/**
 Homestar VR v1.32 -QuestUnderground/**
-HouseFlipper VR v8.3/**
 HouseFlipper VR v8.5.85 -QuestUnderground/**
 House Of Languages v3.3.3/**
 Hyper Dash v1.5.5/**
@@ -110,7 +104,6 @@ I Expect You to Die v1.0.141516-Q2Patched -QuestUnderground/**
 In Death - Unchained v1.1.1.24661807 -QuestUnderground/**
 Ironlights v108 -QuestUnderground/**
 Jigsaw 360 v3.0/**
-Job Simulator v1.4.0.4661 Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Job Simulator v1.4.0.4665.36 -QuestUnderground/**
 Journey Of The Gods v1.0.479431-Q2Patched-90Hz -QuestUnderground/**
 Keep Talking and Nobody Explodes v1.9.22.59 -QuestUnderground/**
@@ -123,7 +116,6 @@ Laser Blaze v1.0.0/**
 Last Labyrinth v1.02.34 -QuestUnderground/**
 Layers of Fear v1.1 -QuestUnderground/**
 Lets Create! Pottery VR v1.0-503 -QuestUnderground/**
-Lets Create! Pottery VR v1.0-503 -VRP/**
 Lets Go Chopping v0.2/**
 Lets Play with Anna!/**
 Lies Beneath v1.0-55518/**
@@ -137,7 +129,6 @@ NES Space Quest v1.0.2/**
 Ninja Legends v1.0.1068-Q2Patch90Hz -QuestUnderground/**
 Ocean Rift v1.68 -Q2Patched-90Hz -QuestUnderground/**
 OhShape v1.7.0/**
-Onward v1.0.9194 -QuestUnderground/**
 Onward v1.0.9306 -QuestUnderground (extra obbs removed)/**
 Operation Serpens v0.2.2/**
 Pangman v1.1/**
@@ -160,7 +151,6 @@ Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
 Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
 Racket Nx v1.4.4 -QuestUnderground/**
-Racket - Nx v1.4.6.91 -QuestUnderground/**
 Racket - Nx v2.0.0.96 -QuestUnderground/**
 Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
@@ -180,7 +170,6 @@ SculptrVR v2.79 -QuestUnderground/**
 Secret of Harrow Manor 2 v0.24/**
 Shadow Point v1.1 -QuestUnderground/**
 Shooty Fruity v1.0 -QuestUnderground/**
-Shooty Skies Overdrive v1.03.75140 -QuestUnderground/**
 Shooty Skies Overdrive v1.03.78450 -QuestUnderground/**
 Shuttle Commander v0.64 -QuestUnderground/**
 SKYBOX VR Video Player v1.0.0.247 -QuestUnderground/**
@@ -199,13 +188,10 @@ Star Shaman v10.0.9 (Quest 1+2)/**
 Star Shaman v10.0.9/**
 Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP/**
 Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
-SUPERHOT VR v1.113(10-30) -QuestUnderground/**
 SUPERHOT VR v1.113-10-30 -QuestUnderground/**
 Swarm v473/**
 Sweet Escape VR v0.03/**
 Symphony of Stars v1.73/**
-SynthRiders v2.3.2.a20.197 -QuestUnderground/**
-SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
 Synth Riders v2.3.3.a11.204 -QuestUndeground/**
 Tetris Effect v1.0.34-Q2Patch90Hz -QuestUnderground/**
 The Brookhaven Experiment v1.0259/**
@@ -237,7 +223,6 @@ Trover Saves the Universe v1.0.21 -QuestUnderground/**
 Tsuro - The Game of The Path v1.12.15 -QuestUnderground/**
 Ultrawings v2.02 -QuestUnderground/**
 Until You Fall v1.0.5.160981 -QuestUnderground/**
-Vacation Simulator v1.2.1-37562.64 Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Vacation Simulator v1.3.0-37919 -QuestUnderground/**
 Vader Immortal - Episode III v3.0.2-Q2Patched -QuestUnderground/**
 Vader Immortal - Episode II v2.0.2-Q2Patched -QuestUnderground/**
