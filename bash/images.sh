@@ -34,6 +34,9 @@ for d in ./*/; do
     SEARCH=${SEARCH%%v[0-9][0-9].*}
     SEARCH=${SEARCH%%v1*}
 
+    SEARCH=${SEARCH%% - Untethered*}
+    SEARCH=${SEARCH%%v1*}
+
 
 
 
@@ -101,5 +104,6 @@ cat "$ORIPATH/../quotesynced.txt" >> "$ORIPATH/../synced.txt"
 
 echo "$COUNT items looped"
 echo "$FAILCOUNT items failed"
+#echo "$(cat $ORIPATH/../quotesynced.txt | wc -l) from quotesynced.txt"
 paplay /usr/share/sounds/ubuntu/ringtones/Bliss.ogg
 sleep 99

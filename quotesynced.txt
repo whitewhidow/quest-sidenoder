@@ -1,1 +1,4 @@
 Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**
+Domino's Vice VR v1.0/**
+Death Horizon - Reloaded v0.9.24.92 -QuestUnderground/**
+Apollo 11 v2.3.22 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
