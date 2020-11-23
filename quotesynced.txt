@@ -7,6 +7,7 @@ Myth - A Frozen Tale v1.0/**
 Coaster Combat v1.0/**
 Witchblood v1.0/**
 Let's Play with Anna!/**
+Let's Go Chopping v0.2/**
 Half-Life VR **
 Lets Create! Pottery VR v1.0-503 -VRP/**
 SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
@@ -14,3 +15,5 @@ Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP/**
 Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
 OhShape v1.7.0.170 -QuestUnderground/**
 Synth Riders v2.3.2.a20.197 -VRP (Includes DLC)/**
+Richie's Plank Experience v1.8.42.60-Q2Patch90Hz-QuestUnderground/**
+.meta/**

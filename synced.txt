@@ -2,6 +2,7 @@
 Accounting+ v1.24.35-Q2Patched -QuestUnderground/**
 Acron - Attack of the Squirrels! v1.14.94392.114094392 -QuestUnderground/**
 AFFECTED - The Manor v1.25 -QuestUnderground/**
+AFFECTED - The Manor v1.26.1.75 -QuestUnderground/**
 A Fishermans Tale v1.056 -QuestUnderground/**
 Air Brigade 2 v0.2/**
 A Lullaby of Colors v1.2.2/**
@@ -135,17 +136,20 @@ Last Labyrinth v1.02.34 -QuestUnderground/**
 Layers of Fear v1.1 -QuestUnderground/**
 Lets Create! Pottery VR v1.0-503 -QuestUnderground/**
 Lets Create! Pottery VR v1.0-503 -VRP/**
+Let's Go Chopping v0.2/**
 Lets Go Chopping v0.2/**
 Let's Play with Anna!/**
 Lets Play with Anna!/**
 Lies Beneath v1.0-55518/**
 Little Witch Academia - VR Broom Racing v1.0.1-639/**
+.meta/**
 Mini Motor Racing X v1.2.4.90 -QuestUnderground/**
 Moss v1.0.0.22600 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Mr. Scribbles v0.1/**
 Myth - A Frozen Tale v1.0/**
 National Geographic Explore VR v1.2.1.674692 -QuestUnderground/**
 Nature Treks VR v1.17-Q2Patch90Hz/**
+Nature Treks VR v1.17 -QuestUnderground/**
 Neon Sprint v1.0/**
 NES Space Quest v1.0.2/**
 Ninja Legends v1.0.1068-Q2Patch90Hz -QuestUnderground/**
@@ -188,6 +192,7 @@ République VR v1.2 -QuestUnderground/**
 Rest in Pieces v1.0/**
 Return to Castle Wolfenstein v1.5 -DrBeef/**
 Rez Infinite v41.0/**
+Richie's Plank Experience v1.8.42.60-Q2Patch90Hz-QuestUnderground/**
 Richies Plank Experience v1.8.42.60-Q2Patch90Hz-QuestUnderground/**
 Robo Recall v1.0 -Q2Patched-90Hz -QuestUnderground/**
 Rush v1.1.0 -QuestUnderground/**
