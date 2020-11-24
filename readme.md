@@ -25,6 +25,7 @@ https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow
 Install git, adb and rclone using these commands:
 ```
 sudo apt install git
+sudo apt install nodejs
 sudo apt install adb
 curl https://rclone.org/install.sh | sudo bash
 ```
