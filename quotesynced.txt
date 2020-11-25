@@ -16,4 +16,7 @@ Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
 OhShape v1.7.0.170 -QuestUnderground/**
 Synth Riders v2.3.2.a20.197 -VRP (Includes DLC)/**
 Richie's Plank Experience v1.8.42.60-Q2Patch90Hz-QuestUnderground/**
+Synth Riders 2.3.3.a11-204 -VRP (Includes DLC)/**
+National Geographic Explore VR v1.2.1.674692 -VRP/**
+Racket - Nx v2.0.2.98 -QuestUnderground/**
 .meta/**

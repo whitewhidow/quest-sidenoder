@@ -94,6 +94,7 @@ for d in ./*/; do
     DIRZ=${DIRZ%%\ -steam*}
     DIRZ=${DIRZ%%\ -oculus*}
     DIRZ=${DIRZ%%\ -versionCode*}
+    DIRZ=${DIRZ%%\ -packageName*}
     echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
     #echo "skipping $DIRZ already fixed"
   fi

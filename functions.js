@@ -240,24 +240,28 @@ async function getDir(folder){
             if (  (new RegExp(".*\ -steam-")).test(fileEnt.name)  ) {
                 //steamid = fileEnt.name.split('steam-')[1]
                 steamid = fileEnt.name.match(/-steam-([0-9]*)/)[1]
-                simpleName = fileEnt.name.split(' -steam-')[0]
+                simpleName = simpleName.split(' -steam-')[0]
                 imagePath = "https://cdn.cloudflare.steamstatic.com/steam/apps/"+steamid+"/header.jpg"
                 infoLink = "https://store.steampowered.com/app/"+steamid+"/"
             }
             if (  (new RegExp(".*\ -oculus-")).test(fileEnt.name)  ) {
                 //oculusid = fileEnt.name.split('oculus-')[1]
                 oculusid = fileEnt.name.match(/-oculus-([0-9]*)/)[1]
-                simpleName = fileEnt.name.split(' -oculus-')[0]
+                simpleName = simpleName.split(' -oculus-')[0]
                 imagePath = "https://vrdb.app/oculus/images/"+oculusid+".jpg"
                 infoLink = "https://www.oculus.com/experiences/quest/"+oculusid+"/"
             }
             if (  (new RegExp(".*\ -versionCode-")).test(fileEnt.name)  ) {
                 //oculusid = fileEnt.name.split('oculus-')[1]
                 versionCode = fileEnt.name.match(/-versionCode-([0-9]*)/)[1]
-                simpleName = fileEnt.name.split(' -versionCode-')[0]
+                simpleName = simpleName.split(' -versionCode-')[0]
+            }
+            if (  (new RegExp(".*\ -packageName-")).test(fileEnt.name)  ) {
+                //oculusid = fileEnt.name.split('oculus-')[1]
+                simpleName = simpleName.split(' -packageName-')[0]
             }
 
-            simpleName = fileEnt.name.split('-QuestUnderground')[0]
+            simpleName = simpleName.split('-QuestUnderground')[0]
             simpleName = simpleName.split(/v[0-9]*\./)[0]
             //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
             //simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]

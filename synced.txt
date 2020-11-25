@@ -148,6 +148,7 @@ Moss v1.0.0.22600 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Mr. Scribbles v0.1/**
 Myth - A Frozen Tale v1.0/**
 National Geographic Explore VR v1.2.1.674692 -QuestUnderground/**
+National Geographic Explore VR v1.2.1.674692 -VRP/**
 Nature Treks VR v1.17-Q2Patch90Hz/**
 Nature Treks VR v1.17 -QuestUnderground/**
 Neon Sprint v1.0/**
@@ -181,6 +182,7 @@ Puzzling Places v1.0/**
 Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
 Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
+Racket - Nx [2.0.2.98] S2.11/**
 Racket Nx v1.4.4 -QuestUnderground/**
 Racket - Nx v2.0.0.96 -QuestUnderground/**
 Radial-G Proteus v0.1 -QuestUnderground/**
@@ -231,6 +233,7 @@ Supermedium v1.0/**
 Swarm v473/**
 Sweet Escape VR v0.03/**
 Symphony of Stars v1.73/**
+Synth Riders 2.3.3.a11-204 -VRP (Includes DLC)/**
 Synth Riders v2.3.2.a20.197 -VRP (Includes DLC)/**
 SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
 Synth Riders v2.3.3.a11.204 -QuestUndeground/**
@@ -288,3 +291,4 @@ Witchblood v1.0/**
 Wolves in the Walls v1.1375 -VRP/**
 Wonderglade v1.9.84037/**
 Zombie World VR v1.0/**
+Racket - Nx v2.0.2.98 -QuestUnderground/**
