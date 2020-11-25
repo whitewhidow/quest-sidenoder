@@ -220,11 +220,18 @@
           }
         } else {
           if (list[item].imagePath) {
+
+            if (list[item].mp) {
+              mpribbon = `<div class="ribbon-wrapper-green"><div class="ribbon-green">MP!</div></div>`
+            } else {
+              mpribbon = ''
+            }
+
             //row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
             row = $("#browseCardBody").append(`<div class="col mb-4">
           <div class="card h-100">
 
-       {# <div class="ribbon-wrapper-green"><div class="ribbon-green">MP!</div></div> #}
+            ${mpribbon}
 
             <a href="${list[item].infoLink}" target=_blank>
 <img src="${list[item].imagePath}" style="max-height: 150px" class="card-img-top" alt="...">

@@ -234,7 +234,7 @@ async function getDir(folder){
         const files = await fsPromise.readdir(folder, { withFileTypes: true });
         let fileNames = await Promise.all(files.map(async (fileEnt) => {
             const info = await fsPromise.lstat(path.join(folder, fileEnt.name));
-            steamid=false;oculusid=false;imagePath = false;versionCode="PROCESSING";infoLink = false;simpleName=fileEnt.name;packageName=false
+            steamid=false;oculusid=false;imagePath = false;versionCode="PROCESSING";infoLink = false;simpleName=fileEnt.name;packageName=false;mp=false
 
 
             if (  (new RegExp(".*\ -steam-")).test(fileEnt.name)  ) {
@@ -261,6 +261,10 @@ async function getDir(folder){
                 simpleName = simpleName.split(' -packageName-')[0]
             }
 
+            if (  (new RegExp(".*\ -MP-")).test(fileEnt.name)  ) {
+                mp = true
+            }
+
             simpleName = simpleName.split('-QuestUnderground')[0]
             simpleName = simpleName.split(/v[0-9]*\./)[0]
             //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
@@ -276,6 +280,7 @@ async function getDir(folder){
                     imagePath: imagePath,
                     versionCode: versionCode,
                     packageName: packageName,
+                    mp:mp,
                     infoLink: infoLink,
                     info: info,
                     createdAt: new Date(info.mtimeMs),
