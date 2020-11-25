@@ -19,4 +19,8 @@ Richie's Plank Experience v1.8.42.60-Q2Patch90Hz-QuestUnderground/**
 Synth Riders 2.3.3.a11-204 -VRP (Includes DLC)/**
 National Geographic Explore VR v1.2.1.674692 -VRP/**
 Racket - Nx v2.0.2.98 -QuestUnderground/**
+Doctor Who The Edge of Time v368 -QuestUnderground/**
+Dead and Buried II v2.0.8396.3008396 -QuestUnderground/**
+In Death - Unchained v1.1.2.26234694 -QuestUnderground/**
+Voxel Works v1.8.13/**
 .meta/**
