@@ -1,12 +1,12 @@
-**SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset - comes **with pre-filled library.**
+**SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
 ![screen](.github/screen.gif)
 ### Installation:
-Download and run one of the available binaries:
+Download and run one of the available binaries: (currently no binary, pls run manually)
 ```
 https://github.com/whitewhidow/quest-sidenoder/releases
 ```
-or clone the repo, and run the app (requires node) :
+or clone the repo, and run the app manually (requires node and git) :
 ```
 git clone https://github.com/whitewhidow/quest-sidenoder.git
 cd quest-sidenoder/
@@ -22,8 +22,10 @@ https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow
 
 
 #### linux:
-Install adb and rclone using these commands:
+Install git, adb and rclone using these commands:
 ```
+sudo apt install git
+sudo apt install nodejs
 sudo apt install adb
 curl https://rclone.org/install.sh | sudo bash
 ```
@@ -31,10 +33,13 @@ curl https://rclone.org/install.sh | sudo bash
 
 
 #### mac/osx:
-Install adb and rclone using these commands:
+Install git, adb, nodejs, osxfuse and rclone using these commands:
 ```
+brew install git
 brew install android-platform-tools
+brew install node
 curl https://rclone.org/install.sh | sudo bash
+brew cask install osxfuse
 ```
 
 
@@ -46,6 +51,11 @@ Download adb, aapt and rclone from here and add to $PATH:
 https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 https://androidaapt.com/
 https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-amd64.zip
+```
+Install git and node from:
+```
+https://git-scm.com/download/win
+https://nodejs.org/en/download/
 ```
 Install winfsp and reboot:
 ```
