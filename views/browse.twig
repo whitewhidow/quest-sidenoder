@@ -233,9 +233,9 @@
 
             ${mpribbon}
 
-            <a href="${list[item].infoLink}" target=_blank>
-<img src="${list[item].imagePath}" style="max-height: 150px" class="card-img-top" alt="...">
-</a>
+            {# <a href="${list[item].infoLink}" target=_blank> #}
+<img src="${list[item].imagePath}" style="max-height: 100px" class="card-img-top" alt="...">
+{# </a> #}
             <div class="card-body">
 
               <p class="card-text" style="color: black">
@@ -243,8 +243,8 @@ ${list[item].simpleName}<br><br>
 <a onclick='getDir("${fullPath}")'><span class="btn btn-outline-secondary btn-block">select</span></a>
 </p>
             </div>
-            <div style="color: gray" class="card-footer">PackageName: ${list[item].packageName}</div>
-            <div style="color: gray" class="card-footer">VersionCode: ${list[item].versionCode}</div>
+            <div style="color: gray" class="card-footer">v. ${list[item].versionCode}</div>
+            {# <div style="color: gray" class="card-footer">VersionCode: ${list[item].versionCode}</div> #}
           </div>
         </div>`);
            } else {
@@ -302,7 +302,7 @@ ${list[item].simpleName}<br><br>
       </form>
       <br>
 
-      <div id="browseCardBody" class="row row-cols-1 row-cols-md-4">
+      <div id="browseCardBody" class="row row-cols-2 row-cols-md-6" style="font-size: smaller">
 
       </div>
 

@@ -295,3 +295,4 @@ Witchblood v1.0/**
 Wolves in the Walls v1.1375 -VRP/**
 Wonderglade v1.9.84037/**
 Zombie World VR v1.0/**
+The Climb v612.0 -QuestUnderground -steam-306130 -versionCode-612 -packageName-com.crytek.climb/**
