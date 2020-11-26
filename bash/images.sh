@@ -3,6 +3,20 @@
 
 
 ORIPATH=$PWD
+
+
+addToSyncedFile () {
+    DIRZ=${1::-1}
+    DIRZ=${DIRZ%%\ -steam*}
+    DIRZ=${DIRZ%%\ -oculus*}
+    DIRZ=${DIRZ%%\ -versionCode*}
+    DIRZ=${DIRZ%%\ -packageName*}
+    DIRZ=${DIRZ%%\ -MP-*}
+    DIRZ=${DIRZ%%\ -NA-*}
+    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
+}
+
+
 cd /tmp/mnt
 echo -ne '' > "$ORIPATH/../synced.txt"
 COUNT=0
@@ -15,9 +29,9 @@ for d in ./*/; do
 
   ((COUNT++))
 
-  if [[ ! ($d =~ .*\ -steam-.*) ]] && [[ ! ($d =~ .*\ -oculus-.*) ]]; then
+  if [[ ! ($d =~ .*\ -steam-.*) ]] && [[ ! ($d =~ .*\ -oculus-.*) ]] && [[ ! ($d =~ .*\ -NA-.*) ]]; then
 
-#sleep 3
+  sleep 3
 
     cd "$d"
 
@@ -49,10 +63,14 @@ for d in ./*/; do
 
     echo "$link"
 
-    if [[ "$link" != *".jpg" ]] || [[ "$link" == *"/bundles/"* ]] ;then
+    if [[ "$link" != *".jpg" ]] || [[ "$link" == *"/bundles/"* ]] || [[ "$link" == "" ]] || [[ "$link" != *"jpg" ]] ;then
       echo "NOT A REAL IMAGE -> $link"
       ((FAILCOUNT++))
       cd ..
+
+      mv "${d::-1}" "${d::-1} -NA-"
+
+
       continue
     fi
 
@@ -79,7 +97,7 @@ for d in ./*/; do
 
 
 
-      echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
+      #echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
       #${var%%SubStr*}
     else
       cd ../
@@ -90,17 +108,12 @@ for d in ./*/; do
 
 
   else
-    DIRZ=${d::-1}
-    DIRZ=${DIRZ%%\ -steam*}
-    DIRZ=${DIRZ%%\ -oculus*}
-    DIRZ=${DIRZ%%\ -versionCode*}
-    DIRZ=${DIRZ%%\ -packageName*}
-    DIRZ=${DIRZ%%\ -MP-*}
-    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
+    echo -ne ""
+    #addToSyncedFile "$d"
     #echo "skipping $DIRZ already fixed"
   fi
 
-
+  addToSyncedFile "$d"
 done
 
 cat "$ORIPATH/../quotesynced.txt" >> "$ORIPATH/../synced.txt"
@@ -112,3 +125,5 @@ echo "$FAILCOUNT items failed"
 #echo "$(cat $ORIPATH/../quotesynced.txt | wc -l) from quotesynced.txt"
 paplay /usr/share/sounds/ubuntu/ringtones/Bliss.ogg
 sleep 99
+
+

@@ -265,11 +265,16 @@ async function getDir(folder){
                 mp = true
             }
 
+            if (  (new RegExp(".*\ -NA-")).test(fileEnt.name)  ) {
+                na = true
+            }
+
             simpleName = simpleName.split('-QuestUnderground')[0]
             simpleName = simpleName.split(/v[0-9]*\./)[0]
             //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
             //simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]
             simpleName = simpleName.split(/\[[0-9]*\./)[0]
+            simpleName = simpleName.split(/\[[0-9]*\]/)[0]
 
                 return {
                     name: fileEnt.name,

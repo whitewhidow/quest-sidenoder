@@ -24,4 +24,5 @@ Dead and Buried II v2.0.8396.3008396 -QuestUnderground/**
 In Death - Unchained v1.1.2.26234694 -QuestUnderground/**
 Voxel Works v1.8.13/**
 The Climb v612.0 -QuestUnderground -steam-306130 -versionCode-612 -packageName-com.crytek.climb/**
+The Climb v612.0 -QuestUnderground/**
 .meta/**

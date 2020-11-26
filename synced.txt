@@ -38,6 +38,7 @@ Chupa Chupa VR v2.0 -VRP/**
 Cirque du Soleil v1.01.13/**
 City Avenger v1.0.1/**
 Cloudlands 2 v1.30-Q2Patched -QuestUnderground/**
+Coaster Combat [1.0.693251] S2.11/**
 Coaster Combat v1.0/**
 Color Space v1.2.1 -QuestUnderground/**
 Control Tower VR v0.61/**
@@ -84,13 +85,11 @@ Espire 1 VR Operative v1.6.289 -QuestUnderground/**
 Espire 1 VR Operative v1.7.218-1546 -VRP/**
 Evryway Visualiser v0.79/**
 Exorcist Legion VR v1.0.9 -QuestUnderground/**
-Face Your Fears 1 and DLC v1.0.406218 (Spoofed as Pyramids Roller Coaster) (Q1 only) -QuestUnderground/**
 Face Your Fears 1 and DLC v1.0.536957 (Spoofed as Neverthink) (Q2 only) -QuestUnderground/**
 Face Your Fears 2 v1.0.487009 -QuestUnderground/**
 Fail Factory v1.0.54-Q2Patched -QuestUnderground/**
 Falcon Age v1.00-8 -QuestUnderground/**
 Fast Formula v1.0/**
-Fear Within v1.0.0.2/**
 Five Nights at Freddys Help Wanted v1.0.9-Q2Patched -QuestUnderground/**
 Food Flinger v1.0/**
 FREEDIVER - Triton Down v1.0 -QuestUnderground/**
@@ -178,10 +177,10 @@ Pistol Whip v0.6.20.228-Q2Patched -QuestUnderground/**
 Pixel Ripped 1995 v103-Q2Patched -QuestUnderground/**
 Please, Dont Touch Anything v2.1/**
 Pop Shot v1.0/**
+Pop Shot v1.0 -NA-/**
 Premium Bowling v1.17.10.63 -QuestUnderground/**
 Pro Putt by Topgolf v0.285-Q2Patch90Hz -QuestUnderground/**
 Pteranodons Flight - The Flying Dinosaur Game v1.0/**
-Puzzling Places v1.0/**
 Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
 Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
@@ -244,11 +243,11 @@ Synth Riders v2.3.3.a11.204 -QuestUndeground/**
 Tetris Effect v1.0.34-Q2Patch90Hz -QuestUnderground/**
 The Brookhaven Experiment v1.0259/**
 The Climb v612.0 -QuestUnderground/**
+The Climb v612.0 -QuestUnderground -steam-306130 -versionCode-612 -packageName-com.crytek.climb/**
 The Climb v612-Q2Patch -QuestUnderground/**
 The Curious Tale of the Stolen Pets v1.04-Q2Patched -QuestUnderground/**
 The Exorcist - Legion VR v1.0.9/**
 The Island Odyssey! Hi Spec v1.2.0.7/**
-The Last place v0.2/**
 The Line v32 -QuestUnderground/**
 The Purge Day v1.0/**
 The Room VR - A Dark Matter v1.02 -QuestUndeground/**
@@ -284,9 +283,7 @@ VR Aim Trainer v1.0/**
 VRKarts Sprint v1.18.28 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
 VRtuos Pro v2.0/**
 VR Workout v0.9.8/**
-Walkabout Mini Golf v0.91.911 -QuestUnderground/**
 Walkabout Mini Golf v0.92.920 -QuestUnderground/**
-Waltz of the Wizard - Extended Edition v1.5.4.355 -QuestUnderground/**
 Waltz of the Wizard - Extended Edition v1.5.5.365 -QuestUnderground/**
 Wander v0.3394/**
 Wands v1.62 -QuestUnderground/**
@@ -295,4 +292,3 @@ Witchblood v1.0/**
 Wolves in the Walls v1.1375 -VRP/**
 Wonderglade v1.9.84037/**
 Zombie World VR v1.0/**
-The Climb v612.0 -QuestUnderground -steam-306130 -versionCode-612 -packageName-com.crytek.climb/**
