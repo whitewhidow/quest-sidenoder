@@ -40,8 +40,10 @@ async function checkVersion() {
     remotehead = await execShellCommand("git ls-remote origin HEAD")
     await execShellCommand("git fetch")
     localhead = await execShellCommand("git rev-parse HEAD")
-console.log(`remotehead: ${remotehead}`)
-    if (remotehead.includes(localhead)) {
+    console.log(`remotehead: ${remotehead}|`)
+    console.log(`localhead: ${localhead}|`)
+
+    if (remotehead.startsWith(localhead.replace(/(\r\n|\n|\r)/gm,""))) {
         console.log("version same")
     } else {
         console.log("version not same")
