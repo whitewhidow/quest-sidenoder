@@ -105,12 +105,6 @@ for d in ./*/; do
 
 
 
-
-
-  else
-    echo -ne ""
-    #addToSyncedFile "$d"
-    #echo "skipping $DIRZ already fixed"
   fi
 
   addToSyncedFile "$d"

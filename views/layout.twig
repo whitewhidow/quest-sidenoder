@@ -144,9 +144,12 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Settings</a>
       </li>
-      {# <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> #}
+      <li class="nav-item">
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <i class="fa fa-bug" aria-hidden="true"></i> REPORT AN ISSUE
+        </a>
+      </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
 
@@ -164,6 +167,21 @@
 
 
 <div style="padding: 20px">
+
+
+  <p>
+
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      If you encounter any issues or bugs, please report them at https://github.com/whitewhidow/quest-sidenoder/issues<br>
+      If you encounter any applications that have missing or incorrect data, please report them at https://t.me/whitewhidow<br>
+    </div>
+    <br>
+  </div>
+
+
+
 {% block body %}{% endblock %}
   <hr>
   <center>
