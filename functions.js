@@ -30,8 +30,25 @@ module.exports =
     // ...
 }
 
+// git ls-remote origin HEAD
+// 38b2c8981c19667ffab7ec11b3e361693d58a990	HEAD
 
+// git rev-parse HEAD
+// 41b5381a19621b8e810b5c00180f64423122f103
 
+async function checkVersion() {
+    remotehead = await execShellCommand("git ls-remote origin HEAD")
+    await execShellCommand("git fetch")
+    localhead = await execShellCommand("git rev-parse HEAD")
+console.log(`remotehead: ${remotehead}`)
+    if (remotehead.includes(localhead)) {
+        console.log("version same")
+    } else {
+        console.log("version not same")
+    }
+
+}
+checkVersion()
 // Implementation ----------------------------------
 
 function getDeviceSync(){
