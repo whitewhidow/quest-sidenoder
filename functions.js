@@ -27,6 +27,7 @@ module.exports =
     getDir,
     returnError,
     sideloadFolder,
+    checkUpdateAvailable
     // ...
 }
 
@@ -36,21 +37,23 @@ module.exports =
 // git rev-parse HEAD
 // 41b5381a19621b8e810b5c00180f64423122f103
 
-async function checkVersion() {
+async function checkUpdateAvailable() {
+    console.log('Checking local version vs latest github version')
     remotehead = await execShellCommand("git ls-remote origin HEAD")
     await execShellCommand("git fetch")
     localhead = await execShellCommand("git rev-parse HEAD")
-    console.log(`remotehead: ${remotehead}|`)
-    console.log(`localhead: ${localhead}|`)
+    //console.log(`remotehead: ${remotehead}|`)
+    //console.log(`localhead: ${localhead}|`)
 
     if (remotehead.startsWith(localhead.replace(/(\r\n|\n|\r)/gm,""))) {
-        console.log("version same")
+        return false
     } else {
-        console.log("version not same")
+        console.log('')
+        console.log(`A update is available, please pull the latest version from github!`)
+        console.log('')
+        return true
     }
-
 }
-checkVersion()
 // Implementation ----------------------------------
 
 function getDeviceSync(){
@@ -165,7 +168,8 @@ async function checkDeps(){
             return
         }
     }
-    win.webContents.send('check_deps',`{"success":true}`);
+    //wtf werkt nie
+    //win.webContents.send('check_deps',`{"success":true}`);
     return
 }
 

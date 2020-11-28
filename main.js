@@ -128,6 +128,10 @@ function createWindow () {
         //adbpath: adbpath,
         //rclonepath: rclonepath
     }
+
+
+    tools.checkUpdateAvailable()
+
     //
 
 }
