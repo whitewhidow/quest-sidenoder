@@ -32,7 +32,6 @@ module.exports =
 
 
 
-
 // Implementation ----------------------------------
 
 function getDeviceSync(){
