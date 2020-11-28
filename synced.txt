@@ -38,11 +38,14 @@ Chupa Chupa VR v2.0 -VRP/**
 Cirque du Soleil v1.01.13/**
 City Avenger v1.0.1/**
 Cloudlands 2 v1.30-Q2Patched -QuestUnderground/**
+Cloudlands 2 v1.31.35 -QuestUnderground/**
 Coaster Combat [1.0.693251] S2.11/**
 Coaster Combat v1.0/**
+Coaster Combat v1.0.693251 -QuestUnderground/**
 Color Space v1.2.1 -QuestUnderground/**
 Control Tower VR v0.61/**
 Cook-Out v1.2.92260-Q2Patched -QuestUnderground/**
+Cook-Out v1.3.97509-103097509 -VRP /**
 Counter Fight v1.5.0/**
 Crazy Kung Fu v0.34/**
 Creed v1.0-187321-Q2Patched-90Hz -QuestUnderground/**
@@ -75,6 +78,7 @@ Dungeon Chess v0.060/**
 Dungeon Train v0.19.12/**
 Electronauts v175667 -QuestUnderground/**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
+Eleven Table Tennis v1.400 -VRP/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
 ENHANCE VR v2.0.0/**
@@ -121,6 +125,7 @@ Hyper Dash v1.5.5/**
 I Expect You to Die v1.0.141516-Q2Patched -QuestUnderground/**
 In Death - Unchained [1.1.2.26234694] S2.11/**
 In Death - Unchained v1.1.2.26234694 -QuestUnderground/**
+In Death - Unchained v1.1.3.26344904 -QuestUnderground/**
 Ironlights v108 -QuestUnderground/**
 Jigsaw 360 v3.0/**
 Job Simulator v1.4.0.4665.36 -QuestUnderground/**
@@ -179,15 +184,18 @@ Please, Dont Touch Anything v2.1/**
 Pop Shot v1.0/**
 Pop Shot v1.0 -NA-/**
 Premium Bowling v1.17.10.63 -QuestUnderground/**
+Premium Bowling v1.18.1-75 -VRP/**
 Pro Putt by Topgolf v0.285-Q2Patch90Hz -QuestUnderground/**
 Pteranodons Flight - The Flying Dinosaur Game v1.0/**
 Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
 Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
 Racket - Nx [2.0.2.98] S2.11/**
+Racket - Nx [2.0.4.100] S2.11/**
 Racket Nx v1.4.4 -QuestUnderground/**
 Racket - Nx v2.0.0.96 -QuestUnderground/**
 Racket - Nx v2.0.2.98 -QuestUnderground/**
+Racket - Nx v2.0.3.99 -QuestUnderground/**
 Radial-G Proteus v0.1 -QuestUnderground/**
 Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
@@ -231,6 +239,8 @@ Star Wars - Tales from the Galaxy's Edge v1.0.0-287306 -VRP/**
 Star Wars - Tales from the Galaxys Edge v1.0.0-287306 -VRP/**
 Star Wars - Tales from the Galaxys Edge v1.0.1/**
 Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
+Star Wars - Tales from the Galaxy's Edge v1.0.2-170084.cl.288493 -VRP/**
+Star Wars - Tales from the Galaxys Edge v1.0.2-170084.cl.288493 -VRP/**
 SUPERHOT VR v1.113-10-30 -QuestUnderground/**
 Supermedium v1.0/**
 Swarm v473/**
@@ -263,6 +273,7 @@ Time Stall v1.0 -QuestUnderground/**
 Titans of Space PLUS v1.0.62 -QuestUnderground/**
 Together VR v1.5 (manual install)/**
 Tokyo Chronos v1.0.2 -QuestUnderground/**
+Topgolf with Pro Putt v337 -VRP/**
 To The Top v0.11.version2/**
 Toy Clash v1.4.0/**
 Tribe XR - DJ in VR v0.09.1 -QuestUnderground/**

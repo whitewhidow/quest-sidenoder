@@ -18,7 +18,7 @@ addToSyncedFile () {
 
 
 cd /tmp/mnt
-echo -ne '' > "$ORIPATH/../synced.txt"
+#echo -ne '' > "$ORIPATH/../synced.txt"
 COUNT=0
 FAILCOUNT=0
 ALLCOUNT=$(ls -l -d */ | grep "^d" | wc -l)
@@ -116,9 +116,9 @@ for d in ./*/; do
   addToSyncedFile "$d"
 done
 
-cat "$ORIPATH/../quotesynced.txt" >> "$ORIPATH/../synced.txt"
+sort -u "$ORIPATH/../synced.txt" > "$ORIPATH/../syncedUNIQUE.txt"
+mv "$ORIPATH/../syncedUNIQUE.txt" "$ORIPATH/../synced.txt"
 
-echo "" >> "$ORIPATH/../synced.txt"
 
 echo "$COUNT items looped"
 echo "$FAILCOUNT items failed"
