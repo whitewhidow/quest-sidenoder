@@ -17,7 +17,7 @@
         if (arg.update) {
           trstring += `<a onclick="update('${arg.update.path}')"><h2 class="pull-right push-right"><span class="badge badge-success badge-md"> <i class="fa fa-upload" aria-hidden="true"> Update to ${arg.update.versionCode}</span></h2></a>`
         } else {
-          trstring += `<a onclick="alert('todo')"><h2 class="pull-right push-right"><span class="badge badge-warning badge-md"> <i class="fa trash" aria-hidden="true"> Uninstall</span></h2></a>`
+          trstring += `<a onclick="uninstall(this, '${arg.packageName}')"><h2 class="pull-right push-right"><span class="badge badge-warning badge-md"> <i id="uninstallBtn" class="fa trash" aria-hidden="true"> Uninstall</span></h2></a>`
         }
         trstring += `<td></tr>`
         row = $("#listTable tbody").append(trstring)
@@ -27,24 +27,35 @@
         console.log("get_installed msg came ! ");
         console.log(arg)
         if (arg.success) {
-          $("#updateBadge").html(`<a onclick="getUpdates('')">Click to check mount for updates</a>`)
+          $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates</a>`)
           $("#updateBadge").show();
         }
       });
 
 
+      ipcRenderer.on('uninstall', (event, arg) => {
+        console.log("uninstall msg came ! ");
+        location.reload()
+      });
+
 
 
     });
 
-    function getUpdates() {
-      $("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
+    function getUpdates(element) {
+      element.innerHTML= `<i class="fa fa-refresh fa-spin"></i> Please wait`
+      //$("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
       $("#listTable tbody").html('');
       ipcRenderer.send('get_installed_with_updates', ``);
     }
 
     function update(path) {
       ipcRenderer.send('update', path);
+    }
+
+    function uninstall(element, packageName) {
+      element.querySelector('h2').innerHTML= `<i class="fa fa-refresh fa-spin"></i> Please wait`
+      ipcRenderer.send('uninstall', packageName);
     }
 
   </script>

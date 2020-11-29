@@ -185,6 +185,15 @@ ipcMain.on('update', async (event, arg) => {
 })
 
 
+
+ipcMain.on('uninstall', async (event, arg) => {
+    console.log("uninstall received");
+    resp = await tools.uninstall(arg);
+    event.reply('uninstall', {"success":true})
+    return
+})
+
+
 // DEFAULT
 app.whenReady().then(createWindow)
 app.on('window-all-closed', () => {

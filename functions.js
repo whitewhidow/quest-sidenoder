@@ -30,7 +30,8 @@ module.exports =
     checkUpdateAvailable,
     getInstalledApps,
     getInstalledAppsWithUpdates,
-    getApkFromFolder
+    getApkFromFolder,
+    uninstall
     // ...
 }
 
@@ -386,7 +387,7 @@ async function sideloadFolder(location) {
 
     console.log('doing adb UNinstall');
     try {
-        await execShellCommand(`adb uninstall -k "${packageinfo.packageName}"`);
+        //await execShellCommand(`adb uninstall -k "${packageinfo.packageName}"`);
     }  catch (e) {
         console.log(e);
     }
@@ -549,4 +550,8 @@ async function getApkFromFolder(folder){
         return apk
     }
 
+}
+
+async function uninstall(packageName){
+    //resp = await execShellCommand(`adb uninstall ${packageName}`)
 }
