@@ -364,6 +364,14 @@ async function getObbs(folder){
     return fileNames;
 }
 
+async function getDirListing(folder){
+    const files = await fsPromise.readdir(folder, { withFileTypes: true });
+    let fileNames = await Promise.all(files.map(async (fileEnt) => {
+        return path.join(folder, fileEnt.name).replace(/\\/g,"/")
+    }));
+    return fileNames;
+}
+
 async function sideloadFolder(location) {
     console.log("sideloadFolder()")
     if (location.endsWith(".apk")) {
@@ -501,7 +509,9 @@ async function getInstalledApps(send = true) {
 }
 
 async function getInstalledAppsWithUpdates() {
-    listing = await execShellCommand(`ls "${global.mountFolder}"`);
+    //listing = await execShellCommand(`ls "${global.mountFolder}"`);
+    listing = await getDirListing(global.mountFolder);
+    listing = listing.join("\n");
 
     apps = await getInstalledApps(false);
     for (x in apps) {
