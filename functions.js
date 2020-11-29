@@ -27,15 +27,13 @@ module.exports =
     getDir,
     returnError,
     sideloadFolder,
-    checkUpdateAvailable
+    checkUpdateAvailable,
+    getInstalledApps,
+    getInstalledAppsWithUpdates,
+    getApkFromFolder
     // ...
 }
 
-// git ls-remote origin HEAD
-// 38b2c8981c19667ffab7ec11b3e361693d58a990	HEAD
-
-// git rev-parse HEAD
-// 41b5381a19621b8e810b5c00180f64423122f103
 
 async function checkUpdateAvailable() {
     console.log('Checking local version vs latest github version')
@@ -46,11 +44,13 @@ async function checkUpdateAvailable() {
     //console.log(`localhead: ${localhead}|`)
 
     if (remotehead.startsWith(localhead.replace(/(\r\n|\n|\r)/gm,""))) {
+        global.updateAvailable = false
         return false
     } else {
         console.log('')
         console.log(`A update is available, please pull the latest version from github!`)
         console.log('')
+        global.updateAvailable = true
         return true
     }
 }
@@ -471,4 +471,82 @@ async function getPackageInfo(apkPath) {
         });
         return info
     }
+}
+
+async function getInstalledApps(send = true) {
+
+
+    apps = await execShellCommand(`adb shell cmd package list packages -3`);
+    apps = apps.split("\n")
+    apps.pop();
+
+    appinfo = []
+    for (x in apps) {
+        apps[x] = apps[x].slice(8);
+        appinfo[x] = []
+        info = await execShellCommand(`adb shell dumpsys package ${apps[x]}`);
+        appinfo[x]['packageName'] = apps[x];
+        appinfo[x]['versionCode'] = info.match(/versionCode=[0-9]*/)[0].slice(12);
+
+        if (send === true) {
+            win.webContents.send('list_installed_app',appinfo[x]);
+        }
+
+    }
+
+    global.installedApps = appinfo;
+
+    return appinfo;
+}
+
+async function getInstalledAppsWithUpdates() {
+    listing = await execShellCommand(`ls "${global.mountFolder}"`);
+
+    apps = await getInstalledApps(false);
+    for (x in apps) {
+        console.log("checking "+apps[x]['packageName'])
+        var re = new RegExp(`.*${apps[x]['packageName']}.*`);
+        if (  linematch = listing.match(re)  ) {
+            remoteversion = linematch[0].match(/-versionCode-([0-9.]*)/)[1];
+            installedVersion = apps[x]['versionCode'];
+            console.log("remote version: "+remoteversion)
+            console.log("installed version: "+installedVersion)
+            if (remoteversion > installedVersion) {
+                apps[x]['update'] = []
+                apps[x]['update']['path'] = linematch[0]
+                apps[x]['update']['versionCode'] = remoteversion
+                console.log("UPDATE AVAILABLE")
+                win.webContents.send('list_installed_app',apps[x]);
+            }
+        }
+    }
+
+    global.installedApps = apps;
+
+    //console.log(listing)
+    return apps;
+}
+
+
+
+async function getApkFromFolder(folder){
+    const files = await fsPromise.readdir(folder, { withFileTypes: true });
+    let fileNames = await Promise.all(files.map(async (fileEnt) => {
+        return path.join(folder, fileEnt.name).replace(/\\/g,"/")
+    }));
+    apk = false
+    fileNames.forEach((item)=>{
+        console.log(item)
+        if (item.endsWith(".apk")) {
+            apk = item;
+        }
+    })
+
+    if (!apk) {
+        returnError("No apk found in "+folder)
+        return
+    } else {
+        return apk
+    }
+
 }

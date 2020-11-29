@@ -25,6 +25,7 @@ Basket VR v0.2/**
 Beat Saber v1.13.0-147 -VRP (with DLC)/**
 Blair Witch v1.05.33 -QuestUnderground/**
 Blaston v1.3.96912.103096912 -QuestUnderground/**
+Blaston v1.4.97724-104097724 -VRP/**
 Blockami VR v1.00/**
 Bonfire v1.0.466-Q2Patched -QuestUnderground/**
 Box VR v1.18.188/**
@@ -46,6 +47,7 @@ Color Space v1.2.1 -QuestUnderground/**
 Control Tower VR v0.61/**
 Cook-Out v1.2.92260-Q2Patched -QuestUnderground/**
 Cook-Out v1.3.97509-103097509 -VRP /**
+Cook-Out v1.3.97509-103097509 -VRP/**
 Counter Fight v1.5.0/**
 Crazy Kung Fu v0.34/**
 Creed v1.0-187321-Q2Patched-90Hz -QuestUnderground/**
@@ -78,6 +80,7 @@ Dungeon Chess v0.060/**
 Dungeon Train v0.19.12/**
 Electronauts v175667 -QuestUnderground/**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
+Eleven Table Tennis v1.400b -VRP/**
 Eleven Table Tennis v1.400 -VRP/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
@@ -196,6 +199,7 @@ Racket Nx v1.4.4 -QuestUnderground/**
 Racket - Nx v2.0.0.96 -QuestUnderground/**
 Racket - Nx v2.0.2.98 -QuestUnderground/**
 Racket - Nx v2.0.3.99 -QuestUnderground/**
+Racket - Nx v2.0.4.100 -QuestUnderground/**
 Radial-G Proteus v0.1 -QuestUnderground/**
 Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
@@ -303,3 +307,222 @@ Witchblood v1.0/**
 Wolves in the Walls v1.1375 -VRP/**
 Wonderglade v1.9.84037/**
 Zombie World VR v1.0/**
+2MD VR Football Unleashed v1.0.30 -Q2-90Hz-CustomRes -QuestUnderground/**
+2MD VR Football Unleashed v1.0.30 -Q2-90Hz-CustomRes -QuestUnderground/**
+Accounting+ v1.24.35-Q2Patched -QuestUnderground/**
+Accounting+ v1.24.35-Q2Patched -QuestUnderground/**
+Acron - Attack of the Squirrels! v1.14.94392.114094392 -QuestUnderground/**
+Acron - Attack of the Squirrels! v1.14.94392.114094392 -QuestUnderground/**
+AFFECTED - The Manor v1.26.1.75 -QuestUnderground/**
+AFFECTED - The Manor v1.26.1.75 -QuestUnderground/**
+A Fishermans Tale v1.056 -QuestUnderground/**
+A Fishermans Tale v1.056 -QuestUnderground/**
+Air Brigade 2 v0.2/**
+Air Brigade 2 v0.2/**
+A Lullaby of Colors v1.2.2/**
+A Lullaby of Colors v1.2.2/**
+A Moment in Cannes v0.3.22/**
+A Moment in Cannes v0.3.22/**
+Angry Birds VR Isle of Pigs v3.4.92967.304092967 -Q2-90Hz-CustomRes -QuestUnderground/**
+Angry Birds VR Isle of Pigs v3.4.92967.304092967 -Q2-90Hz-CustomRes -QuestUnderground/**
+Apex Construct v45.0 -VRP/**
+Apex Construct v45.0 -VRP/**
+Apollo 11 v2.3.22 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
+Apollo 11 v2.3.22 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
+Arizona Sunshine v1.5.21549 -QuestUnderground/**
+Arizona Sunshine v1.5.21549 -QuestUnderground/**
+Artifact v1.0.6/**
+Artifact v1.0.6/**
+ArtPlunge v201909211/**
+ArtPlunge v201909211/**
+Ashtar UFO v1.0/**
+Ashtar UFO v1.0/**
+Attack on Quest v0.1.3/**
+Attack on Quest v0.1.3/**
+AUDICA v1.0.3.2.128543601 -QuestUnderground/**
+AUDICA v1.0.3.2.128543601 -QuestUnderground/**
+Audioshield v118 -QuestUnderground/**
+Audioshield v118 -QuestUnderground/**
+Audio Trip v0.131 -QuestUnderground/**
+Audio Trip v0.131 -QuestUnderground/**
+Bait! v1.2/**
+Bait! v1.2/**
+Ballista v20.42/**
+Ballista v20.42/**
+BanditSix v1.1.0.130/**
+BanditSix v1.1.0.130/**
+Bang Squash v1.0/**
+Bang Squash v1.0/**
+Basket VR v0.2/**
+Basket VR v0.2/**
+Beat Saber v1.13.0-147 -VRP (with DLC)/**
+Beat Saber v1.13.0-147 -VRP (with DLC)/**
+Blair Witch v1.05.33 -QuestUnderground/**
+Blair Witch v1.05.33 -QuestUnderground/**
+Blaston v1.3.96912.103096912 -QuestUnderground/**
+Blaston v1.3.96912.103096912 -QuestUnderground/**
+Blaston v1.4.97724-104097724 -VRP/**
+Blaston v1.4.97724-104097724 -VRP/**
+Blockami VR v1.00/**
+Blockami VR v1.00/**
+Bonfire v1.0.466-Q2Patched -QuestUnderground/**
+Bonfire v1.0.466-Q2Patched -QuestUnderground/**
+Box VR v1.18.188/**
+Box VR v1.18.188/**
+B-Team v20.03.19.356857 -QuestUnderground/**
+B-Team v20.03.19.356857 -QuestUnderground/**
+Captain Hardcore v0.3/**
+Captain Hardcore v0.3/**
+Car Parking Simulator v1.6.1/**
+Car Parking Simulator v1.6.1/**
+Cat Dissection v1.0/**
+Cat Dissection v1.0/**
+Cave Digger Riches v2.11-Q2Patched -QuestUnderground/**
+Cave Digger Riches v2.11-Q2Patched -QuestUnderground/**
+Chunky v0.9/**
+Chunky v0.9/**
+Chupa Chupa VR v2.0 -VRP/**
+Chupa Chupa VR v2.0 -VRP/**
+Cirque du Soleil v1.01.13/**
+Cirque du Soleil v1.01.13/**
+City Avenger v1.0.1/**
+City Avenger v1.0.1/**
+Cloudlands 2 v1.31.35 -QuestUnderground/**
+Cloudlands 2 v1.31.35 -QuestUnderground/**
+Coaster Combat [1.0.693251] S2.11/**
+Coaster Combat [1.0.693251] S2.11/**
+Color Space v1.2.1 -QuestUnderground/**
+Color Space v1.2.1 -QuestUnderground/**
+Control Tower VR v0.61/**
+Control Tower VR v0.61/**
+Cook-Out v1.3.97509-103097509 -VRP /**
+Cook-Out v1.3.97509-103097509 -VRP /**
+Counter Fight v1.5.0/**
+Counter Fight v1.5.0/**
+Crazy Kung Fu v0.34/**
+Crazy Kung Fu v0.34/**
+Creed v1.0-187321-Q2Patched-90Hz -QuestUnderground/**
+Creed v1.0-187321-Q2Patched-90Hz -QuestUnderground/**
+Cubism v1.0.5.48 -QuestUnderground/**
+Cubism v1.0.5.48 -QuestUnderground/**
+Custom Home Mapper v2.1-beta -VRP/**
+Custom Home Mapper v2.1-beta -VRP/**
+Cyber Cycle v0.1/**
+Cyber Cycle v0.1/**
+Dance Central v1.2.1 -QuestUnderground/**
+Dance Central v1.2.1 -QuestUnderground/**
+Dance Dance Maker v0.9/**
+Dance Dance Maker v0.9/**
+Dead and Buried II [2.0.8396.3008396] S2.11/**
+Dead and Buried II [2.0.8396.3008396] S2.11/**
+Dead Shot Heroes v2.1.3/**
+Dead Shot Heroes v2.1.3/**
+Death Horizon - Reloaded v0.9.24.92 -QuestUnderground/**
+Death Horizon - Reloaded v0.9.24.92 -QuestUnderground/**
+Death Lap v9.36.926 -QuestUnderground/**
+Death Lap v9.36.926 -QuestUnderground/**
+Deep Water Solo Climbing v0.1.0/**
+Deep Water Solo Climbing v0.1.0/**
+Deisim v1.31.1 -VRP/**
+Deisim v1.31.1 -VRP/**
+Descent Alps v0.0.4/**
+Descent Alps v0.0.4/**
+Disc Benders Ace Run v1.0.0/**
+Disc Benders Ace Run v1.0.0/**
+DiscGolfVR v4.5/**
+DiscGolfVR v4.5/**
+Doctor Who The Edge of Time [368] S2.11/**
+Doctor Who The Edge of Time [368] S2.11/**
+Dogfish Dessection v1.0/**
+Dogfish Dessection v1.0/**
+DrakaVR v1/**
+DrakaVR v1/**
+Dreadhalls v1.6.19.10619-Q2Patched -QuestUnderground/**
+Dreadhalls v1.6.19.10619-Q2Patched -QuestUnderground/**
+DroneLight 0.1/**
+DroneLight 0.1/**
+Drop Dead - Dual Strike Edition v1.3.6.3-Q2Patched -QuestUnderground/**
+Drop Dead - Dual Strike Edition v1.3.6.3-Q2Patched -QuestUnderground/**
+Drunkn Bar Fight v10.21-Q2Patch90Hz -QuestUnderground/**
+Drunkn Bar Fight v10.21-Q2Patch90Hz -QuestUnderground/**
+Dungeon Chess v0.060/**
+Dungeon Chess v0.060/**
+Dungeon Train v0.19.12/**
+Dungeon Train v0.19.12/**
+Electronauts v175667 -QuestUnderground/**
+Electronauts v175667 -QuestUnderground/**
+Eleven Table Tennis v1.400b -VRP/**
+Eleven Table Tennis v1.400b -VRP/**
+Eleven Table Tennis v1.400 -VRP/**
+Eleven Table Tennis v1.400 -VRP/**
+Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
+Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
+End Space v1.0.6.22 -QuestUnderground/**
+End Space v1.0.6.22 -QuestUnderground/**
+ENHANCE VR v2.0.0/**
+ENHANCE VR v2.0.0/**
+Escape Legacy v1.20/**
+Escape Legacy v1.20/**
+Escape! v1.01/**
+Escape! v1.01/**
+Espire 1 VR Operative v1.7.218-1546 -VRP/**
+Espire 1 VR Operative v1.7.218-1546 -VRP/**
+Evryway Visualiser v0.79/**
+Evryway Visualiser v0.79/**
+Exorcist Legion VR v1.0.9 -QuestUnderground/**
+Exorcist Legion VR v1.0.9 -QuestUnderground/**
+Face Your Fears 1 and DLC v1.0.536957 (Spoofed as Neverthink) (Q2 only) -QuestUnderground/**
+Face Your Fears 1 and DLC v1.0.536957 (Spoofed as Neverthink) (Q2 only) -QuestUnderground/**
+Face Your Fears 2 v1.0.487009 -QuestUnderground/**
+Face Your Fears 2 v1.0.487009 -QuestUnderground/**
+Fail Factory v1.0.54-Q2Patched -QuestUnderground/**
+Fail Factory v1.0.54-Q2Patched -QuestUnderground/**
+Falcon Age v1.00-8 -QuestUnderground/**
+Falcon Age v1.00-8 -QuestUnderground/**
+Fast Formula v1.0/**
+Fast Formula v1.0/**
+Five Nights at Freddys Help Wanted v1.0.9-Q2Patched -QuestUnderground/**
+Five Nights at Freddys Help Wanted v1.0.9-Q2Patched -QuestUnderground/**
+Food Flinger v1.0/**
+Food Flinger v1.0/**
+FREEDIVER - Triton Down v1.0 -QuestUnderground/**
+FREEDIVER - Triton Down v1.0 -QuestUnderground/**
+Frog Dissection v1.0/**
+Frog Dissection v1.0/**
+Fruit Ninja v1.7.0.547288-Q2Patched -QuestUnderground/**
+Fruit Ninja v1.7.0.547288-Q2Patched -QuestUnderground/**
+Fujii v1.0.825 -QuestUnderground/**
+Fujii v1.0.825 -QuestUnderground/**
+Futbolin Revolution v1.0/**
+Futbolin Revolution v1.0/**
+Gadgeteer v1.0.14.76 -QuestUnderground/**
+Gadgeteer v1.0.14.76 -QuestUnderground/**
+Ghost Giant v1.0.32-Q2Patched -QuestUnderground/**
+Ghost Giant v1.0.32-Q2Patched -QuestUnderground/**
+Gladius v0.8.5 -VRP (Manual Install see readme)/**
+Gladius v0.8.5 -VRP (Manual Install see readme)/**
+Gladius v0.8.5 -VRP/**
+Gladius v0.8.5 -VRP/**
+Gloomy Eyes v33 -QuestUnderground/**
+Gloomy Eyes v33 -QuestUnderground/**
+Gravity Lab v1.12.0-Q2Patched -QuestUnderground/**
+Gravity Lab v1.12.0-Q2Patched -QuestUnderground/**
+Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
+Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
+Guided Tai Chi v1.2.35/**
+Guided Tai Chi v1.2.35/**
+Gun Club VR v1.0.31.168-Q2Patched -QuestUnderground/**
+Gun Club VR v1.0.31.168-Q2Patched -QuestUnderground/**
+Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
+Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
+GunSpinning VR v1.0/**
+GunSpinning VR v1.0/**
+Hatsune Miku v3.01-10 -VRP/**
+Hatsune Miku v3.01-10 -VRP/**
+Hermetika VR v0.6/**
+Hermetika VR v0.6/**
+HeroBound 2 v1.5.1/**
+HeroBound 2 v1.5.1/**
+Holopoint v1.0.14.123 -QuestUnderground/**
+Holopoint v1.0.14.123 -QuestUnderground/**
+Homestar VR v1.32 -QuestUnderground/**
