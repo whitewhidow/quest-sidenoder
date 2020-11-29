@@ -8,7 +8,7 @@
       console.log("ONLOAD installed");
       $("#updateBadge").hide();
       ipcRenderer.send('get_installed', '');
-      $("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
+      //$("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
 
       ipcRenderer.on('list_installed_app', (event, arg) => {
         console.log("list_installed_app msg came ! ");
