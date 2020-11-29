@@ -512,7 +512,7 @@ async function getInstalledApps(send = true) {
 async function getInstalledAppsWithUpdates() {
     //listing = await execShellCommand(`ls "${global.mountFolder}"`);
     listing = await getDirListing(global.mountFolder);
-    listing = listing.join("\n");
+    listing = listing.join(global.endOfLine);
 
     apps = await getInstalledApps(false);
     for (x in apps) {

@@ -5,6 +5,7 @@ global.tmpdir = global.tmpdir.replace(/\\/g,"/");
 global.mountFolder = global.tmpdir+"/mnt";
 global.platform = require('os').platform;
 global.homedir = require('os').homedir();
+global.endOfLine = require('os').EOL;
 global.adbDevice = false
 global.mounted = false
 global.updateAvailable = false
@@ -19,7 +20,7 @@ const { ipcMain } = require('electron')
 packageInfo = require('node-aapt')
 ipcMain.on('test', async (event, arg) => {
    test = await tools.getDirListing(global.mountFolder);
-
+    test = test.join(global.endOfLine);
     event.reply('log', test);
     return
 })
@@ -175,7 +176,7 @@ ipcMain.on('update', async (event, arg) => {
     }
 
     console.log("for path "+path)
-    apkpath = await tools.getApkFromFolder(global.mountFolder+"/"+path);
+    apkpath = await tools.getApkFromFolder(path);
 
 
     event.reply('ask_sideload', `{"success":true, "path": "${apkpath}"}`)
