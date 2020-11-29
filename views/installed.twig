@@ -15,9 +15,9 @@
         console.log(arg)
         trstring = `<tr><td style="font-weight: bolder; font-size: large">${arg.packageName} VersionCode: ${arg.versionCode})`
         if (arg.update) {
-          trstring += `<a onclick="update('${arg.update.path}')"><h2 class="pull-right push-right"><span class="badge badge-success badge-md">Update to ${arg.update.versionCode}</span></h2></a>`
+          trstring += `<a onclick="update('${arg.update.path}')"><h2 class="pull-right push-right"><span class="badge badge-success badge-md"> <i class="fa fa-upload" aria-hidden="true"> Update to ${arg.update.versionCode}</span></h2></a>`
         } else {
-          trstring += `<a onclick="alert('todo')"><h2 class="pull-right push-right"><span class="badge badge-warning badge-md">Uninstall</span></h2></a>`
+          trstring += `<a onclick="alert('todo')"><h2 class="pull-right push-right"><span class="badge badge-warning badge-md"> <i class="fa trash" aria-hidden="true"> Uninstall</span></h2></a>`
         }
         trstring += `<td></tr>`
         row = $("#listTable tbody").append(trstring)
