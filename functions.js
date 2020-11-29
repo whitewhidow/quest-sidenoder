@@ -386,7 +386,7 @@ async function sideloadFolder(location) {
 
     console.log('doing adb UNinstall');
     try {
-        await execShellCommand(`adb uninstall "${packageinfo.packageName}"`);
+        await execShellCommand(`adb uninstall -r "${packageinfo.packageName}"`);
     }  catch (e) {
         console.log(e);
     }
@@ -395,7 +395,7 @@ async function sideloadFolder(location) {
 
     console.log('doing adb install');
     try {
-        await execShellCommand(`adb install -g -d "${apkfile}"`);
+        await execShellCommand(`adb install -g -d -r "${apkfile}"`);
         win.webContents.send('sideload_apk_done',`{"success":true}`);
     }  catch (e) {
         console.log(e);
