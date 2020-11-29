@@ -525,7 +525,7 @@ async function getInstalledAppsWithUpdates() {
             console.log("installed version: "+installedVersion)
             if (remoteversion > installedVersion) {
                 apps[x]['update'] = []
-                apps[x]['update']['path'] = linematch[0].replace(/\\/g,"/")
+                apps[x]['update']['path'] = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"")
                 apps[x]['update']['versionCode'] = remoteversion
                 console.log("UPDATE AVAILABLE")
                 win.webContents.send('list_installed_app',apps[x]);
