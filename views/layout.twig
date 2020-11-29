@@ -138,6 +138,8 @@
         $(".deviceBadge").addClass("badge-success");
 
         $("#installedAppsNav").removeClass("disabled");
+        $("#installedAppsNav").removeClass("btn-secondary");
+        $("#installedAppsNav").addClass("btn-primary");
       } else {
         $("#devicebtn").removeClass("btn-success");
         $("#devicebtn").addClass("btn-danger");
@@ -201,7 +203,9 @@
       </li>
       #}
       <li class="nav-item">
-        <a class="nav-link" href="browse.twig" >Browse</a>
+        <a class="btn btn-primary" style="margin-right: 20px" href="browse.twig">
+          Browse
+        </a>
       </li>
       {#
       <li class="nav-item">
@@ -209,10 +213,12 @@
       </li>
       #}
       <li class="nav-item">
-        <a id="installedAppsNav" class="nav-link" href="installed.twig">Installed APP's</a>
+        <a id="installedAppsNav" class="btn btn-secondary disabled" style="margin-right: 20px" href="installed.twig">
+          Installed APP's
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Settings</a>
+        <a class="btn disabled btn-secondary" style="margin-right: 20px" href="#">Settings</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
