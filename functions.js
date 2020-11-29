@@ -406,7 +406,7 @@ async function sideloadFolder(location) {
 
     console.log('doing adb install');
     try {
-        await execShellCommand(`adb install -g -d -r "${apkfile}"`);
+        await execShellCommand(`adb install -g -d "${apkfile}"`);
         win.webContents.send('sideload_apk_done',`{"success":true}`);
     }  catch (e) {
         console.log(e);
