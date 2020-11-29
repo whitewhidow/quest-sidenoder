@@ -31,7 +31,8 @@ module.exports =
     getInstalledApps,
     getInstalledAppsWithUpdates,
     getApkFromFolder,
-    uninstall
+    uninstall,
+    getDirListing
     // ...
 }
 

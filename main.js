@@ -18,10 +18,9 @@ const { ipcMain } = require('electron')
 
 packageInfo = require('node-aapt')
 ipcMain.on('test', async (event, arg) => {
-   // packageinfo = await tools.getPackageInfo(arg);
+   test = await tools.getDirListing(global.mountFolder);
 
-
-    event.reply('log', '');
+    event.reply('log', test);
     return
 })
 
