@@ -4,7 +4,6 @@
 {% block onload %}
   {{ parent() }}
   <style>
-    a { cursor: pointer; }
 
     .ribbon-wrapper-green {
       width: 85px;
@@ -115,15 +114,7 @@
       console.log("ONLOAD BROWSE");
       //open start dir
       ipcRenderer.send('get_dir', '');
-      //setup listener for confirm btn, takes path form data dir, and sends start_sideload
-      $("#confirmSideloadButton").on("click", function(){
-        $('#confirmModal').modal('hide');
-        ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
-      });
-      $("#sideloadDoneBtn").on("click", function(){
-        $('#sideloadModal').modal('hide');
-        location.reload();
-      });
+
 
 
 
@@ -152,39 +143,11 @@
 
 
 
-    ipcRenderer.on('start_sideload', (event, arg) => {
-      console.log("start_sideload msg came ! ");
-      console.log(arg)
-      if (JSON.parse(arg).success) {
-        var path = JSON.parse(arg).path
-        var lastslashindex = path.lastIndexOf('/');
-        var file= path.substring(lastslashindex  + 1)
-
-        $('#sideloadModal').modal('show');
-        $("#sideloadModal > div > div > div.modal-body > #sideloadText").html("Processing: <br><b>"+file+"</b>")
-      }
-    });
 
 
 
 
-    ipcRenderer.on('ask_sideload', (event, arg) => {
-      console.log("ask_sideload msg came ! ");
-      console.log(arg)
-      if (JSON.parse(arg).success) {
 
-        var path = JSON.parse(arg).path
-        var lastslashindex = path.lastIndexOf('/');
-        var file= path.substring(lastslashindex  + 1)
-
-        $("#confirmSideloadButton").data('path', path)
-        $('#confirmModal').modal('show');
-        $("#confirmModal > div > div > div.modal-body").html("Do you want to sideload: <br><b>"+file+"</b>")
-
-
-
-      }
-    });
 
     // call get_dir when selection is made
     function getDir(newpath) {
@@ -257,26 +220,7 @@ ${list[item].simpleName}<br><br>
       $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
-    ipcRenderer.on('sideload_aapt_done', (event, arg) => {
-      $(".aaptDoneBadge").removeClass("badge-warning").addClass("badge-success");
-    });
-    ipcRenderer.on('sideload_uninstall_done', (event, arg) => {
-      $(".uninstallDoneBadge").removeClass("badge-warning").addClass("badge-success");
-    });
-    ipcRenderer.on('sideload_apk_done', (event, arg) => {
-      $(".apkDoneBadge").removeClass("badge-warning").addClass("badge-success");
-    });
-    ipcRenderer.on('sideload_copy_obb_done', (event, arg) => {
-      $(".copyObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
-    });
-    ipcRenderer.on('sideload_copy_obb_done', (event, arg) => {
-      $(".moveObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
-    });
-    ipcRenderer.on('sideload_done', (event, arg) => {
-      $(".sideloadDoneBadge").removeClass("badge-warning").addClass("badge-success");
-      $("#sideloadDoneBtn").removeClass("disabled").removeClass("btn-primary").addClass("btn-success").html("Done")
-      $("#sideloadRefresh").removeClass("fa-refresh").removeClass("fa-spin").addClass("fa-check-circle-o")
-    });
+
 
   </script>
 {% endblock %}
@@ -310,17 +254,7 @@ ${list[item].simpleName}<br><br>
 
       <table class="table table-striped table-condensed" id="listTable">
         <tbody>
-        {% for item in list %}
-          <tr id="listTr">
-            {#
-            <td  style="height: 20px"><a style="color: black; font-weight: bold" href="/browse?path={{ path }}/{{ item|replace({(path): ""}) }}">{{ item|replace({(path): ""}) }}</a></td>
-            #}
-            {# <td>
-          <button type="button" class="btn btn-danger"><i class="fa fa-upload"></i></button>
-            #}
-            </td>
-          </tr>
-        {% endfor %}
+
         </tbody>
       </table>
 
@@ -336,59 +270,6 @@ ${list[item].simpleName}<br><br>
 
 
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="sideloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><i  id="sideloadRefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
-        </div>
-        <div class="modal-body">
-          <span id="sideloadText"></span>
-          <br>
-          <span class="deviceBadge badge badge-warning badge-md">Check device</span>
-          <br>
-          <span class="aaptDoneBadge badge badge-warning badge-md">Read Packageinfo</span>
-          <br>
-          <span class="uninstallDoneBadge badge badge-warning badge-md">Uninstall APK</span>
-          <br>
-          <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
-          <br>
-          <span class="copyObbDoneBadge badge badge-warning badge-md">Copy OBB's</span>
-          <br>
-          <span class="moveObbDoneBadge badge badge-warning badge-md">Move OBB's</span>
-          <br>
-          <span class="sideloadDoneBadge badge badge-warning badge-md">Sideload finished</span>
-          <br>
-        </div>
-        <div class="modal-footer">
-          {# <button type="button" class="btn btn-secondary disabled" data-dismiss="modal">Close</button> #}
-          <button type="button" id="sideloadDoneBtn" class="btn btn-primary disabled">Please wait for the process to finish</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-          <button type="button" id="confirmSideloadButton" class="btn btn-primary disabled">Yes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 

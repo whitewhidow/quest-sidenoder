@@ -25,6 +25,7 @@ Basket VR v0.2/**
 Beat Saber v1.13.0-147 -VRP (with DLC)/**
 Blair Witch v1.05.33 -QuestUnderground/**
 Blaston v1.3.96912.103096912 -QuestUnderground/**
+Blaston v1.4.97724-104097724 -VRP/**
 Blockami VR v1.00/**
 Bonfire v1.0.466-Q2Patched -QuestUnderground/**
 Box VR v1.18.188/**
@@ -46,6 +47,7 @@ Color Space v1.2.1 -QuestUnderground/**
 Control Tower VR v0.61/**
 Cook-Out v1.2.92260-Q2Patched -QuestUnderground/**
 Cook-Out v1.3.97509-103097509 -VRP /**
+Cook-Out v1.3.97509-103097509 -VRP/**
 Counter Fight v1.5.0/**
 Crazy Kung Fu v0.34/**
 Creed v1.0-187321-Q2Patched-90Hz -QuestUnderground/**
@@ -78,6 +80,7 @@ Dungeon Chess v0.060/**
 Dungeon Train v0.19.12/**
 Electronauts v175667 -QuestUnderground/**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
+Eleven Table Tennis v1.400b -VRP/**
 Eleven Table Tennis v1.400 -VRP/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
@@ -196,6 +199,7 @@ Racket Nx v1.4.4 -QuestUnderground/**
 Racket - Nx v2.0.0.96 -QuestUnderground/**
 Racket - Nx v2.0.2.98 -QuestUnderground/**
 Racket - Nx v2.0.3.99 -QuestUnderground/**
+Racket - Nx v2.0.4.100 -QuestUnderground/**
 Radial-G Proteus v0.1 -QuestUnderground/**
 Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
