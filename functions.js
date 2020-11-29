@@ -396,7 +396,8 @@ async function sideloadFolder(location) {
 
     console.log('doing adb UNinstall');
     try {
-        await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
+        //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
+        await execShellCommand(`adb uninstall "${packageinfo.packageName}"`);
     }  catch (e) {
         console.log(e);
     }
