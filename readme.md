@@ -36,7 +36,7 @@ curl https://rclone.org/install.sh | sudo bash
 Install git, adb, nodejs, osxfuse and rclone using these commands:
 ```
 brew install git
-brew install android-platform-tools
+brew cask install android-platform-tools
 brew install node
 curl https://rclone.org/install.sh | sudo bash
 brew cask install osxfuse
