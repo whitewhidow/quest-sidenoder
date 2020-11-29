@@ -564,5 +564,5 @@ async function getApkFromFolder(folder){
 }
 
 async function uninstall(packageName){
-    //resp = await execShellCommand(`adb uninstall ${packageName}`)
+    resp = await execShellCommand(`adb uninstall ${packageName}`)
 }
