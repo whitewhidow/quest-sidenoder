@@ -46,7 +46,7 @@ brew cask install osxfuse
 
 
 #### windows:
-Download adb, aapt and rclone from here and add to $PATH:
+Download and unzip adb, aapt and rclone from the below here and their directories to the $PATH environment variable:
 ```
 https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 https://androidaapt.com/
