@@ -14,7 +14,6 @@ var commandExists = require('command-exists');
 const packageInfo = require('node-aapt');
 
 
-const promise = require('promise')
 
 
 module.exports =
