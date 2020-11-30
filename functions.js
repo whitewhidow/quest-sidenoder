@@ -293,12 +293,7 @@ async function getDir(folder){
                 na = true
             }
 
-            simpleName = simpleName.split('-QuestUnderground')[0]
-            simpleName = simpleName.split(/v[0-9]*\./)[0]
-            //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
-            //simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]
-            simpleName = simpleName.split(/\[[0-9]*\./)[0]
-            simpleName = simpleName.split(/\[[0-9]*\]/)[0]
+            simpleName = await cleanUpFoldername(simpleName)
 
                 return {
                     name: fileEnt.name,
@@ -331,6 +326,18 @@ async function getDir(folder){
         return false
     }
 
+}
+
+async function cleanUpFoldername(simpleName) {
+    simpleName = simpleName.replace(`${global.mountFolder}/`, "")
+    simpleName = simpleName.split('-QuestUnderground')[0]
+    simpleName = simpleName.split(/v[0-9]*\./)[0]
+    //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
+    //simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]
+    simpleName = simpleName.split(/\[[0-9]*\./)[0]
+    simpleName = simpleName.split(/\[[0-9]*\]/)[0]
+
+    return simpleName;
 }
 
 async function getObbsDir(folder){
@@ -520,11 +527,19 @@ async function getInstalledAppsWithUpdates() {
         if (  linematch = listing.match(re)  ) {
             remoteversion = linematch[0].match(/-versionCode-([0-9.]*)/)[1];
             installedVersion = apps[x]['versionCode'];
+
+            properpath = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"");
+            simpleName = await cleanUpFoldername(properpath)
+
+
+            //TODO: path
             console.log("remote version: "+remoteversion)
             console.log("installed version: "+installedVersion)
             if (remoteversion > installedVersion) {
                 apps[x]['update'] = []
-                apps[x]['update']['path'] = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"")
+                apps[x]['update']['path'] = properpath
+                //apps[x]['update']['simpleName'] = simpleName
+                apps[x]['packageName'] = simpleName
                 apps[x]['update']['versionCode'] = remoteversion
                 console.log("UPDATE AVAILABLE")
                 win.webContents.send('list_installed_app',apps[x]);
