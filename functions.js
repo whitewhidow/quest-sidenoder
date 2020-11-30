@@ -293,7 +293,7 @@ async function getDir(folder){
                 na = true
             }
 
-            simpleName = cleanUpFoldername(simpleName)
+            simpleName = await cleanUpFoldername(simpleName)
 
                 return {
                     name: fileEnt.name,
@@ -528,7 +528,7 @@ async function getInstalledAppsWithUpdates() {
             installedVersion = apps[x]['versionCode'];
 
             properpath = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"");
-            simpleName = cleanUpFoldername(properpath)
+            simpleName = await cleanUpFoldername(properpath)
 
 
             //TODO: path
