@@ -58,7 +58,7 @@ jobs:
 
       - name: electron-packager
         run: |
-
+          sudo apt update
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist/*
           sudo apt install wine64 --fix-missing
 
