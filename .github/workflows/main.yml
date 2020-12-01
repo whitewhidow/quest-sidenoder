@@ -43,7 +43,7 @@ jobs:
           cd /home/runner/work/quest-sidenoder/quest-sidenoder
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out
 
-          npm run-script dist
+          sudo npm run-script dist
 
           mkdir -p /tmp/builds/AppImage/x64
           mkdir -p /tmp/builds/snap/x64
