@@ -28,6 +28,7 @@ jobs:
         run: |
 
           npm install
+          sudo apt update
           sudo apt install wine64 --fix-missing
           sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
           sudo apt install mono-complete
