@@ -17,6 +17,10 @@ echo Downloading rclone
 curl -L https://downloads.rclone.org/rclone-current-windows-amd64.zip -o sideloader_deps/rclone.zip
 echo Downloading adb
 curl -L https://dl.google.com/android/repository/platform-tools-latest-windows.zip  -o sideloader_deps/android-tools.zip
+echo Downloading aapt
+curl -L https://dl.google.com/android/repository/build-tools_r28.0.2-windows.zip  -o sideloader_deps/aapt.zip
+
+
 
 cd sideloader_deps
 
@@ -25,6 +29,8 @@ echo Unzipping rclone
 "C:\Program Files\7-Zip\7z.exe" x -y rclone.zip > NUL
 echo Unzipping adb
 "C:\Program Files\7-Zip\7z.exe" x -y android-tools.zip > NUL
+echo Unzipping aapt
+"C:\Program Files\7-Zip\7z.exe" x -y aapt.zip > NUL
 echo Combining folders
 SET COPYCMD=/Y
 move /y rclone-v1.53.3-windows-amd64\rclone.exe platform-tools\rclone.exe > NUL
@@ -38,6 +44,7 @@ for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v Path') do set userpa
 
 :: TODO:check if already in path
 setx PATH "%userpath%;%~dp0sideloader_deps\platform-tools"
+setx PATH "%userpath%;%~dp0sideloader_deps\android-9"
 
 cd ..
 
