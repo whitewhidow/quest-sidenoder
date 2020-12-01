@@ -9,16 +9,16 @@ https://github.com/whitewhidow/quest-sidenoder/releases
 
 ## DEPENDENCIES REQUIRED TO RUN LAST COMPILED VERSION:
 #### windows:
-Run the `windows-install.bat` file included with the release
+First run the `windows-install.bat` file included with the release
 
 #### linux:
-Install adb and rclone:
+First install adb and rclone:
 ```
 sudo apt install adb
 curl https://rclone.org/install.sh | sudo bash
 ```
 #### mac/osx:
-Install adb, rclone and osxfuse:
+First install adb, rclone and osxfuse:
 ```
 brew cask install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
