@@ -22,13 +22,13 @@ cd sideloader_deps
 
 
 echo Unzipping rclone
-"C:\Program Files\7-Zip\7z.exe" x -y rclone.zip > nul
+"C:\Program Files\7-Zip\7z.exe" x -y rclone.zip > NUL
 echo Unzipping adb
-"C:\Program Files\7-Zip\7z.exe" x -y android-tools.zip > nul
+"C:\Program Files\7-Zip\7z.exe" x -y android-tools.zip > NUL
 echo Combining folders
 SET COPYCMD=/Y
-move /y rclone-v1.53.3-windows-amd64\rclone.exe platform-tools\
-del rclone-v1.53.3-windows-amd64\
+move /y rclone-v1.53.3-windows-amd64\rclone.exe platform-tools\rclone.exe > NUL
+del /F /Q rclone-v1.53.3-windows-amd64\  > NUL
 echo Adding to PATH
 :: Get System PATH
 for /f "tokens=2*" %%A in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set syspath=%%B
@@ -36,14 +36,14 @@ for /f "tokens=2*" %%A in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Ses
 :: Get User Path
 for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v Path') do set userpath=%%B
 
-
+:: TODO:check if already in path
 setx PATH "%userpath%;%~dp0sideloader_deps\platform-tools"
 
 cd ..
 
 
 IF EXIST "%~dp0SideNoder.exe" (
-  echo
+  echo .
 ) else (
     IF EXIST "%programfiles(x86)%\nodejs\node.exe" (
       echo NodeJS is present
@@ -64,15 +64,27 @@ IF EXIST "%~dp0SideNoder.exe" (
 
 IF EXIST "%programfiles(x86)%\WinFsp\Bin\diag.bat" (
     echo WinFsp is present
+    echo .
+    echo .
+    echo Dependencies installed, Please reboot to complete the installation.
+    IF EXIST "%~dp0SideNoder.exe" (
+      echo You can run "SideNoder.exe"
+    ) else (
+      echo You can run "windows-launcher.bat"
+    )
+    pause
+    exit
 ) ELSE (
     curl -L https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi  -o sideloader_deps/winfsp-1.8.20304.msi
     START /WAIT sideloader_deps/winfsp-1.8.20304.msi
+    echo .
+    echo .
+    echo Dependencies installed, Please reboot to complete the installation.
+    IF EXIST "%~dp0SideNoder.exe" (
+      echo After rebooting you can run "SideNoder.exe"
+    ) else (
+      echo After rebooting you can run "windows-launcher.bat"
+    )
+    pause
+    exit
 )
-cls
-echo Dependencies installed, Please reboot to complete the installation.
-IF EXIST "%~dp0SideNoder.exe" (
-  echo After rebooting you can run "SideNoder.exe"
-) else (
-  echo After rebooting you can run "windows-launcher.bat"
-)
-pause
