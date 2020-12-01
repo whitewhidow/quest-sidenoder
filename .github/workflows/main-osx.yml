@@ -30,12 +30,8 @@ jobs:
 
           mkdir -p /tmp/builds
 
-          brew install tree
-          tree /Users/runner/work/quest-sidenoder/quest-sidenoder/out/
-          echo "kk"
-          ls /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make
-          echo "nals"
-          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/dmg/x64/
+
+          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make
           mkdir -p /tmp/builds/darwin/dmg/
           tar -cvf /tmp/builds/darwin/dmg/SideNoder-darwin-x64-dmg.tar *.dmg
           cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64/
