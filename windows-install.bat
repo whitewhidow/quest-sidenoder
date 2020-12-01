@@ -45,18 +45,29 @@ cd ..
 IF EXIST "%~dp0SideNoder.exe" (
   echo
 ) else (
-      echo Downloading and installing NodeJs
-      curl -L https://nodejs.org/dist/v14.15.1/node-v14.15.1-x86.msi  -o sideloader_deps/node-v14.15.1-x86.msi
-      START /WAIT sideloader_deps/node-v14.15.1-x86.msi
+    IF EXIST "%programfiles%\nodejs\node.exe" (
+      echo NodeJS is present
+    ) ELSE (
+      echo Downloading and installing 7zip'
+      curl https://www.7-zip.org/a/7z1900-x64.exe -o sideloader_deps/7zip.exe
+      START /WAIT sideloader_deps/7zip.exe
+    )
 
-      echo Downloading and installing Git
-      curl -L https://github.com/git-for-windows/git/releases/download/v2.29.2.windows.2/Git-2.29.2.2-64-bit.exe  -o sideloader_deps/Git-2.29.2.2-64-bit.exe
-      START /WAIT sideloader_deps/Git-2.29.2.2-64-bit.exe
+    IF EXIST "C:\Program Files\Git\cmd\git.exe" (
+        echo Git is present
+    ) ELSE (
+        echo Downloading and installing Git
+        curl -L https://github.com/git-for-windows/git/releases/download/v2.29.2.windows.2/Git-2.29.2.2-64-bit.exe  -o sideloader_deps/Git-2.29.2.2-64-bit.exe
+        START /WAIT sideloader_deps/Git-2.29.2.2-64-bit.exe
+    )
 )
 
-curl -L https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi  -o sideloader_deps/winfsp-1.8.20304.msi
-START /WAIT sideloader_deps/winfsp-1.8.20304.msi
-
+IF EXIST "%programfiles%\WinFsp\Bin\diag.bat" (
+    echo WinFsp is present
+) ELSE (
+    curl -L https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi  -o sideloader_deps/winfsp-1.8.20304.msi
+    START /WAIT sideloader_deps/winfsp-1.8.20304.msi
+)
 cls
 echo Dependencies installed, Please reboot to complete the installation.
 IF EXIST "%~dp0SideNoder.exe" (
