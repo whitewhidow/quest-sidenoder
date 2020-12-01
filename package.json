@@ -1,6 +1,6 @@
 {
   "name": "SideNoder",
-  "version": "0.0.2-alpha",
+  "version": "0.0.3-alpha",
   "description": "SideNoder",
   "main": "main.js",
   "dependencies": {
@@ -9,9 +9,8 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
     "jquery": "^3.5.1",
-    "node-aapt": "^1.1.0",
-    "node-fetch": "^2.6.1",
-    "promise": "^8.1.0"
+    "node-aapt": "https://github.com/whitewhidow/node-aapt/tarball/414f3643cd82e0fe581fe422d90a96c0965ca890",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
@@ -28,14 +27,15 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "appId": "com.sidenoder.app"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "config": {
     "forge": {
       "packagerConfig": {},

@@ -19,6 +19,11 @@ const { ipcMain } = require('electron')
 
 packageInfo = require('node-aapt')
 ipcMain.on('test', async (event, arg) => {
+
+    test = await tools.getPackageInfo(arg)
+    event.reply('log', test);
+    return
+
    test = await tools.getDirListing(global.mountFolder);
     test = test.join(global.endOfLine);
     event.reply('log', test);
@@ -139,7 +144,7 @@ function createWindow () {
         }
     })
     win.setMenu(null);
-    win.webContents.openDevTools()
+    //win.webContents.openDevTools()
     win.maximize(true)
     win.loadURL(`file://${__dirname}/views/index.twig`)
     twig.view = {

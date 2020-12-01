@@ -14,7 +14,6 @@ var commandExists = require('command-exists');
 const packageInfo = require('node-aapt');
 
 
-const promise = require('promise')
 
 
 module.exports =
@@ -32,7 +31,8 @@ module.exports =
     getInstalledAppsWithUpdates,
     getApkFromFolder,
     uninstall,
-    getDirListing
+    getDirListing,
+    getPackageInfo
     // ...
 }
 
@@ -161,15 +161,6 @@ async function checkDeps(){
         returnError("RCLONE global installation not found.")
         return
     }
-    try {
-        exists = await commandExists('aapt');
-    }
-    catch (e) {
-        if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
-            returnError("AAPT global installation not found.")
-            return
-        }
-    }
     //wtf werkt nie
     //win.webContents.send('check_deps',`{"success":true}`);
     return
@@ -294,12 +285,7 @@ async function getDir(folder){
                 na = true
             }
 
-            simpleName = simpleName.split('-QuestUnderground')[0]
-            simpleName = simpleName.split(/v[0-9]*\./)[0]
-            //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
-            //simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]
-            simpleName = simpleName.split(/\[[0-9]*\./)[0]
-            simpleName = simpleName.split(/\[[0-9]*\]/)[0]
+            simpleName = await cleanUpFoldername(simpleName)
 
                 return {
                     name: fileEnt.name,
@@ -332,6 +318,18 @@ async function getDir(folder){
         return false
     }
 
+}
+
+async function cleanUpFoldername(simpleName) {
+    simpleName = simpleName.replace(`${global.mountFolder}/`, "")
+    simpleName = simpleName.split('-QuestUnderground')[0]
+    simpleName = simpleName.split(/v[0-9]*\./)[0]
+    //simpleName = simpleName.split(/v[0-9][0-9]\./)[0]
+    //simpleName = simpleName.split(/v[0-9][0-9][0-9]\./)[0]
+    simpleName = simpleName.split(/\[[0-9]*\./)[0]
+    simpleName = simpleName.split(/\[[0-9]*\]/)[0]
+
+    return simpleName;
 }
 
 async function getObbsDir(folder){
@@ -462,25 +460,13 @@ async function sideloadFolder(location) {
 
 
 async function getPackageInfo(apkPath) {
+    info = await packageInfo(`"${apkPath}"`, (err, data) => {
+        if (err) {
+            returnError("AAPT failed to read the package")
+        }
+    });
 
-    if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
-        packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
-        packageName = packageStuff.match(/name='([a-zA-Z.]*)'/g);
-        packageName = packageName[0].split("'")[1]
-        versionCode = packageStuff.match(/versionCode='(\d+)'/g);
-        versionCode = versionCode[0].split("'")[1]
-        versionName = packageStuff.match(/versionName='([^']+)/g);
-        versionName = versionName[0].split("'")[1]
-        info = {packageName: packageName, versionCode: versionCode, versionName: versionName}
-        return info
-    } else {
-        info = await packageInfo(`"${apkPath}"`, (err, data) => {
-            if (err) {
-                returnError("AAPT failed to read the package")
-            }
-        });
-        return info
-    }
+    return info
 }
 
 async function getInstalledApps(send = true) {
@@ -521,11 +507,19 @@ async function getInstalledAppsWithUpdates() {
         if (  linematch = listing.match(re)  ) {
             remoteversion = linematch[0].match(/-versionCode-([0-9.]*)/)[1];
             installedVersion = apps[x]['versionCode'];
+
+            properpath = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"");
+            simpleName = await cleanUpFoldername(properpath)
+
+
+            //TODO: path
             console.log("remote version: "+remoteversion)
             console.log("installed version: "+installedVersion)
             if (remoteversion > installedVersion) {
                 apps[x]['update'] = []
-                apps[x]['update']['path'] = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"")
+                apps[x]['update']['path'] = properpath
+                //apps[x]['update']['simpleName'] = simpleName
+                apps[x]['packageName'] = simpleName
                 apps[x]['update']['versionCode'] = remoteversion
                 console.log("UPDATE AVAILABLE")
                 win.webContents.send('list_installed_app',apps[x]);
