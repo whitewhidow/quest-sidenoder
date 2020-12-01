@@ -56,6 +56,16 @@ jobs:
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
 
 
+
+
+
+          electron-packager ./ SideNode --platform=linux --arch=x64 --out=dist
+
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist
+          zip -r /tmp/builds/darwin/x64/SideNoder-linux-x64.zip *
+
+          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
+
       - name: electron-packager
         run: |
           sudo apt update
@@ -80,12 +90,12 @@ jobs:
 
 
 
-      - name: Upload linux Build Artifact
+      - name: Upload linux Build appimage Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-linux-x64-AppImage
           path: /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar
-      - name: Upload linux Build Artifact
+      - name: Upload linux Build snap Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-linux-x64-snap
@@ -102,3 +112,8 @@ jobs:
         with:
           name: SideNoder-osx-x64
           path: /tmp/builds/darwin/x64/SideNoder-darwin-x64.zip
+      - name: Upload linux Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-linux-x64
+          path: /tmp/builds/darwin/x64/SideNoder-linux-x64.zip
