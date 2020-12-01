@@ -30,7 +30,14 @@ SET COPYCMD=/Y
 move /y rclone-v1.53.3-windows-amd64\*.* platform-tools\
 del rclone-v1.53.3-windows-amd64\
 echo Adding to PATH
-setx PATH "%PATH%;%~dp0sideloader_deps\platform-tools"
+:: Get System PATH
+for /f "tokens=2*" %%A in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set syspath=%%B
+
+:: Get User Path
+for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v Path') do set userpath=%%B
+
+
+setx PATH "%userpath%;%~dp0sideloader_deps\platform-tools"
 
 cd ..
 
