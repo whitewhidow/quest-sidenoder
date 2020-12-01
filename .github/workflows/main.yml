@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI-LINUX
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
@@ -8,14 +8,14 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: [ ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -26,79 +26,38 @@ jobs:
       - name: run make
         run: |
 
-          sudo npm install
-          sudo npm run-script pack
-          sudo npm run-script dist
-
-
+          npm install
+          npm run make all
 
           mkdir -p /tmp/builds
-          mkdir -p /tmp/builds/AppImage/x64
-          mkdir -p /tmp/builds/snap/x64
-          mkdir -p /tmp/builds/darwin/x64
-
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist/
-
-          tar -cvf /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar SideNoder*.AppImage
-          tar -cvf /tmp/builds/snap/x64/SideNoder-linux-x64-snap.tar SideNoder*.snap
-
-
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder
-
-          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
-
-          sudo npm install electron-packager -g
-          electron-packager ./ SideNode --platform=darwin --arch=x64 --out=dist
-
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist
-          zip -r /tmp/builds/darwin/x64/SideNoder-darwin-x64.zip *
-
-          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist
-
-
-      - name: electron-packager
-        run: |
-          sudo apt update
-          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/dist/*
-          sudo apt install wine64 --fix-missing
-
-
-          sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
-          sudo apt install mono-complete
-
-          sudo chown root /home/runner
-          sudo chmod 777 -R /home/runner
-          sudo chmod 777 -R /usr/local/lib/node_modules
-
-          sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
-          sudo electron-packager ./ SideNoder --platform=win32 --arch=x64
-          mkdir -p /tmp/builds/win32/x64
-
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder/SideNoder-win32-x64/
-          zip -r /tmp/builds/win32/x64/SideNoder-win32-x64.zip *
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64/
+          mkdir -p /tmp/builds/linux/deb/
+          tar -cvf /tmp/builds/linux/deb/SideNoder-linux-x64-deb.tar *.deb
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64/
+          mkdir -p /tmp/builds/linux/rpm/
+          tar -cvf /tmp/builds/linux/rpm/SideNoder-linux-x64-rpm.tar *.rpm
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/linux/x64/
+          mkdir -p /tmp/builds/linux/zip/
+          sudo mv *.zip /tmp/builds/linux/zip/
 
 
 
 
-      - name: Upload linux Build Artifact
+
+
+
+      - name: Upload linux Build deb Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-AppImage
-          path: /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar
-      - name: Upload linux Build Artifact
+          name: SideNoder-linux-x64-deb
+          path: /tmp/builds/linux/deb/
+      - name: Upload linux Build rpm Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-snap
-          path: /tmp/builds/snap/x64/SideNoder-linux-x64-snap.tar
-
-
-      - name: Upload windows Build Artifact
+          name: SideNoder-linux-x64-rpm
+          path: /tmp/builds/linux/rpm/
+      - name: Upload linux Build zip Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-win-x64
-          path: /tmp/builds/win32/x64/SideNoder-win32-x64.zip
-      - name: Upload osx Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: SideNoder-osx-x64
-          path: /tmp/builds/darwin/x64/SideNoder-darwin-x64.zip
+          name: SideNoder-linux-x64-zip
+          path: /tmp/builds/linux/zip/

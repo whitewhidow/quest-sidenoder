@@ -25,29 +25,27 @@ jobs:
 
       - name: run makeshit
         run: |
-          npm i nan -g
-          npm install --no-optional
-          npm install macos-alias
-          npm install appdmg
-          npm run make
-          npm i electron-installer-dmg -g
-          sudo chmod -R 777 /usr/local/lib/node_modules/
-          sudo electron-installer-dmg /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/SideNoder.app SideNoder
-          ls SideNoder.dmg
+          npm install
+          npm run make all
+
           mkdir -p /tmp/builds
-          sudo mv SideNoder.dmg /tmp/builds
 
 
-        #sudo npm run make
+          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make
+          mkdir -p /tmp/builds/darwin/dmg/
+          mv *.dmg /tmp/builds/darwin/dmg/
+          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64/
+          mkdir -p /tmp/builds/darwin/zip/
+          sudo mv *.zip /tmp/builds/darwin/zip/
 
-        #sudo chmod 777 -R /usr/local/lib/node_modules
-        #sudo chmod 777 -R /home/runner
 
-        # sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
-        # sudo electron-packager ./ sidenode --all
-
-      - name: Upload osx Build Artifact
+      - name: Upload darwin Build dmg Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-osx-x64-dmg
-          path: /tmp/builds
+          name: SideNoder-darwin-x64-dmg
+          path: /tmp/builds/darwin/dmg/
+      - name: Upload darwin Build zip Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-darwin-x64-zip
+          path: /tmp/builds/darwin/zip/
