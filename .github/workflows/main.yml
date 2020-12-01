@@ -38,7 +38,7 @@ jobs:
           tar -cvf /tmp/builds/linux/rpm/SideNoder-linux-x64-rpm.tar *.rpm
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/linux/x64/
           mkdir -p /tmp/builds/linux/zip/
-          mv *.zip /tmp/builds/linux/zip/
+          sudo mv *.zip /tmp/builds/linux/zip/
 
           sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out/
 
