@@ -30,13 +30,13 @@ jobs:
 
           mkdir -p /tmp/builds
 
-          ls /home/runner/work/quest-sidenoder/quest-sidenoder/out/
-          ls /home/runner/work/quest-sidenoder/quest-sidenoder/out/make
+          ls /Users/runner/work/quest-sidenoder/quest-sidenoder/out/
+          ls /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make
 
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/dmg/x64/
+          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/dmg/x64/
           mkdir -p /tmp/builds/darwin/dmg/
           tar -cvf /tmp/builds/darwin/dmg/SideNoder-darwin-x64-deb.tar *.dmg
-          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64/
+          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64/
           mkdir -p /tmp/builds/darwin/zip/
           sudo mv *.zip /tmp/builds/darwin/zip/
 
