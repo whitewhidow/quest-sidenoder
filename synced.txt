@@ -79,6 +79,7 @@ Drunkn Bar Fight v10.21-Q2Patch90Hz -QuestUnderground/**
 Dungeon Chess v0.060/**
 Dungeon Train v0.19.12/**
 Electronauts v175667 -QuestUnderground/**
+Eleven Table Tennis [1.447] S2.11 /**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
 Eleven Table Tennis v1.400b -VRP/**
 Eleven Table Tennis v1.400 -VRP/**
@@ -106,6 +107,7 @@ Fujii v1.0.825 -QuestUnderground/**
 Futbolin Revolution v1.0/**
 Gadgeteer v1.0.14.76 -QuestUnderground/**
 Ghost Giant v1.0.32-Q2Patched -QuestUnderground/**
+Gladius v0.8.5 (Manual Install see readme)/**
 Gladius v0.8.5 -VRP/**
 Gladius v0.8.5 -VRP (Manual Install see readme)/**
 Gloomy Eyes v33 -QuestUnderground/**
@@ -141,15 +143,18 @@ Kingspray Graffiti v71.5-725 -VRP (save issue)/**
 Kingspray Graffiti v71.5 -QuestUnderground/**
 Knockout League v1.0 -QuestUnderground/**
 KOTC VR Basketball v0.1/**
+Laser Blaze v1.0.0 /**
 Laser Blaze v1.0.0/**
 Last Labyrinth v1.02.34 -QuestUnderground/**
 Layers of Fear v1.1 -QuestUnderground/**
 Lets Create! Pottery VR v1.0-503 -QuestUnderground/**
 Lets Create! Pottery VR v1.0-503 -VRP/**
 Let's Go Chopping v0.2/**
+Lets Go Chopping v0.2 /**
 Lets Go Chopping v0.2/**
 Let's Play with Anna!/**
 Lets Play with Anna!/**
+Lets Play with Anna! -NA-/**
 Lies Beneath v1.0-55518/**
 Little Witch Academia - VR Broom Racing v1.0.1-639/**
 .meta/**
@@ -195,6 +200,7 @@ Racket Fury - Table Tennis VR v7.0.0/**
 Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
 Racket - Nx [2.0.2.98] S2.11/**
 Racket - Nx [2.0.4.100] S2.11/**
+Racket - Nx [2.0.5.101] S2.11/**
 Racket Nx v1.4.4 -QuestUnderground/**
 Racket - Nx v2.0.0.96 -QuestUnderground/**
 Racket - Nx v2.0.2.98 -QuestUnderground/**
@@ -277,6 +283,7 @@ Time Stall v1.0 -QuestUnderground/**
 Titans of Space PLUS v1.0.62 -QuestUnderground/**
 Together VR v1.5 (manual install)/**
 Tokyo Chronos v1.0.2 -QuestUnderground/**
+Topgolf with Pro Putt [341] S2.11 /**
 Topgolf with Pro Putt v337 -VRP/**
 To The Top v0.11.version2/**
 Toy Clash v1.4.0/**
