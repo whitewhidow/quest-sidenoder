@@ -17,9 +17,7 @@ Please report any issues here :
 
 https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
 
-## Dependencies:
-
-
+## Required Dependencies:
 
 #### linux:
 Install git, adb and rclone using these commands:
@@ -46,20 +44,7 @@ brew cask install osxfuse
 
 
 #### windows:
-Download and unzip adb and rclone from the below links and add their directories to the $PATH environment variable:
-```
-https://dl.google.com/android/repository/platform-tools-latest-windows.zip
-https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-amd64.zip
-```
-<details>
-<summary>What does "add to PATH" mean?</summary>
-After you download and unzip adb and rclone you will have 2 new folders
-You should then add these 2 new directories, to the existing PATH environment variable of windows.
-  
-How to add a directory to PATH: https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/
-
-More info about what PATH is and why you are adding things to it: https://superuser.com/a/284351
-</details>
+Run the bat script called `WINDOWS-INSTALL.BAT` to install all windows deps
 
 
 
