@@ -1,37 +1,85 @@
-## Welcome to GitHub Pages
+**SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
-You can use the [editor on GitHub](https://github.com/whitewhidow/quest-sidenoder/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![screen](https://github.com/whitewhidow/quest-sidenoder/raw/main/.github/screen.gif)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## DOWNLOADS OF LAST COMPILED VERSION:
+```
+https://github.com/whitewhidow/quest-sidenoder/releases
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## DEPENDENCIES REQUIRED TO RUN LAST COMPILED VERSION:
+#### windows:
+First run the `windows-install.bat` file included with the release
 
-### Jekyll Themes
+#### linux:
+First install adb and rclone:
+```
+sudo apt install adb
+curl https://rclone.org/install.sh | sudo bash
+```
+#### mac/osx:
+First install adb, rclone and osxfuse:
+```
+brew cask install android-platform-tools
+curl https://rclone.org/install.sh | sudo bash
+brew cask install osxfuse
+```
+<details>
+<summary>Running big sur?</summary>
+For mounting issues with Sidenoder on Osx Big Sur, Please install the latest osxfuse (prerelease)
+https://github.com/osxfuse/osxfuse/releases
+</details>
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/whitewhidow/quest-sidenoder/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+Please report any issues here :
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
+
+
+
+
+## MANUALLY RUNNING AND COMPILING THE LATEST VERSION:
+#### windows:
+1. Download and install GIT from `https://git-scm.com/download/win`
+2. Run the following in a command line terminal (cmd):
+    ```
+    git clone https://github.com/whitewhidow/quest-sidenoder.git
+    cd quest-sidenoder/
+    windows-install.bat
+    npm install
+    ```
+3. Reboot and launch the app from the command line terminal:
+    ```
+    cd C:\wherever\you\installed\quest-sidenoder
+    npm start
+    ```
+
+
+#### linux:
+```
+sudo apt install git adb nodejs
+curl https://rclone.org/install.sh | sudo bash
+git clone https://github.com/whitewhidow/quest-sidenoder.git
+cd quest-sidenoder/
+npm install
+npm start
+```
+
+#### mac/osx:
+```
+brew install git
+curl https://rclone.org/install.sh | sudo bash
+brew cask install android-platform-tools
+brew cask install osxfuse
+git clone https://github.com/whitewhidow/quest-sidenoder.git
+cd quest-sidenoder/
+npm install
+npm start
+```
+<details>
+<summary>Running big sur?</summary>
+For mounting issues with Sidenoder on Osx Big Sur, Please install the latest osxfuse (prerelease) from `https://github.com/osxfuse/osxfuse/releases`
+</details>
+Please report any issues here :
+
+https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
