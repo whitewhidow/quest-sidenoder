@@ -27,3 +27,23 @@ jobs:
         run: |
           npm install
           npm run make all
+
+          mkdir -p /tmp/builds
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/dmg/x64/
+          mkdir -p /tmp/builds/darwin/dmg/
+          tar -cvf /tmp/builds/darwin/dmg/SideNoder-darwin-x64-deb.tar *.dmg
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64/
+          mkdir -p /tmp/builds/darwin/zip/
+          sudo mv *.zip /tmp/builds/darwin/zip/
+
+
+      - name: Upload darwin Build rpm Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-darwin-x64-dmg
+          path: /tmp/builds/darwin/dmg/
+      - name: Upload darwin Build zip Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-darwin-x64-zip
+          path: /tmp/builds/darwin/zip/
