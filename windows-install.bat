@@ -27,7 +27,7 @@ echo Unzipping adb
 "C:\Program Files\7-Zip\7z.exe" x -y android-tools.zip > nul
 echo Combining folders
 SET COPYCMD=/Y
-move /y rclone-v1.53.3-windows-amd64\*.* platform-tools\
+move /y rclone-v1.53.3-windows-amd64\rclone.exe platform-tools\
 del rclone-v1.53.3-windows-amd64\
 echo Adding to PATH
 :: Get System PATH
@@ -45,7 +45,7 @@ cd ..
 IF EXIST "%~dp0SideNoder.exe" (
   echo
 ) else (
-    IF EXIST "%programfiles%\nodejs\node.exe" (
+    IF EXIST "%programfiles(x86)%\nodejs\node.exe" (
       echo NodeJS is present
     ) ELSE (
       echo Downloading and installing 7zip'
@@ -62,7 +62,7 @@ IF EXIST "%~dp0SideNoder.exe" (
     )
 )
 
-IF EXIST "%programfiles%\WinFsp\Bin\diag.bat" (
+IF EXIST "%programfiles(x86)%\WinFsp\Bin\diag.bat" (
     echo WinFsp is present
 ) ELSE (
     curl -L https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi  -o sideloader_deps/winfsp-1.8.20304.msi
