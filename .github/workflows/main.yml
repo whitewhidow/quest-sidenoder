@@ -40,6 +40,7 @@ jobs:
           mkdir -p /tmp/builds/linux/zip/
           zip -r /tmp/builds/linux/zip/SideNoder-linux-x64.zip *.rpm
 
+          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out/
 
           sudo npm run-script pack
           sudo npm run-script dist
