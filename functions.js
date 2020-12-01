@@ -460,13 +460,25 @@ async function sideloadFolder(location) {
 
 
 async function getPackageInfo(apkPath) {
-    info = await packageInfo(`"${apkPath}"`, (err, data) => {
-        if (err) {
-            returnError("AAPT failed to read the package")
-        }
-    });
 
-    return info
+    if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
+        packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
+        packageName = packageStuff.match(/name='([a-zA-Z.]*)'/g);
+        packageName = packageName[0].split("'")[1]
+        versionCode = packageStuff.match(/versionCode='(\d+)'/g);
+        versionCode = versionCode[0].split("'")[1]
+        versionName = packageStuff.match(/versionName='([^']+)/g);
+        versionName = versionName[0].split("'")[1]
+        info = {packageName: packageName, versionCode: versionCode, versionName: versionName}
+        return info
+    } else {
+        info = await packageInfo(`"${apkPath}"`, (err, data) => {
+            if (err) {
+                returnError("AAPT failed to read the package")
+            }
+        });
+        return info
+    }
 }
 
 async function getInstalledApps(send = true) {
