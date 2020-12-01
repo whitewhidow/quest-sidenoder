@@ -28,9 +28,11 @@ jobs:
         run: |
 
           npm install
+          sudo dpkg --add-architecture i386
           sudo apt update
-          sudo apt install wine64 --fix-missing
-          sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
+          sudo apt-get install wine32
+          sudo apt install wine64
+
           sudo apt install mono-complete
           sudo npm install electron-packager -g
           sudo electron-packager ./ SideNoder --platform=win32 --arch=x64
