@@ -83,7 +83,7 @@ IF EXIST "%programfiles(x86)%\WinFsp\Bin\diag.bat" (
     IF EXIST "%~dp0SideNoder.exe" (
       echo After rebooting you can run "SideNoder.exe"
     ) else (
-      echo After rebooting you can run "windows-launcher.bat"
+      echo "After rebooting you can run \"npm install\"(once) and \"npm start\" to start the SideNoder"
     )
     pause
     exit

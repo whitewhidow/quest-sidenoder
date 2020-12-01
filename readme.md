@@ -1,68 +1,85 @@
 **SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
 ![screen](.github/screen.gif)
-### Installation:
-Download and run one of the available binaries: (currently no binary, pls run manually)
+
+## DOWNLOADS OF LAST COMPILED VERSION:
 ```
 https://github.com/whitewhidow/quest-sidenoder/releases
 ```
-or clone the repo, and run the app manually (requires node and git) :
+
+## DEPENDENCIES REQUIRED TO RUN LAST COMPILED VERSION:
+#### windows:
+Run the `windows-install.bat` file included with the release
+
+#### linux:
+Install adb and rclone:
 ```
+sudo apt install adb
+curl https://rclone.org/install.sh | sudo bash
+```
+#### mac/osx:
+Install adb, rclone and osxfuse:
+```
+brew cask install android-platform-tools
+curl https://rclone.org/install.sh | sudo bash
+brew cask install osxfuse
+```
+<details>
+<summary>Running big sur?</summary>
+For mounting issues with Sidenoder on Osx Big Sur, Please install the latest osxfuse (prerelease)
+https://github.com/osxfuse/osxfuse/releases
+</details>
+
+
+Please report any issues here :
+
+https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
+
+
+
+
+## MANUALLY RUNNING AND COMPILING THE LATEST VERSION:
+#### windows:
+1. Download and install GIT from `https://git-scm.com/download/win`
+2. Run the following in a command line terminal (cmd):
+    ```
+    git clone https://github.com/whitewhidow/quest-sidenoder.git
+    cd quest-sidenoder/
+    windows-install.bat
+    npm install
+    ```
+3. Reboot and launch the app from the command line terminal:
+    ```
+    cd C:\wherever\you\installed\quest-sidenoder
+    npm start
+    ```
+
+
+#### linux:
+```
+sudo apt install git adb nodejs
+curl https://rclone.org/install.sh | sudo bash
 git clone https://github.com/whitewhidow/quest-sidenoder.git
 cd quest-sidenoder/
 npm install
 npm start
 ```
+
+#### mac/osx:
+```
+brew install git
+curl https://rclone.org/install.sh | sudo bash
+brew cask install android-platform-tools
+brew cask install osxfuse
+git clone https://github.com/whitewhidow/quest-sidenoder.git
+cd quest-sidenoder/
+npm install
+npm start
+```
+<details>
+<summary>Running big sur?</summary>
+For mounting issues with Sidenoder on Osx Big Sur, Please install the latest osxfuse (prerelease) from `https://github.com/osxfuse/osxfuse/releases`
+</details>
 Please report any issues here :
 
 https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
-
-## Required Dependencies:
-
-#### linux:
-Install git, adb and rclone using these commands:
-```
-sudo apt install git
-sudo apt install nodejs
-sudo apt install adb
-curl https://rclone.org/install.sh | sudo bash
-```
-
-
-
-#### mac/osx:
-Install git, adb, nodejs, osxfuse and rclone using these commands:
-```
-brew install git
-brew cask install android-platform-tools
-brew install node
-curl https://rclone.org/install.sh | sudo bash
-brew cask install osxfuse
-```
-
-
-
-
-#### windows:
-Run the following install script:
-```
-windows-install.bat
-```
-
-
-
-<!--
-https://stackoverflow.com/a/44272417/1501189
-https://www.xda-developers.com/adb-fastboot-any-directory-windows-linux/
-
-adb (install globally)
-https://dl.google.com/android/repository/platform-tools-latest-windows.zip
-
-rclone (install globally)
-https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-386.zip
-https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-amd64.zip
-
-winfsp (reboot)
-https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi
-
--->

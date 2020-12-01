@@ -34,9 +34,9 @@ jobs:
           cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make
           mkdir -p /tmp/builds/darwin/dmg/
           mv *.dmg /tmp/builds/darwin/dmg/
-          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/SideNoder-darwin-x64/
+          cd /Users/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/darwin/x64/
           mkdir -p /tmp/builds/darwin/zip/
-          sudo mv SideNoder.app /tmp/builds/darwin/zip/
+          sudo mv *.zip /tmp/builds/darwin/zip/
 
 
       - name: Upload darwin Build dmg Artifact
