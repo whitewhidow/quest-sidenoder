@@ -83,6 +83,7 @@ jobs:
           sudo npm install electron-packager -g  --unsafe-perm=true --allow-root
           sudo electron-packager ./ SideNoder --platform=win32 --arch=x64
           mkdir -p /tmp/builds/win32/x64
+          sudo cp /home/runner/work/quest-sidenoder/quest-sidenoder/windows-install.bat /home/runner/work/quest-sidenoder/quest-sidenoder/SideNoder-win32-x64/windows-install.bat
 
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/SideNoder-win32-x64/
           zip -r /tmp/builds/win32/x64/SideNoder-win32-x64.zip *

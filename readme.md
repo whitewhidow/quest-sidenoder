@@ -44,18 +44,9 @@ brew cask install osxfuse
 
 
 #### windows:
-Run the bat script called `WINDOWS-INSTALL.BAT` to install all windows deps
-
-
-
-Install git and node from:
+Run the following install script:
 ```
-https://git-scm.com/download/win
-https://nodejs.org/en/download/
-```
-Install winfsp and reboot:
-```
-https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi
+windows-install.bat
 ```
 
 
