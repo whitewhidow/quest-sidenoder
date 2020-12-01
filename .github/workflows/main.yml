@@ -27,6 +27,7 @@ jobs:
         run: |
 
           sudo npm install
+          sudo npm run make all
           sudo npm run-script pack
           sudo npm run-script dist
 
