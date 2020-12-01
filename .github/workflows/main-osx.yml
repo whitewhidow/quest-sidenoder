@@ -29,6 +29,10 @@ jobs:
           npm run make all
 
           mkdir -p /tmp/builds
+
+          ls /home/runner/work/quest-sidenoder/quest-sidenoder/out/
+          ls /home/runner/work/quest-sidenoder/quest-sidenoder/out/make
+
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/dmg/x64/
           mkdir -p /tmp/builds/darwin/dmg/
           tar -cvf /tmp/builds/darwin/dmg/SideNoder-darwin-x64-deb.tar *.dmg
