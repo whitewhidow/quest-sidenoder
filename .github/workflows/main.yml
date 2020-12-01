@@ -78,9 +78,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-linux-x64-AppImage
-          path: /tmp/builds/AppImage/x64/SideNoder-linux-x64-AppImage.tar
+          path: /tmp/builds/AppImage/x64/*.AppImage
       - name: Upload linux Build snap Artifact
         uses: actions/upload-artifact@v2
         with:
           name: SideNoder-linux-x64-snap
-          path: /tmp/builds/snap/x64/SideNoder-linux-x64-snap.tar
+          path: /tmp/builds/snap/x64/*.snap
