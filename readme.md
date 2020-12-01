@@ -53,7 +53,7 @@ https://downloads.rclone.org/v1.53.2/rclone-v1.53.2-windows-amd64.zip
 ```
 <details>
 <summary>What does "add to PATH" mean?</summary>
-After you download and unzip adb and rclone you will have 3 new folders
+After you download and unzip adb and rclone you will have 2 new folders
 You should then add these 2 new directories, to the existing PATH environment variable of windows.
   
 How to add a directory to PATH: https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/
