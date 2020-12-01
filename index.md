@@ -37,6 +37,11 @@ https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow
 
 
 
+---
+Or instead of using the above precompiled binaries, you can manually run the app using the below instructions.
+
+---
+
 
 ## MANUALLY RUNNING AND COMPILING THE LATEST VERSION:
 #### windows:
