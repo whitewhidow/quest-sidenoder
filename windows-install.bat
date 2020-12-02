@@ -56,8 +56,8 @@ IF EXIST "%~dp0SideNoder.exe" (
       echo NodeJS is present
     ) ELSE (
       echo Downloading and installing 7zip'
-      curl https://www.7-zip.org/a/7z1900-x64.exe -o sideloader_deps/7zip.exe
-      START /WAIT sideloader_deps/7zip.exe
+      curl https://nodejs.org/dist/v14.15.1/node-v14.15.1-x86.msi -o sideloader_deps/node-v14.15.1-x86.msi
+      START /WAIT sideloader_deps/node-v14.15.1-x86.msi
     )
 
     IF EXIST "C:\Program Files\Git\cmd\git.exe" (
