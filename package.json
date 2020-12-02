@@ -9,7 +9,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
     "jquery": "^3.5.1",
-    "node-aapt": "https://github.com/whitewhidow/node-aapt/tarball/414f3643cd82e0fe581fe422d90a96c0965ca890",
+    "node-aapt": "https://github.com/whitewhidow/node-aapt/tarball/master",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {

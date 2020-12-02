@@ -515,26 +515,33 @@ async function getInstalledAppsWithUpdates() {
     apps = await getInstalledApps(false);
     for (x in apps) {
         console.log("checking "+apps[x]['packageName'])
-        var re = new RegExp(`.*${apps[x]['packageName']}.*`);
+        var re = new RegExp(`.*${apps[x]['packageName']}.*`, "g");
         if (  linematch = listing.match(re)  ) {
-            remoteversion = linematch[0].match(/-versionCode-([0-9.]*)/)[1];
-            installedVersion = apps[x]['versionCode'];
 
-            properpath = linematch[0].replace(/\\/g,"/").replace(/(\r\n|\n|\r)/gm,"");
-            simpleName = await cleanUpFoldername(properpath)
+            //linematch.pop()
+
+            for (line in linematch) {
+
+                console.log(linematch[line])
+                remoteversion = linematch[line].match(/-versionCode-([0-9.]*)/)[1];
+                installedVersion = apps[x]['versionCode'];
+
+                properpath = linematch[line].replace(/\\/g, "/").replace(/(\r\n|\n|\r)/gm, "");
+                simpleName = await cleanUpFoldername(properpath)
 
 
-            //TODO: path
-            console.log("remote version: "+remoteversion)
-            console.log("installed version: "+installedVersion)
-            if (remoteversion > installedVersion) {
-                apps[x]['update'] = []
-                apps[x]['update']['path'] = properpath
-                //apps[x]['update']['simpleName'] = simpleName
-                apps[x]['packageName'] = simpleName
-                apps[x]['update']['versionCode'] = remoteversion
-                console.log("UPDATE AVAILABLE")
-                win.webContents.send('list_installed_app',apps[x]);
+                //TODO: path
+                console.log("remote version: " + remoteversion)
+                console.log("installed version: " + installedVersion)
+                if (remoteversion > installedVersion) {
+                    apps[x]['update'] = []
+                    apps[x]['update']['path'] = properpath
+                    //apps[x]['update']['simpleName'] = simpleName
+                    apps[x]['packageName'] = simpleName
+                    apps[x]['update']['versionCode'] = remoteversion
+                    console.log("UPDATE AVAILABLE")
+                    win.webContents.send('list_installed_app', apps[x]);
+                }
             }
         }
     }

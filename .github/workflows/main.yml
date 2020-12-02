@@ -6,7 +6,7 @@ name: CI-LINUX
 # events but only for the main branch
 on:
   push:
-    branches: [ main ]
+    branches: [ main, development ]
   pull_request:
     branches: [ ]
 
@@ -40,6 +40,18 @@ jobs:
           mkdir -p /tmp/builds/linux/zip/
           sudo mv *.zip /tmp/builds/linux/zip/
 
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder
+          sudo rm -rf /home/runner/work/quest-sidenoder/quest-sidenoder/out
+
+          sudo npm run-script dist
+
+          mkdir -p /tmp/builds/AppImage/x64
+          mkdir -p /tmp/builds/snap/x64
+
+          cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist/
+          sudo mv SideNoder*.AppImage /tmp/builds/AppImage/x64/
+          sudo mv SideNoder*.snap /tmp/builds/snap/x64/
+
 
 
 
@@ -61,3 +73,14 @@ jobs:
         with:
           name: SideNoder-linux-x64-zip
           path: /tmp/builds/linux/zip/
+
+      - name: Upload linux Build appimage Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-linux-x64-AppImage
+          path: /tmp/builds/AppImage/x64/*.AppImage
+      - name: Upload linux Build snap Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SideNoder-linux-x64-snap
+          path: /tmp/builds/snap/x64/*.snap

@@ -27,4 +27,9 @@ The Climb v612.0 -QuestUnderground -steam-306130 -versionCode-612 -packageName-c
 The Climb v612.0 -QuestUnderground/**
 Coaster Combat v1.0.693251 -QuestUnderground/**
 Star Wars - Tales from the Galaxy's Edge v1.0.2-170084.cl.288493 -VRP/**
+Topgolf with Pro Putt v341 -QuestUnderground/**
+Racket - Nx v2.0.5.101 -QuestUnderground/**
+Eleven Table Tennis v1.447 -QuestUnderground/**
+Blaston v1.4.97724-104097724 -VRP/**
+Bonfire v1.0.466-Q2Patched -QuestUnderground/**
 .meta/**

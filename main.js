@@ -144,7 +144,9 @@ function createWindow () {
         }
     })
     win.setMenu(null);
+
     //win.webContents.openDevTools()
+
     win.maximize(true)
     win.loadURL(`file://${__dirname}/views/index.twig`)
     twig.view = {
@@ -156,7 +158,7 @@ function createWindow () {
     }
 
 
-    tools.checkUpdateAvailable()
+    //tools.checkUpdateAvailable()
 
     //
 
