@@ -1,3 +1,4 @@
+
 2MD VR Football Unleashed v1.0.30 -Q2-90Hz-CustomRes -QuestUnderground/**
 Accounting+ v1.24.35-Q2Patched -QuestUnderground/**
 Acron - Attack of the Squirrels! v1.14.94392.114094392 -QuestUnderground/**
@@ -83,9 +84,11 @@ Eleven Table Tennis [1.447] S2.11 /**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
 Eleven Table Tennis v1.400b -VRP/**
 Eleven Table Tennis v1.400 -VRP/**
+Eleven Table Tennis v1.447 -QuestUnderground/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
 ENHANCE VR v2.0.0/**
+Epic Roller Coasters v6.22/**
 Escape Legacy v1.20/**
 Escape! v1.01/**
 Espire 1 VR Operative v1.6.289-1279 -VRP/**
@@ -187,6 +190,7 @@ Pigasus VR Media Player v3.1.0/**
 Pig Dissection v1.0/**
 Pinball FX2 VR v1.0.0 -QuestUnderground/**
 Pistol Whip v0.6.20.228-Q2Patched -QuestUnderground/**
+Pistol Whip v0.6.26.46-402 -VRP/**
 Pixel Ripped 1995 v103-Q2Patched -QuestUnderground/**
 Please, Dont Touch Anything v2.1/**
 Pop Shot v1.0/**
@@ -206,7 +210,9 @@ Racket - Nx v2.0.0.96 -QuestUnderground/**
 Racket - Nx v2.0.2.98 -QuestUnderground/**
 Racket - Nx v2.0.3.99 -QuestUnderground/**
 Racket - Nx v2.0.4.100 -QuestUnderground/**
+Racket - Nx v2.0.5.101 -QuestUnderground/**
 Radial-G Proteus v0.1 -QuestUnderground/**
+Real VR Fishing [1.416.83] S2.11/**
 Real VR Fishing v1.415-82 -VRP/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
 Reflex Unit 2 v4.2/**
@@ -285,6 +291,7 @@ Together VR v1.5 (manual install)/**
 Tokyo Chronos v1.0.2 -QuestUnderground/**
 Topgolf with Pro Putt [341] S2.11 /**
 Topgolf with Pro Putt v337 -VRP/**
+Topgolf with Pro Putt v341 -QuestUnderground/**
 To The Top v0.11.version2/**
 Toy Clash v1.4.0/**
 Tribe XR - DJ in VR v0.09.1 -QuestUnderground/**
