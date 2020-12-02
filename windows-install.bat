@@ -55,7 +55,7 @@ IF EXIST "%~dp0SideNoder.exe" (
     IF EXIST "%programfiles(x86)%\nodejs\node.exe" (
       echo NodeJS is present
     ) ELSE (
-      echo Downloading and installing 7zip'
+      echo Downloading and installing NODEJS'
       curl https://nodejs.org/dist/v14.15.1/node-v14.15.1-x86.msi -o sideloader_deps/node-v14.15.1-x86.msi
       START /WAIT sideloader_deps/node-v14.15.1-x86.msi
     )
