@@ -73,7 +73,7 @@ IF EXIST "%programfiles(x86)%\WinFsp\Bin\diag.bat" (
     echo WinFsp is present
     echo .
     echo .
-    echo Dependencies installed, Please reboot to complete the installation.
+    echo Dependencies installed.
     IF EXIST "%~dp0SideNoder.exe" (
       echo You can run "SideNoder.exe"
     ) else (
