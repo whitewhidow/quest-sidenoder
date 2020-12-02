@@ -44,6 +44,8 @@ for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v Path') do set userpa
 
 :: TODO:check if already in path
 setx PATH "%userpath%;%~dp0sideloader_deps\platform-tools"
+:: refetching ?
+for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v Path') do set userpath=%%B
 setx PATH "%userpath%;%~dp0sideloader_deps\android-9"
 
 cd ..
