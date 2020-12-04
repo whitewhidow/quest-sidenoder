@@ -12,8 +12,6 @@ var commandExists = require('command-exists');
 var util = require('util')
 var ApkReader = require('node-apk-parser')
 
-const packageInfo = require('node-aapt');
-
 
 
 
@@ -473,30 +471,12 @@ async function getPackageInfo(apkPath) {
     console.log(util.inspect(manifest.versionName, { depth: null }))
     console.log(util.inspect(manifest.package, { depth: null }))
 
-    const info = {
+    info = {
         packageName : util.inspect(manifest.package, { depth: null }).replace("'", ''),
         versionCode : util.inspect(manifest.versionCode, { depth: null }).replace("'", ''),
         versionName : util.inspect(manifest.versionName, { depth: null }).replace("'", ''),
     };
     return info;
-
-    if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
-        packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
-        const match = packageStuff.match(/name='([^']+)'[\s]*versionCode='(\d+)'[\s]*versionName='([^']+)/);
-        const info = {
-            packageName : match[1],
-            versionCode : match[2],
-            versionName : match[3],
-        };
-        return info;
-    } else {
-        info = await packageInfo(`"${apkPath}"`, (err, data) => {
-            if (err) {
-                returnError("AAPT failed to read the package")
-            }
-        });
-        return info
-    }
 }
 
 async function getInstalledApps(send = true) {
