@@ -383,12 +383,19 @@ async function sideloadFolder(location) {
 
     console.log("start sideload: "+apkfile)
 
-
+    packageName = ''
     try {
         console.log("attempting to read package info")
-        packageinfo = await getPackageInfo(apkfile)
+        try {
+            packageName = apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)[1]
+        } catch (error) {
+            packageinfo = await getPackageInfo(apkfile)
+            packageName = packageinfo.packageName
+            return false
+        }
+
         win.webContents.send('sideload_aapt_done',`{"success":true}`);
-        console.log("package info read success")
+        console.log("package info read success ("+packageName+")")
     }  catch (e) {
         console.log(e);
         returnError(e)
@@ -398,7 +405,7 @@ async function sideloadFolder(location) {
     console.log('doing adb UNinstall (ignore error)');
     try {
         //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
-        await execShellCommand(`adb uninstall "${packageinfo.packageName}"`);
+        await execShellCommand(`adb uninstall "${packageName}"`);
     }  catch (e) {
         console.log(e);
     }
