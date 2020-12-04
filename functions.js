@@ -463,14 +463,13 @@ async function getPackageInfo(apkPath) {
 
     if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
         packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
-        packageName = packageStuff.match(/name='([a-zA-Z.]*)'/g);
-        packageName = packageName[0].split("'")[1]
-        versionCode = packageStuff.match(/versionCode='(\d+)'/g);
-        versionCode = versionCode[0].split("'")[1]
-        versionName = packageStuff.match(/versionName='([^']+)/g);
-        versionName = versionName[0].split("'")[1]
-        info = {packageName: packageName, versionCode: versionCode, versionName: versionName}
-        return info
+        const match = packageStuff.match(/name='([^']+)'[\s]*versionCode='(\d+)'[\s]*versionName='([^']+)/);
+        const info = {
+            packageName : match[1],
+            versionCode : match[2],
+            versionName : match[3],
+        };
+        return info;
     } else {
         info = await packageInfo(`"${apkPath}"`, (err, data) => {
             if (err) {
