@@ -17,7 +17,6 @@ var tools = require("./functions")
 const { ipcMain } = require('electron')
 
 
-packageInfo = require('node-aapt')
 ipcMain.on('test', async (event, arg) => {
 
     test = await tools.getPackageInfo(arg)
