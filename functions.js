@@ -12,6 +12,8 @@ var commandExists = require('command-exists');
 var util = require('util')
 var ApkReader = require('node-apk-parser')
 
+const fixPath = require('fix-path');
+fixPath();
 
 
 
@@ -470,6 +472,8 @@ async function getPackageInfo(apkPath) {
     console.log(util.inspect(manifest.versionCode, { depth: null }))
     console.log(util.inspect(manifest.versionName, { depth: null }))
     console.log(util.inspect(manifest.package, { depth: null }))
+
+    console.log(manifest)
 
     info = {
         packageName : util.inspect(manifest.package, { depth: null }).replace(/\'/g,""),
