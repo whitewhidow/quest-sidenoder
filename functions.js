@@ -9,10 +9,11 @@ var platform = require('os').platform;
 var fetch = require('node-fetch')
 var path = require('path')
 var commandExists = require('command-exists');
+var util = require('util')
+var ApkReader = require('node-apk-parser')
 
-
-const packageInfo = require('node-aapt');
-
+const fixPath = require('fix-path');
+fixPath();
 
 
 
@@ -382,20 +383,29 @@ async function sideloadFolder(location) {
 
     console.log("start sideload: "+apkfile)
 
-
+    packageName = ''
     try {
-        packageinfo = await getPackageInfo(apkfile)
+        console.log("attempting to read package info")
+        try {
+            packageName = apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)[1]
+        } catch (error) {
+            packageinfo = await getPackageInfo(apkfile)
+            packageName = packageinfo.packageName
+            return false
+        }
+
         win.webContents.send('sideload_aapt_done',`{"success":true}`);
+        console.log("package info read success ("+packageName+")")
     }  catch (e) {
         console.log(e);
-        returnError("AAPT failed to read the package")
+        returnError(e)
     }
 
 
-    console.log('doing adb UNinstall');
+    console.log('doing adb UNinstall (ignore error)');
     try {
         //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
-        await execShellCommand(`adb uninstall "${packageinfo.packageName}"`);
+        await execShellCommand(`adb uninstall "${packageName}"`);
     }  catch (e) {
         console.log(e);
     }
@@ -461,24 +471,23 @@ async function sideloadFolder(location) {
 
 async function getPackageInfo(apkPath) {
 
-    if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
-        packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
-        packageName = packageStuff.match(/name='([a-zA-Z.]*)'/g);
-        packageName = packageName[0].split("'")[1]
-        versionCode = packageStuff.match(/versionCode='(\d+)'/g);
-        versionCode = versionCode[0].split("'")[1]
-        versionName = packageStuff.match(/versionName='([^']+)/g);
-        versionName = versionName[0].split("'")[1]
-        info = {packageName: packageName, versionCode: versionCode, versionName: versionName}
-        return info
-    } else {
-        info = await packageInfo(`"${apkPath}"`, (err, data) => {
-            if (err) {
-                returnError("AAPT failed to read the package")
-            }
-        });
-        return info
-    }
+
+
+    reader = await ApkReader.readFile(`${apkPath}`)
+    manifest = await reader.readManifestSync()
+
+    console.log(util.inspect(manifest.versionCode, { depth: null }))
+    console.log(util.inspect(manifest.versionName, { depth: null }))
+    console.log(util.inspect(manifest.package, { depth: null }))
+
+    console.log(manifest)
+
+    info = {
+        packageName : util.inspect(manifest.package, { depth: null }).replace(/\'/g,""),
+        versionCode : util.inspect(manifest.versionCode, { depth: null }).replace(/\'/g,""),
+        versionName : util.inspect(manifest.versionName, { depth: null }).replace(/\'/g,"")
+    };
+    return info;
 }
 
 async function getInstalledApps(send = true) {

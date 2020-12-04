@@ -17,7 +17,6 @@ var tools = require("./functions")
 const { ipcMain } = require('electron')
 
 
-packageInfo = require('node-aapt')
 ipcMain.on('test', async (event, arg) => {
 
     test = await tools.getPackageInfo(arg)
@@ -145,7 +144,7 @@ function createWindow () {
     })
     win.setMenu(null);
 
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     win.maximize(true)
     win.loadURL(`file://${__dirname}/views/index.twig`)

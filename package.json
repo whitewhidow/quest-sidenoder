@@ -1,6 +1,6 @@
 {
   "name": "SideNoder",
-  "version": "0.0.3-alpha",
+  "version": "0.0.4-alpha",
   "description": "SideNoder",
   "main": "main.js",
   "dependencies": {
@@ -8,8 +8,9 @@
     "command-exists": "^1.2.9",
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
+    "fix-path": "^3.0.0",
     "jquery": "^3.5.1",
-    "node-aapt": "https://github.com/whitewhidow/node-aapt/tarball/master",
+    "node-apk-parser": "^0.2.3",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
