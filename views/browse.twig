@@ -232,7 +232,7 @@ ${list[item].simpleName}<br><br>
         //console.log("appended "+ name);
       }
 
-      $("#browseCardBody .listitem").sort(sortBy('name', true)).appendTo('#browseCardBody');
+      $("#browseCardBody .listitem").sort(sortBy('createdat', false)).appendTo('#browseCardBody');
 
       $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
@@ -266,10 +266,10 @@ ${list[item].simpleName}<br><br>
           <div class="input-group-append">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
             <div class="dropdown-menu">
+              <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="0">Sort by update decending</a>
+              <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="1">Sort by update</a>
               <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="1">Sort by name</a>
               <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="0">Sort by name decending</a>
-              <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="1">Sort by update</a>
-              <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="0">Sort by update decending</a>
             </div>
           </div>
         </div>
