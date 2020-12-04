@@ -73,6 +73,7 @@ npm start
 #### mac/osx:
 ```
 brew install git
+brew install node
 curl https://rclone.org/install.sh | sudo bash
 brew cask install android-platform-tools
 brew cask install osxfuse
