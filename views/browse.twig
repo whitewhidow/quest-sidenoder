@@ -154,6 +154,20 @@
       ipcRenderer.send('get_dir', `${newpath}`);
     }
 
+    function sortBy(key, asc) {
+      return ((a,b) => {
+        var valA = $(a).data(key);
+        var valB = $(b).data(key);
+        if (valA < valB) {
+          return asc ? -1 : 1;
+        }
+        if (valA > valB) {
+          return asc ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+
 
     //when dir listing comes back, list it
     ipcRenderer.on('get_dir', (event, arg) => {
@@ -191,7 +205,7 @@
             }
 
             //row = $("#listTable tbody").append("<tr><td class='browse-folder' ><a onclick='getDir(\"" + fullPath + "\")'><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}</a><td></tr>`)
-            row = $("#browseCardBody").append(`<div class="col mb-4">
+            row = $("#browseCardBody").append(`<div class="col mb-4 listitem" data-name="${list[item].name.toUpperCase()}" data-createdat="${list[item].createdAt.getTime()}">
           <div class="card h-100">
 
             ${mpribbon}
@@ -217,10 +231,15 @@ ${list[item].simpleName}<br><br>
         }
         //console.log("appended "+ name);
       }
+
+      $("#browseCardBody .listitem").sort(sortBy('name', true)).appendTo('#browseCardBody');
+
       $("#listTable tbody").append(`<tr><td class="browse-folder "><a onclick="getDir('${UpDir}')"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
-
+  $(document).on('click', '.set-sort', (el) => {
+    $("#browseCardBody .listitem").sort(sortBy($(el.target).data('key'), $(el.target).data('asc') == '1')).appendTo('#browseCardBody');
+  });
 
   </script>
 {% endblock %}
@@ -242,7 +261,18 @@ ${list[item].simpleName}<br><br>
       <p class="card-text">
 
       <form name="f1" id="f1" action="">
-        <input  class="form-control"  placeholder="Type a word and find occurrences using [ENTER]" type="text" name="t1" value="" />
+        <div class="input-group">
+          <input  class="form-control"  placeholder="Type a word and find occurrences using [ENTER]" type="text" name="t1" value="" />
+          <div class="input-group-append">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="1">Sort by name</a>
+              <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="0">Sort by name decending</a>
+              <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="1">Sort by update</a>
+              <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="0">Sort by update decending</a>
+            </div>
+          </div>
+        </div>
       </form>
       <br>
 
