@@ -472,9 +472,9 @@ async function getPackageInfo(apkPath) {
     console.log(util.inspect(manifest.package, { depth: null }))
 
     info = {
-        packageName : util.inspect(manifest.package, { depth: null }).replace("'", ''),
-        versionCode : util.inspect(manifest.versionCode, { depth: null }).replace("'", ''),
-        versionName : util.inspect(manifest.versionName, { depth: null }).replace("'", ''),
+        packageName : util.inspect(manifest.package, { depth: null }).replace(/\'/g,""),
+        versionCode : util.inspect(manifest.versionCode, { depth: null }).replace(/\'/g,""),
+        versionName : util.inspect(manifest.versionName, { depth: null }).replace(/\'/g,"")
     };
     return info;
 }
