@@ -9,7 +9,8 @@ var platform = require('os').platform;
 var fetch = require('node-fetch')
 var path = require('path')
 var commandExists = require('command-exists');
-
+var util = require('util')
+var ApkReader = require('node-apk-parser')
 
 const packageInfo = require('node-aapt');
 
@@ -388,7 +389,7 @@ async function sideloadFolder(location) {
         win.webContents.send('sideload_aapt_done',`{"success":true}`);
     }  catch (e) {
         console.log(e);
-        returnError("AAPT failed to read the package")
+        returnError(e)
     }
 
 
@@ -460,6 +461,22 @@ async function sideloadFolder(location) {
 
 
 async function getPackageInfo(apkPath) {
+
+
+
+    reader = await ApkReader.readFile(`${apkPath}`)
+    manifest = await reader.readManifestSync()
+
+    console.log(util.inspect(manifest.versionCode, { depth: null }))
+    console.log(util.inspect(manifest.versionName, { depth: null }))
+    console.log(util.inspect(manifest.package, { depth: null }))
+
+    const info = {
+        packageName : util.inspect(manifest.package, { depth: null }).replace('"', ''),
+        versionCode : util.inspect(manifest.versionCode, { depth: null }).replace('"', ''),
+        versionName : util.inspect(manifest.versionName, { depth: null }).replace('"', ''),
+    };
+    return info;
 
     if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
         packageStuff = await execShellCommand(`aapt dump badging "${apkPath}"`);
