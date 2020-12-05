@@ -1,6 +1,6 @@
 {
   "name": "sidenoder",
-  "version": "0.0.5-alpha",
+  "version": "0.0.4-alpha",
   "description": "SideNoder",
   "main": "main.js",
   "dependencies": {
@@ -9,10 +9,10 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
     "fix-path": "^3.0.0",
+    "git-last-tag": "^1.0.1",
     "jquery": "^3.5.1",
     "node-apk-parser": "^0.2.3",
-    "node-fetch": "^2.6.1",
-    "update-notifier": "^5.0.1"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",

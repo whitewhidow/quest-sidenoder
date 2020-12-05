@@ -19,26 +19,19 @@ const { ipcMain } = require('electron')
 
 
 
-const updateNotifier = require('update-notifier');
-const pkg = require('./package.json');
+const { getLastTagSync } = require('git-last-tag');
+const output = getLastTagSync();
 
-// Checks for available update and returns an instance
-const notifier = updateNotifier({pkg});
-
-// Notify using the built-in convenience method
-notifier.notify();
-
-// `notifier.update` contains some useful info about the update
-console.log(notifier);
-
-
+global.version = 'N/A'
+global.lasttag = output
 
 ipcMain.on('test', async (event, arg) => {
 
     //external link in browser
     //const { shell } = require('electron')
     //await shell.openExternal('https://electronjs.org')
-    event.reply('log', notifier);
+
+    event.reply('log', '');
     return
 
     test = await tools.getPackageInfo(arg)
@@ -173,8 +166,10 @@ function createWindow () {
     twig.view = {
         tmpdir: global.tmpdir,
         platform: global.platform,
-        mountFolder: global.mountFolder
-    }
+        mountFolder: global.mountFolder,
+        lasttag: global.lasttag,
+        version: global.version
+}
 
 
     //tools.checkUpdateAvailable()
