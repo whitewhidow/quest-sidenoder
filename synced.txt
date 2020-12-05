@@ -45,6 +45,8 @@ Coaster Combat [1.0.693251] S2.11/**
 Coaster Combat v1.0/**
 Coaster Combat v1.0.693251 -QuestUnderground/**
 Color Space v1.2.1 -QuestUnderground/**
+Contractors VR [1.0.48] S2.11/**
+Contractors VR v1.0.48 -QuestUnderground/**
 Control Tower VR v0.61/**
 Cook-Out [1.3.97509.103097509] S2.11/**
 Cook-Out v1.2.92260-Q2Patched -QuestUnderground/**
@@ -82,14 +84,17 @@ Dungeon Chess v0.060/**
 Dungeon Train v0.19.12/**
 Electronauts v175667 -QuestUnderground/**
 Eleven Table Tennis [1.447] S2.11 /**
+Eleven Table Tennis [1.449] S2.11 /**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
 Eleven Table Tennis v1.400b -VRP/**
 Eleven Table Tennis v1.400 -VRP/**
 Eleven Table Tennis v1.447 -QuestUnderground/**
+Eleven Table Tennis v1.449 -QuestUnderground/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
 ENHANCE VR v2.0.0/**
 Epic Roller Coasters v6.22/**
+Epic Roller Coasters v6.33.3 -QuestUnderground (with DLC)/**
 Escape Legacy v1.20/**
 Escape! v1.01/**
 Espire 1 VR Operative v1.6.289-1279 -VRP/**
