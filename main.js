@@ -17,14 +17,6 @@ var tools = require("./functions")
 const { ipcMain } = require('electron')
 
 
-
-
-const { getLastTagSync } = require('git-last-tag');
-const output = getLastTagSync();
-
-global.version = 'N/A'
-global.lasttag = output
-
 ipcMain.on('test', async (event, arg) => {
 
     //external link in browser
@@ -166,9 +158,7 @@ function createWindow () {
     twig.view = {
         tmpdir: global.tmpdir,
         platform: global.platform,
-        mountFolder: global.mountFolder,
-        lasttag: global.lasttag,
-        version: global.version
+        mountFolder: global.mountFolder
 }
 
 
