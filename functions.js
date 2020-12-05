@@ -415,7 +415,7 @@ async function sideloadFolder(location) {
         try {
             await execShellCommand(`adb shell rm -r "/sdcard/Android/obb/${obbFolder}"`);
         }  catch (e) {
-            console.log(e);
+            //console.log(e);
         }
         obbFiles = await getObbs(location+"/"+obbFolder);
         if (obbFiles.length > 0) {
