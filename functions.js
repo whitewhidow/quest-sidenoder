@@ -333,29 +333,6 @@ async function cleanUpFoldername(simpleName) {
     return simpleName;
 }
 
-async function getObbsDir(folder){
-        const files = await fsPromise.readdir(folder, { withFileTypes: true });
-        let fileNames = await Promise.all(files.map(async (fileEnt) => {
-            const info = await fsPromise.lstat(path.join(folder, fileEnt.name));
-                return {
-                    name: fileEnt.name,
-                    isFile: fileEnt.isFile(),
-                    info: info,
-                    createdAt: new Date(info.mtimeMs),
-                    filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),
-                }
-        }));
-        incList = []
-        fileNames.forEach((item)=>{
-            if (!item.isFile) {
-                incList.push(item)
-            }
-        })
-    if (incList.length === 0) {return false}
-    if (incList.length > 1) {returnError("Too many subfolders found");return;}
-        return incList[0].name;
-}
-
 async function getObbs(folder){
     const files = await fsPromise.readdir(folder, { withFileTypes: true });
     let fileNames = await Promise.all(files.map(async (fileEnt) => {
@@ -388,7 +365,7 @@ async function sideloadFolder(location) {
         console.log("attempting to read package info")
 
 
-        if (packageName.match(/-packageName-([a-zA-Z\d\_.]*)/)) {
+        if (apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)) {
             packageName = apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)[1]
         } else {
             packageinfo = await getPackageInfo(apkfile)
@@ -424,13 +401,17 @@ async function sideloadFolder(location) {
 
 
 
+    try {
+        await fsPromise.readdir(location+"/"+packageName, { withFileTypes: true });
+        obbFolder = packageName
+        console.log("DATAFOLDER to copy:"+obbFolder)
+    } catch (error) {
+        obbFolder = false
+    }
 
-
-    obbFolder = await getObbsDir(location);
     obbFiles = [];
     if ( obbFolder ) {
-        console.log("obbFolder: "+obbFolder)
-        console.log('doing onn rm');
+        console.log('doing obb rm');
         try {
             await execShellCommand(`adb shell rm -r "/sdcard/Android/obb/${obbFolder}"`);
         }  catch (e) {
@@ -438,7 +419,7 @@ async function sideloadFolder(location) {
         }
         obbFiles = await getObbs(location+"/"+obbFolder);
         if (obbFiles.length > 0) {
-            console.log("obbFiles: "+obbFiles)
+            //console.log("obbFiles: "+obbFiles)
 
             //TODO, make name be packageName instead of foldername
             for (const item of obbFiles) {
