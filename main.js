@@ -17,11 +17,29 @@ var tools = require("./functions")
 const { ipcMain } = require('electron')
 
 
+
+
+const updateNotifier = require('update-notifier');
+const pkg = require('./package.json');
+
+// Checks for available update and returns an instance
+const notifier = updateNotifier({pkg});
+
+// Notify using the built-in convenience method
+notifier.notify();
+
+// `notifier.update` contains some useful info about the update
+console.log(notifier);
+
+
+
 ipcMain.on('test', async (event, arg) => {
 
     //external link in browser
     //const { shell } = require('electron')
     //await shell.openExternal('https://electronjs.org')
+    event.reply('log', notifier);
+    return
 
     test = await tools.getPackageInfo(arg)
     event.reply('log', test);
