@@ -386,13 +386,15 @@ async function sideloadFolder(location) {
     packageName = ''
     try {
         console.log("attempting to read package info")
-        try {
+
+
+        if (packageName.match(/-packageName-([a-zA-Z\d\_.]*)/)) {
             packageName = apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)[1]
-        } catch (error) {
+        } else {
             packageinfo = await getPackageInfo(apkfile)
             packageName = packageinfo.packageName
-            return false
         }
+
 
         win.webContents.send('sideload_aapt_done',`{"success":true}`);
         console.log("package info read success ("+packageName+")")
@@ -480,7 +482,7 @@ async function getPackageInfo(apkPath) {
     console.log(util.inspect(manifest.versionName, { depth: null }))
     console.log(util.inspect(manifest.package, { depth: null }))
 
-    console.log(manifest)
+    //console.log(manifest)
 
     info = {
         packageName : util.inspect(manifest.package, { depth: null }).replace(/\'/g,""),
