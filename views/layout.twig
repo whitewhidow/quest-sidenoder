@@ -63,8 +63,17 @@
     ipcRenderer.on('sideload_aapt_done', (event, arg) => {
       $(".aaptDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
+    ipcRenderer.on('sideload_check_done', (event, arg) => {
+      $(".checkDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_backup_done', (event, arg) => {
+      $(".backupDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
     ipcRenderer.on('sideload_uninstall_done', (event, arg) => {
       $(".uninstallDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_restore_done', (event, arg) => {
+      $(".restoreDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
     ipcRenderer.on('sideload_apk_done', (event, arg) => {
       $(".apkDoneBadge").removeClass("badge-warning").addClass("badge-success");
@@ -319,7 +328,13 @@
         <br>
         <span class="aaptDoneBadge badge badge-warning badge-md">Read Packageinfo</span>
         <br>
+        <span class="checkDoneBadge badge badge-warning badge-md">Check if installed</span>
+        <br>
+        <span class="backupDoneBadge badge badge-warning badge-md">Backup Appdata</span>
+        <br>
         <span class="uninstallDoneBadge badge badge-warning badge-md">Uninstall APK</span>
+        <br>
+        <span class="restoreDoneBadge badge badge-warning badge-md">Restore Appdata</span>
         <br>
         <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
         <br>
