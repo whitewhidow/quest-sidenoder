@@ -33,10 +33,25 @@ module.exports =
     getApkFromFolder,
     uninstall,
     getDirListing,
-    getPackageInfo
+    getPackageInfo,
+    getStorageInfo
     // ...
 }
 
+async function getStorageInfo() {
+    console.log("getStorageInfo()")
+
+    res = await execShellCommand("adb shell df -h")
+
+    var re = new RegExp(`.*/storage/emulated.*`);
+    if (  linematch = res.match(re)  ) {
+        //console.log(linematch[0])
+        var refree = new RegExp(`([0-9]+[a-zA-Z%])`, "g");
+        //return {success: true, nr: linematch[0].match(renr)[1], free: }
+        return {success: true, storage: linematch[0].match(refree)}
+    }
+    return {success: false};
+}
 
 async function checkUpdateAvailable() {
     console.log('Checking local version vs latest github version')

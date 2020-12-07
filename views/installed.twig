@@ -8,6 +8,7 @@
       console.log("ONLOAD installed");
       $("#updateBadge").hide();
       ipcRenderer.send('get_installed', '');
+      ipcRenderer.send('get_storage', '');
       //$("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
 
       ipcRenderer.on('list_installed_app', (event, arg) => {
@@ -30,6 +31,22 @@
         if (arg.success) {
           $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
           $("#updateBadge").show();
+        }
+      });
+
+      ipcRenderer.on('get_storage', (event, arg) => {
+        console.log("get_storage ! ");
+        console.log(arg)
+        if (arg.success) {
+          $("#storageDiv").html(`
+<span class="pull-left push-left">Size: ${arg.storage[0]}</span>
+<span class="pull-right push-right">Available: ${arg.storage[2]}</span>
+<center>Used: ${arg.storage[1]}(${arg.storage[3]})</center>
+              <div class="progress">
+  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${arg.storage[3]}" aria-valuenow="${arg.storage[3].replace('%', '')}" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<br>
+          `)
         }
       });
 
@@ -63,6 +80,13 @@
 {% endblock %}
 
 {% block body %}
+
+
+  <div id="storageDiv">
+
+    <i class="fa fa-refresh fa-spin"></i> Fetching storage info
+
+  </div>
 
   <div class="card text-white bg-secondary">
     <div class="card-header">

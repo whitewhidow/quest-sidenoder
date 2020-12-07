@@ -85,6 +85,7 @@ Dungeon Train v0.19.12/**
 Electronauts v175667 -QuestUnderground/**
 Eleven Table Tennis [1.447] S2.11 /**
 Eleven Table Tennis [1.449] S2.11 /**
+Eleven Table Tennis [1.452] S2.11 /**
 Eleven Table Tennis v1.392 Q2Patched-90Hz+Savefix -QuestUnderground/**
 Eleven Table Tennis v1.400b -VRP/**
 Eleven Table Tennis v1.400 -VRP/**
@@ -93,6 +94,7 @@ Eleven Table Tennis v1.449 -QuestUnderground/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
 ENHANCE VR v2.0.0/**
+Epic Roller Coasters (INSTALL FREE VERSION FIRST) v6.33.3 -QuestUnderground (with DLC)/**
 Epic Roller Coasters v6.22/**
 Epic Roller Coasters v6.33.3 -QuestUnderground (with DLC)/**
 Escape Legacy v1.20/**
@@ -332,3 +334,4 @@ Witchblood v1.0/**
 Wolves in the Walls v1.1375 -VRP/**
 Wonderglade v1.9.84037/**
 Zombie World VR v1.0/**
+Eleven Table Tennis v1.452 -QuestUnderground/**

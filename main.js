@@ -45,6 +45,14 @@ ipcMain.on('get_installed', async (event, arg) => {
     return
 })
 
+ipcMain.on('get_storage', async (event, arg) => {
+    console.log("get_storage received");
+    res = await tools.getStorageInfo();
+
+    event.reply('get_storage', res);
+    return
+})
+
 ipcMain.on('get_installed_with_updates', async (event, arg) => {
     console.log("get_installed_with_updates received");
     await tools.getInstalledAppsWithUpdates();
