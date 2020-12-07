@@ -152,6 +152,7 @@ async function checkMount(){
         list = await getDir(`${mountFolder}`);
         if (list.length > 0) {
             global.mounted = true
+            updateRcloneProgress();
             return true
         }
         global.mounted = false
@@ -637,4 +638,20 @@ async function getApkFromFolder(folder){
 
 async function uninstall(packageName){
     resp = await execShellCommand(`adb uninstall ${packageName}`)
+}
+
+
+
+
+function updateRcloneProgress() {
+    const response = fetch('http://127.0.0.1:5572/core/stats', {method: 'POST'})
+        .then(response => response.json())
+        .then(data => {
+            win.webContents.send('rclone_data',data);
+            setTimeout(updateRcloneProgress, 2000);
+        })
+        .catch((error) => {
+            console.error('Fetch-Error:', error);
+            setTimeout(updateRcloneProgress, 2000);
+        });
 }

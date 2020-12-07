@@ -59,6 +59,16 @@
     });
 
 
+    ipcRenderer.on('rclone_data', (event, arg) => {
+      data=arg;
+      console.log(arg)
+      if(data.transferring && data.transferring.length > 0) {
+          $("#progressstatus").text(data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta));
+      } else {
+          $("#progressstatus").text("CONNECTED");
+      }
+    });
+
 
     ipcRenderer.on('sideload_aapt_done', (event, arg) => {
       $(".aaptDoneBadge").removeClass("badge-warning").addClass("badge-success");
@@ -102,50 +112,7 @@
       console.log(arg)
     });
 
-    function formatEta(seconds) {
-      if (seconds == null) { return "Starting..."; }
-      hours = Math.floor(seconds / 3600);
-      seconds -= hours * 3600;
-      minutes = Math.floor(seconds / 60);
-      seconds -= minutes * 60;
-      if (hours > 0) {
-        return hours + "h " + minutes + "m " + seconds + "s";
-      } else if (minutes > 0) {
-        return minutes + "m " + seconds + "s";
-      } else {
-        return seconds + "s";
-      }
-    }
 
-    function formatBytes(bytes) {
-      var sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-      if (bytes == 0) return '0 B';
-      var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-      return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-   }
-
-    function updateRcloneProgress() {
-      const response = fetch('http://127.0.0.1:5572/core/stats', {method: 'POST'})
-      .then(response => response.json())
-      .then(data => {
-        if(data.transferring && data.transferring.length > 0) {
-          $("#progressbtn").removeClass("btn-primary");
-          $("#progressbtn").addClass("btn-info");       
-          $("#progressstatus").text(data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta));
-          $("#progresstext").text(formatBytes(data.transferring[0].bytes) + " / " + formatBytes(data.transferring[0].size));
-        } else {          
-          $("#progressbtn").removeClass("btn-info");
-          $("#progressbtn").addClass("btn-primary");
-          $("#progressstatus").text('-');
-          $("#progresstext").text('-');
-        }
-        setTimeout(updateRcloneProgress, 2000);
-      })
-      .catch((error) => {
-        console.error('Fetch-Error:', error);
-        setTimeout(updateRcloneProgress, 2000);
-      });
-    }
 
     ipcRenderer.on('check_mount', (event, arg) => {
       console.log("check_mount responded: "+arg); // prints "ping"
@@ -155,7 +122,7 @@
         $("#mountbtn").removeClass("btn-warning");
         $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-success");
-        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br>Connected.`)
+        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
         $("#mountbtn").onclick = function() {return false;}
 
         $("#mountBadge").removeClass("badge-warning");
@@ -166,7 +133,6 @@
         $("#updateBadge").addClass("badge-success");
         $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
         
-        updateRcloneProgress();
       } else {
         $("#mountrefresh").removeClass("fa-spin");
         $("#mountbtn").removeClass("btn-warning");
@@ -292,8 +258,7 @@
   &nbsp;
 
         <span type="button" id="devicebtn" {# onclick="checkDevice()" #} class="btn btn-lg btn-danger"  disabled><i id="devicerefresh" class="fa fa-spin fa-refresh"></i> | Quest status:</br>Disconnected.</span>
-        &nbsp;
-        <span type="button" id="progressbtn" class="btn btn-lg btn-primary" style="min-width: 130px"><span id="progressstatus">-</span></br><span id="progresstext">-</span>
+
 
       {# <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> #}
     </form>
@@ -427,7 +392,32 @@
 <!--
  Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script>
 
+
+  function formatEta(seconds) {
+    if (seconds == null) { return "Starting..."; }
+    hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    if (hours > 0) {
+      return hours + "h " + minutes + "m " + seconds + "s";
+    } else if (minutes > 0) {
+      return minutes + "m " + seconds + "s";
+    } else {
+      return seconds + "s";
+    }
+  }
+
+  function formatBytes(bytes) {
+    var sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return '0 B';
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+  }
+
+</script>
 </body>
 </html>
 
