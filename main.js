@@ -19,6 +19,13 @@ const { ipcMain } = require('electron')
 
 ipcMain.on('test', async (event, arg) => {
 
+    //external link in browser
+    //const { shell } = require('electron')
+    //await shell.openExternal('https://electronjs.org')
+
+    event.reply('log', '');
+    return
+
     test = await tools.getPackageInfo(arg)
     event.reply('log', test);
     return
@@ -152,9 +159,7 @@ function createWindow () {
         tmpdir: global.tmpdir,
         platform: global.platform,
         mountFolder: global.mountFolder
-        //adbpath: adbpath,
-        //rclonepath: rclonepath
-    }
+}
 
 
     //tools.checkUpdateAvailable()
