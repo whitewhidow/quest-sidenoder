@@ -42,10 +42,10 @@ jobs:
       - name: Upload darwin Build dmg Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-darwin-x64-dmg
+          name: sidenoder-darwin-x64-dmg
           path: /tmp/builds/darwin/dmg/
       - name: Upload darwin Build zip Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-darwin-x64-zip
+          name: sidenoder-darwin-x64-zip
           path: /tmp/builds/darwin/zip/
