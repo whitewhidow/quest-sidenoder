@@ -245,7 +245,7 @@ async function mount(){
         var mountCmd = "mount"
     }
 
-    exec(`rclone ${mountCmd} --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
+    exec(`rclone ${mountCmd} --read-only --rc --rc-no-auth --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             if (error.message.search("transport endpoint is not connected")) {
