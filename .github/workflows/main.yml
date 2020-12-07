@@ -32,10 +32,10 @@ jobs:
           mkdir -p /tmp/builds
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/deb/x64/
           mkdir -p /tmp/builds/linux/deb/
-          tar -cvf /tmp/builds/linux/deb/SideNoder-linux-x64-deb.tar *.deb
+          tar -cvf /tmp/builds/linux/deb/sidenoder-linux-x64-deb.tar *.deb
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/rpm/x64/
           mkdir -p /tmp/builds/linux/rpm/
-          tar -cvf /tmp/builds/linux/rpm/SideNoder-linux-x64-rpm.tar *.rpm
+          tar -cvf /tmp/builds/linux/rpm/sidenoder-linux-x64-rpm.tar *.rpm
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/out/make/zip/linux/x64/
           mkdir -p /tmp/builds/linux/zip/
           sudo mv *.zip /tmp/builds/linux/zip/
@@ -49,8 +49,8 @@ jobs:
           mkdir -p /tmp/builds/snap/x64
 
           cd /home/runner/work/quest-sidenoder/quest-sidenoder/dist/
-          sudo mv SideNoder*.AppImage /tmp/builds/AppImage/x64/
-          sudo mv SideNoder*.snap /tmp/builds/snap/x64/
+          sudo mv sidenoder*.AppImage /tmp/builds/AppImage/x64/
+          sudo mv sidenoder*.snap /tmp/builds/snap/x64/
 
 
 
@@ -61,12 +61,12 @@ jobs:
       - name: Upload linux Build deb Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-deb
+          name: sidenoder-linux-x64-deb
           path: /tmp/builds/linux/deb/
       - name: Upload linux Build rpm Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-rpm
+          name: sidenoder-linux-x64-rpm
           path: /tmp/builds/linux/rpm/
       - name: Upload linux Build zip Artifact
         uses: actions/upload-artifact@v2
@@ -77,10 +77,10 @@ jobs:
       - name: Upload linux Build appimage Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-AppImage
+          name: sidenoder-linux-x64-AppImage
           path: /tmp/builds/AppImage/x64/*.AppImage
       - name: Upload linux Build snap Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: SideNoder-linux-x64-snap
+          name: sidenoder-linux-x64-snap
           path: /tmp/builds/snap/x64/*.snap
