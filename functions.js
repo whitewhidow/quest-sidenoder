@@ -652,6 +652,7 @@ function updateRcloneProgress() {
         })
         .catch((error) => {
             console.error('Fetch-Error:', error);
+            win.webContents.send('rclone_data','');
             setTimeout(updateRcloneProgress, 2000);
         });
 }
