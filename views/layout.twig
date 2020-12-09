@@ -59,12 +59,31 @@
     });
 
 
+    ipcRenderer.on('rclone_data', (event, arg) => {
+      data=arg;
+      console.log(arg)
+      if(data.transferring && data.transferring.length > 0) {
+          $("#progressstatus").text(data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta));
+      } else {
+          $("#progressstatus").text("CONNECTED");
+      }
+    });
+
 
     ipcRenderer.on('sideload_aapt_done', (event, arg) => {
       $(".aaptDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
+    ipcRenderer.on('sideload_check_done', (event, arg) => {
+      $(".checkDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_backup_done', (event, arg) => {
+      $(".backupDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
     ipcRenderer.on('sideload_uninstall_done', (event, arg) => {
       $(".uninstallDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
+    ipcRenderer.on('sideload_restore_done', (event, arg) => {
+      $(".restoreDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
     ipcRenderer.on('sideload_apk_done', (event, arg) => {
       $(".apkDoneBadge").removeClass("badge-warning").addClass("badge-success");
@@ -93,6 +112,8 @@
       console.log(arg)
     });
 
+
+
     ipcRenderer.on('check_mount', (event, arg) => {
       console.log("check_mount responded: "+arg); // prints "ping"
       console.log(JSON.parse(arg));
@@ -101,7 +122,7 @@
         $("#mountbtn").removeClass("btn-warning");
         $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-success");
-        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br>Connected.`)
+        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
         $("#mountbtn").onclick = function() {return false;}
 
         $("#mountBadge").removeClass("badge-warning");
@@ -111,7 +132,7 @@
         $("#updateBadge").removeClass("badge-warning");
         $("#updateBadge").addClass("badge-success");
         $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
-
+        
       } else {
         $("#mountrefresh").removeClass("fa-spin");
         $("#mountbtn").removeClass("btn-warning");
@@ -196,7 +217,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
+  <span style="margin-right: 20px;">{{ version }}</span>
 
   {% block navbar %}
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -237,6 +258,7 @@
   &nbsp;
 
         <span type="button" id="devicebtn" {# onclick="checkDevice()" #} class="btn btn-lg btn-danger"  disabled><i id="devicerefresh" class="fa fa-spin fa-refresh"></i> | Quest status:</br>Disconnected.</span>
+
 
       {# <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> #}
     </form>
@@ -319,7 +341,13 @@
         <br>
         <span class="aaptDoneBadge badge badge-warning badge-md">Read Packageinfo</span>
         <br>
+        <span class="checkDoneBadge badge badge-warning badge-md">Check if installed</span>
+        <br>
+        <span class="backupDoneBadge badge badge-warning badge-md">Backup Appdata</span>
+        <br>
         <span class="uninstallDoneBadge badge badge-warning badge-md">Uninstall APK</span>
+        <br>
+        <span class="restoreDoneBadge badge badge-warning badge-md">Restore Appdata</span>
         <br>
         <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
         <br>
@@ -364,7 +392,32 @@
 <!--
  Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script>
 
+
+  function formatEta(seconds) {
+    if (seconds == null) { return "Starting..."; }
+    hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    if (hours > 0) {
+      return hours + "h " + minutes + "m " + seconds + "s";
+    } else if (minutes > 0) {
+      return minutes + "m " + seconds + "s";
+    } else {
+      return seconds + "s";
+    }
+  }
+
+  function formatBytes(bytes) {
+    var sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return '0 B';
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+  }
+
+</script>
 </body>
 </html>
 

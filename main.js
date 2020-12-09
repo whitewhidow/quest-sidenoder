@@ -11,6 +11,25 @@ global.mounted = false
 global.updateAvailable = false
 global.installedApps = []
 
+
+
+
+
+const pkg = require('./package.json');
+global.version = pkg.version
+
+
+
+// if (pkg.version !== latestVersion) {
+//     await installPackageVersion(pkg.name, latestVersion)
+//
+//     console.log(`Upgraded from ${pkg.version} to ${latestVersion}. Restarting...`)
+//
+//     respawnProcess()
+// }
+
+
+
 app.disableHardwareAcceleration()
 
 var tools = require("./functions")
@@ -42,6 +61,14 @@ ipcMain.on('get_installed', async (event, arg) => {
 
 
     event.reply('get_installed', {"success": true, "apps": global.installedApps});
+    return
+})
+
+ipcMain.on('get_storage', async (event, arg) => {
+    console.log("get_storage received");
+    res = await tools.getStorageInfo();
+
+    event.reply('get_storage', res);
     return
 })
 
@@ -158,7 +185,8 @@ function createWindow () {
     twig.view = {
         tmpdir: global.tmpdir,
         platform: global.platform,
-        mountFolder: global.mountFolder
+        mountFolder: global.mountFolder,
+        version: global.version
 }
 
 

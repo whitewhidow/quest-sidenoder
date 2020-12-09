@@ -16,6 +16,12 @@ const fixPath = require('fix-path');
 fixPath();
 
 
+if (`${platform}` != "win64" && `${platform}` != "win32") {
+    global.nullcmd = "> /dev/null"
+} else {
+    global.nullcmd = "> null"
+}
+
 
 module.exports =
 {
@@ -33,10 +39,25 @@ module.exports =
     getApkFromFolder,
     uninstall,
     getDirListing,
-    getPackageInfo
+    getPackageInfo,
+    getStorageInfo
     // ...
 }
 
+async function getStorageInfo() {
+    console.log("getStorageInfo()")
+
+    res = await execShellCommand("adb shell df -h")
+
+    var re = new RegExp(`.*/storage/emulated.*`);
+    if (  linematch = res.match(re)  ) {
+        //console.log(linematch[0])
+        var refree = new RegExp(`([0-9]+[a-zA-Z%])`, "g");
+        //return {success: true, nr: linematch[0].match(renr)[1], free: }
+        return {success: true, storage: linematch[0].match(refree)}
+    }
+    return {success: false};
+}
 
 async function checkUpdateAvailable() {
     console.log('Checking local version vs latest github version')
@@ -131,6 +152,7 @@ async function checkMount(){
         list = await getDir(`${mountFolder}`);
         if (list.length > 0) {
             global.mounted = true
+            updateRcloneProgress();
             return true
         }
         global.mounted = false
@@ -224,7 +246,7 @@ async function mount(){
         var mountCmd = "mount"
     }
 
-    exec(`rclone ${mountCmd} --read-only --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
+    exec(`rclone ${mountCmd} --read-only --rc --rc-no-auth --config=${cpath} WHITEWHIDOW_QUEST: ${mountFolder}`, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             if (error.message.search("transport endpoint is not connected")) {
@@ -380,15 +402,61 @@ async function sideloadFolder(location) {
         returnError(e)
     }
 
-
-    console.log('doing adb UNinstall (ignore error)');
+    console.log('checking if installed');
+    installed = false;
     try {
         //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
-        await execShellCommand(`adb uninstall "${packageName}"`);
+        check = await execShellCommand(`adb shell pm list packages ${packageName}`);
+        if (check.startsWith("package:")) {
+            installed = true
+        }
     }  catch (e) {
         console.log(e);
     }
+    win.webContents.send('sideload_check_done',`{"success":true}`);
+
+    if (installed) {
+        console.log('doing adb pull appdata (ignore error)');
+        try {
+            //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
+            await execShellCommand(`adb pull "/sdcard/Android/data/${packageName}" "${global.tmpdir}"  ${nullcmd}`);
+        }  catch (e) {
+            //console.log(e);
+        }
+    }
+    win.webContents.send('sideload_backup_done',`{"success":true}`);
+
+
+    if (installed) {
+        console.log('doing adb uninstall (ignore error)');
+        try {
+            //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
+            await execShellCommand(`adb uninstall "${packageName}"`);
+        }  catch (e) {
+            //console.log(e);
+        }
+    }
     win.webContents.send('sideload_uninstall_done',`{"success":true}`);
+
+    if (installed) {
+        console.log('doing adb push appdata (ignore error)');
+        try {
+            await execShellCommand(`adb shell mkdir -p /sdcard/Android/data/${packageName}/`);
+            await execShellCommand(`adb push ${global.tmpdir}/${packageName}/* /sdcard/Android/data/${packageName}/ ${nullcmd}`);
+
+            try {
+                fs.rmdirSync(`${global.tmpdir}/${packageName}/`, { recursive: true });
+            } catch (err) {
+                //console.error(`Error while deleting ${dir}.`);
+            }
+
+
+        }  catch (e) {
+            //console.log(e);
+        }
+    }
+    win.webContents.send('sideload_restore_done',`{"success":true}`);
+
 
 
     console.log('doing adb install');
@@ -427,11 +495,6 @@ async function sideloadFolder(location) {
                 console.log('doing obb push');
                 var n = item.lastIndexOf('/');
                 var name = item.substring(n + 1);
-                if (`${platform}` != "win64" && `${platform}` != "win32") {
-                    nullcmd = "> /dev/null"
-                } else {
-                    nullcmd = "> null"
-                }
                 await execShellCommand(`adb push "${item}" "/sdcard/Download/obb/${obbFolder}/${name}" ${nullcmd}`);
             }
             win.webContents.send('sideload_copy_obb_done',`{"success":true}`);
@@ -487,6 +550,11 @@ async function getInstalledApps(send = true) {
         info = await execShellCommand(`adb shell dumpsys package ${apps[x]}`);
         appinfo[x]['packageName'] = apps[x];
         appinfo[x]['versionCode'] = info.match(/versionCode=[0-9]*/)[0].slice(12);
+        if (info.match(/ DEBUGGABLE /)) {
+            appinfo[x]['debug'] = true
+        } else {
+            appinfo[x]['debug'] = false
+        }
 
         if (send === true) {
             win.webContents.send('list_installed_app',appinfo[x]);
@@ -570,4 +638,21 @@ async function getApkFromFolder(folder){
 
 async function uninstall(packageName){
     resp = await execShellCommand(`adb uninstall ${packageName}`)
+}
+
+
+
+
+function updateRcloneProgress() {
+    const response = fetch('http://127.0.0.1:5572/core/stats', {method: 'POST'})
+        .then(response => response.json())
+        .then(data => {
+            win.webContents.send('rclone_data',data);
+            setTimeout(updateRcloneProgress, 2000);
+        })
+        .catch((error) => {
+            console.error('Fetch-Error:', error);
+            win.webContents.send('rclone_data','');
+            setTimeout(updateRcloneProgress, 2000);
+        });
 }
