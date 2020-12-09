@@ -11,6 +11,25 @@ global.mounted = false
 global.updateAvailable = false
 global.installedApps = []
 
+
+
+
+
+const pkg = require('./package.json');
+global.version = pkg.version
+
+
+
+// if (pkg.version !== latestVersion) {
+//     await installPackageVersion(pkg.name, latestVersion)
+//
+//     console.log(`Upgraded from ${pkg.version} to ${latestVersion}. Restarting...`)
+//
+//     respawnProcess()
+// }
+
+
+
 app.disableHardwareAcceleration()
 
 var tools = require("./functions")
@@ -166,7 +185,8 @@ function createWindow () {
     twig.view = {
         tmpdir: global.tmpdir,
         platform: global.platform,
-        mountFolder: global.mountFolder
+        mountFolder: global.mountFolder,
+        version: global.version
 }
 
 
