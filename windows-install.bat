@@ -6,7 +6,7 @@ IF EXIST "C:\Program Files\7-Zip\7z.exe" (
   echo 7-zip is present
 ) ELSE (
   echo Downloading and installing 7zip'
-  curl https://www.7-zip.org/a/7z1900-x64.exe -o sideloader_deps/7zip.exe
+  curl  --ssl-no-revoke https://www.7-zip.org/a/7z1900-x64.exe -o sideloader_deps/7zip.exe
   START /WAIT sideloader_deps/7zip.exe
 )
 
@@ -14,9 +14,9 @@ IF EXIST "C:\Program Files\7-Zip\7z.exe" (
 
 
 echo Downloading rclone
-curl -L https://downloads.rclone.org/rclone-current-windows-amd64.zip -o sideloader_deps/rclone.zip
+curl  --ssl-no-revoke -L https://downloads.rclone.org/rclone-current-windows-amd64.zip -o sideloader_deps/rclone.zip
 echo Downloading adb
-curl -L https://dl.google.com/android/repository/platform-tools-latest-windows.zip  -o sideloader_deps/android-tools.zip
+curl  --ssl-no-revoke -L https://dl.google.com/android/repository/platform-tools-latest-windows.zip  -o sideloader_deps/android-tools.zip
 
 
 
@@ -50,7 +50,7 @@ IF EXIST "%~dp0SideNoder.exe" (
       echo NodeJS is present
     ) ELSE (
       echo Downloading and installing NODEJS'
-      curl https://nodejs.org/dist/v14.15.1/node-v14.15.1-x86.msi -o sideloader_deps/node-v14.15.1-x86.msi
+      curl  --ssl-no-revoke https://nodejs.org/dist/v14.15.1/node-v14.15.1-x86.msi -o sideloader_deps/node-v14.15.1-x86.msi
       START /WAIT sideloader_deps/node-v14.15.1-x86.msi
     )
 
@@ -58,7 +58,7 @@ IF EXIST "%~dp0SideNoder.exe" (
         echo Git is present
     ) ELSE (
         echo Downloading and installing Git
-        curl -L https://github.com/git-for-windows/git/releases/download/v2.29.2.windows.2/Git-2.29.2.2-64-bit.exe  -o sideloader_deps/Git-2.29.2.2-64-bit.exe
+        curl  --ssl-no-revoke -L https://github.com/git-for-windows/git/releases/download/v2.29.2.windows.2/Git-2.29.2.2-64-bit.exe  -o sideloader_deps/Git-2.29.2.2-64-bit.exe
         START /WAIT sideloader_deps/Git-2.29.2.2-64-bit.exe
     )
 )
@@ -76,7 +76,7 @@ IF EXIST "%programfiles(x86)%\WinFsp\Bin\diag.bat" (
     pause
     exit
 ) ELSE (
-    curl -L https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi  -o sideloader_deps/winfsp-1.8.20304.msi
+    curl  --ssl-no-revoke -L https://github.com/billziss-gh/winfsp/releases/download/v1.8/winfsp-1.8.20304.msi  -o sideloader_deps/winfsp-1.8.20304.msi
     START /WAIT sideloader_deps/winfsp-1.8.20304.msi
     echo .
     echo .
