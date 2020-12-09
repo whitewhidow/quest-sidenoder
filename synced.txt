@@ -1,10 +1,12 @@
 
 2MD VR Football Unleashed v1.0.30 -Q2-90Hz-CustomRes -QuestUnderground/**
 Accounting+ v1.24.35-Q2Patched -QuestUnderground/**
+Acron - Attack of the Squirrels v1.14.94392.114094392 -QuestUnderground/**
 Acron - Attack of the Squirrels! v1.14.94392.114094392 -QuestUnderground/**
 AFFECTED - The Manor v1.26.1.75 -QuestUnderground/**
 A Fishermans Tale v1.056 -QuestUnderground/**
 Air Brigade 2 v0.2/**
+ALTDEUS - Beyond Chronos v1.0.414/**
 A Lullaby of Colors v1.2.2/**
 A Moment in Cannes v0.3.22/**
 Angry Birds VR Isle of Pigs v3.4.92967.304092967 -Q2-90Hz-CustomRes -QuestUnderground/**
@@ -46,7 +48,10 @@ Coaster Combat v1.0/**
 Coaster Combat v1.0.693251 -QuestUnderground/**
 Color Space v1.2.1 -QuestUnderground/**
 Contractors VR [1.0.48] S2.11/**
+Contractors VR [1.0.50] S2.11/**
+Contractors VR [1.1.51] S2.11/**
 Contractors VR v1.0.48 -QuestUnderground/**
+Contractors VR v1.0.50 -QuestUnderground/**
 Control Tower VR v0.61/**
 Cook-Out [1.3.97509.103097509] S2.11/**
 Cook-Out v1.2.92260-Q2Patched -QuestUnderground/**
@@ -93,6 +98,9 @@ Eleven Table Tennis v1.400 -VRP/**
 Eleven Table Tennis v1.447 -QuestUnderground/**
 Eleven Table Tennis v1.449 -QuestUnderground/**
 Eleven Table Tennis v1.452 -QuestUnderground/**
+Eleven Table Tennis v1.458 -QuestUnderground/**
+Elven Assassin [1.3.1g.77] S2.11/**
+Elven Assassin v1.3.1g.77-QuestUnderground/**
 Elven Assassin v1.3.1g-Q2Patch90Hz -QuestUnderground/**
 End Space v1.0.6.22 -QuestUnderground/**
 ENHANCE VR v2.0.0/**
@@ -124,6 +132,9 @@ Gladius (Manual Install only) v0.8.5/**
 Gladius v0.8.5 (Manual Install see readme)/**
 Gladius v0.8.5 -VRP/**
 Gladius v0.8.5 -VRP (Manual Install see readme)/**
+Glitch Assassin v1.0/**
+Glitch Assasssins12.192 - VRP/**
+Glitch Assasssins v12.192 -VRP/**
 Gloomy Eyes v33 -QuestUnderground/**
 Gravity Lab v1.12.0-Q2Patched -QuestUnderground/**
 Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
@@ -133,6 +144,8 @@ Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
 GunSpinning VR v1.0/**
 Half-Life VR **
 Hatsune Miku v3.01-10 -VRP/**
+Hatsune Miku VR [3.01.10] S2.11 + DLC Unlocked/**
+Hatsune Miku VR v3.01.10 -QuestUnderground (with DLC)/**
 Hermetika VR v0.6/**
 HeroBound 2 v1.5.1/**
 Holopoint v1.0.14.123 -QuestUnderground/**
@@ -181,9 +194,11 @@ National Geographic Explore VR v1.2.1.674692 -QuestUnderground/**
 National Geographic Explore VR v1.2.1.674692 -VRP/**
 Nature Treks VR v1.17-Q2Patch90Hz/**
 Nature Treks VR v1.17 -QuestUnderground/**
+Nature Treks VR v1.20.19 /**
 Neon Sprint v1.0/**
 NES Space Quest v1.0.2/**
 Ninja Legends v1.0.1068-Q2Patch90Hz -QuestUnderground/**
+Ocean Rift [1.68] patch+savefix+90Hz/**
 Ocean Rift v1.68 -Q2Patched-90Hz -QuestUnderground/**
 OhShape [1.7.0.170] S2.11/**
 OhShape v1.7.0/**
@@ -209,6 +224,7 @@ Pop Shot v1.0/**
 Pop Shot v1.0 -NA-/**
 Premium Bowling v1.17.10.63 -QuestUnderground/**
 Premium Bowling v1.18.1-75 -VRP/**
+Prison Boss VR v1.6.0.16 -VRP/**
 Pro Putt by Topgolf v0.285-Q2Patch90Hz -QuestUnderground/**
 Pteranodons Flight - The Flying Dinosaur Game v1.0/**
 Raccoon Lagoon v1.0.235238 -QuestUnderground/**
@@ -331,9 +347,12 @@ Walkabout Mini Golf v0.92.920 -QuestUnderground/**
 Waltz of the Wizard - Extended Edition v1.5.5.365 -QuestUnderground/**
 Wander v0.3394/**
 Wands v1.62 -QuestUnderground/**
+Wands v1.6.2 -VRP/**
+Warhammer 40,000 - Battle Sister /**
+Warhammer 40,000 - Battle Sister v1.0-10721345 -VRP/**
+Warhammer 40,000 - Battle Sister -VRP/**
 Where Thoughts Go v1.26 -QuestUnderground/**
 Witchblood v1.0/**
 Wolves in the Walls v1.1375 -VRP/**
 Wonderglade v1.9.84037/**
 Zombie World VR v1.0/**
-Eleven Table Tennis v1.458 -QuestUnderground/**
