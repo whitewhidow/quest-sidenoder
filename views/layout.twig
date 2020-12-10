@@ -61,11 +61,13 @@
 
     ipcRenderer.on('rclone_data', (event, arg) => {
       data=arg;
-      console.log(arg)
+      //console.log(arg)
       if(data.transferring && data.transferring.length > 0) {
           $("#progressstatus").text(data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta));
+          $(".mountcopystatus").text("(Downloading: "+data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta) + ")");
       } else {
           $("#progressstatus").text("CONNECTED");
+        $(".mountcopystatus").text('')
       }
     });
 
@@ -210,8 +212,6 @@
 </head>
 <body>
 
-{{ test }}
-
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="index.twig">Q-S-L</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -333,6 +333,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><i  id="sideloadRefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
+        <span class="mountcopystatus"></span>
       </div>
       <div class="modal-body">
         <span id="sideloadText"></span>
