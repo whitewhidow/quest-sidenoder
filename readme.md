@@ -20,6 +20,7 @@ curl https://rclone.org/install.sh | sudo bash
 #### mac/osx:
 First install adb, rclone and osxfuse:
 ```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew cask install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
 brew cask install osxfuse
@@ -70,6 +71,7 @@ npm start
 
 #### mac/osx:
 ```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install git
 brew install node
 curl https://rclone.org/install.sh | sudo bash
