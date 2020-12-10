@@ -75,7 +75,7 @@ Features:
 ## Running the compiled version
 
 #### Run precompiled release on windows:
-1. Download and unpack the latest windows release from `https://github.com/whitewhidow/quest-sidenoder/releases`
+1. Download and unpack the latest windows release from `https://github.com/whitewhidow/quest-sidenoder/releases/latest`
 2. Run the `windows-install.bat` script and follow the onscreen instructions (this will install 7ZIP, GIT, NODE, ADB, RCLONE and WINFSP) 
 3. Run the `sidenoder.exe` application
 
@@ -83,7 +83,7 @@ Features:
 
 #### Run precompiled release on linux:
 1. Install ADB and RCLONE: `sudo apt install adb && curl https://rclone.org/install.sh | sudo bash`
-2. Download and unpack the latest linux AppImage from `https://github.com/whitewhidow/quest-sidenoder/releases`
+2. Download and unpack the latest linux AppImage from `https://github.com/whitewhidow/quest-sidenoder/releases/latest`
 3. Make the AppImage executable.
 4. Run the AppImage
 
@@ -98,7 +98,7 @@ brew cask install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
 brew cask install osxfuse
 ```
-2. Download and unpack the latest mac release (.App / .dmg) from `https://github.com/whitewhidow/quest-sidenoder/releases`
+2. Download and unpack the latest mac release (.App / .dmg) from `https://github.com/whitewhidow/quest-sidenoder/releases/latest`
 3. Run the .App or .dmg
 
 <details>
