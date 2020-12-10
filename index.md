@@ -6,8 +6,6 @@ What makes sidenoder better than other sideloaders ?
 </summary>
   
 
-
----
   
 - **Automatically scan** hmd and drive, to **find available updates**.
 
@@ -22,8 +20,6 @@ What makes sidenoder better than other sideloaders ?
 - Drive list offers **pictures and versionCodes**.
 
 - Much much more.
-
----
 
 
 </details>
