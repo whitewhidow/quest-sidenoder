@@ -29,6 +29,12 @@
   <script>
     const { ipcRenderer } = require('electron')
 
+    ipcRenderer.on('notify_update', (event, arg) => {
+      console.log("notify_update msg came ! ");
+      $('#updateModal').modal('show');
+      $("#updateModal > div > div > div.modal-body").html(`<b>sidenoder-${arg.remote}<b> is now available on github.<br><br>Please visit https://github.com/whitewhidow/quest-sidenoder/releases`)
+    });
+
     ipcRenderer.on('ask_sideload', (event, arg) => {
       console.log("ask_sideload msg came ! ");
       console.log(arg)
@@ -382,6 +388,26 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
         <button type="button" id="confirmSideloadButton" class="btn btn-primary disabled">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-upload" aria-hidden="true"></i>  Update available</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        An update is available on github.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">I Understand</button>
       </div>
     </div>
   </div>
