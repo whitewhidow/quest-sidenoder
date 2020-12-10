@@ -1,30 +1,94 @@
 **SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
-![screen](https://github.com/whitewhidow/quest-sidenoder/raw/main/.github/screen.gif)
+![screen](.github/screen.gif)
 
-## DOWNLOADS OF LAST COMPILED VERSION:
-```
-https://github.com/whitewhidow/quest-sidenoder/releases
-```
 
-## DEPENDENCIES REQUIRED TO RUN LAST COMPILED VERSION:
-#### windows:
-First run the `windows-install.bat` file included with the release
+<!-- TABLE OF CONTENTS 
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+-->
 
-#### linux:
-First install adb and rclone:
-```
-sudo apt install adb
-curl https://rclone.org/install.sh | sudo bash
-```
-#### mac/osx:
-First install adb, rclone and osxfuse:
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>How to install or run this app</summary>
+
+  <ul>
+    <li><a href="#run-precompiled-release-on-windows">Windows</a></li>
+    <li><a href="#run-precompiled-release-on-linux">Linux</a></li>
+    <li><a href="#run-precompiled-release-on-mac">Mac/OSx</a></li>
+  </ul>
+
+</details>
+
+
+<details>
+  <summary>How to download and manually run this app using node instead</summary>
+
+  <ul>
+    <li><a href="#manually-run-using-node-on-windows">Windows</a></li>
+    <li><a href="#manually-run-using-node-on-linux">Linux</a></li>
+    <li><a href="#manually-run-using-node-on-mac">Mac/OSx</a></li>
+  </ul>
+
+</details>
+
+<!--
+![screen](.github/screen.gif)
+-->
+
+
+
+## Running the compiled version
+
+#### Run precompiled release on windows:
+1. Download and unpack the latest windows release from `https://github.com/whitewhidow/quest-sidenoder/releases`
+2. Run the `windows-install.bat` script and follow the onscreen instructions (this will install 7ZIP, GIT, NODE, ADB, RCLONE and WINFSP) 
+3. Run the `sidenoder.exe` application
+
+
+
+#### Run precompiled release on linux:
+1. Install ADB and RCLONE: `sudo apt install adb && curl https://rclone.org/install.sh | sudo bash`
+2. Download and unpack the latest linux AppImage from `https://github.com/whitewhidow/quest-sidenoder/releases`
+3. Make the AppImage executable.
+4. Run the AppImage
+
+
+
+#### Run precompiled release on mac:
+
+1. Install ADB, RCLONE and OSXFUSE:
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew cask install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
 brew cask install osxfuse
 ```
+2. Download and unpack the latest mac release (.App / .dmg) from `https://github.com/whitewhidow/quest-sidenoder/releases`
+3. Run the .App or .dmg
+
 <details>
 <summary>Running big sur?</summary>
 For mounting issues with Sidenoder on Osx Big Sur, Please install the latest osxfuse (prerelease)
@@ -36,16 +100,15 @@ Please report any issues here :
 
 https://github.com/whitewhidow/quest-sidenoder/issues | https://t.me/whitewhidow | https://discord.gg/pVMsAyYhAf
 
-
-
 ---
-Or instead of using the above precompiled binaries, you can manually run the app using the below instructions.
-
+---
+---
+---
+---
 ---
 
-
-## MANUALLY RUNNING AND COMPILING THE LATEST VERSION:
-#### windows:
+## Alternatively, Manually run using node
+#### Manually run using node on windows:
 1. Download and install GIT from `https://git-scm.com/download/win`
 2. Run the following in a command line terminal (cmd):
     ```
@@ -61,7 +124,7 @@ Or instead of using the above precompiled binaries, you can manually run the app
     ```
 
 
-#### linux:
+#### Manually run using node on linux:
 ```
 sudo apt install git adb nodejs
 curl https://rclone.org/install.sh | sudo bash
@@ -71,7 +134,7 @@ npm install
 npm start
 ```
 
-#### mac/osx:
+#### Manually run using node on mac:
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install git
