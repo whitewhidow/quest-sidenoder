@@ -1,6 +1,6 @@
 **SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
-![screen](.github/screen.gif)
+![screen](https://github.com/whitewhidow/quest-sidenoder/raw/main/.github/screen.gif)
 
 
 <!-- TABLE OF CONTENTS 
