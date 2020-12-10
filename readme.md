@@ -1,6 +1,28 @@
 **SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
-![screen](.github/screen.gif)
+<details>
+<summary>
+What makes sidenoder better than other sideloaders ?
+</summary>
+  
+
+
+---
+  
+- **Automatically scan** hmd and drive, to **find available updates**.
+- Apps automatically **update without losing app/cache/save data**.
+- Apps can update **across mismatching apk signatures**.
+- Drive list indicates **availability of working multiplayer functionality**.
+- Drive list is **sorted** by date and offers **search function**.
+- Drive list offers **pictures and versionCodes**.
+- Much much more.
+
+---
+
+
+</details>
+
+![screen](https://github.com/whitewhidow/quest-sidenoder/raw/main/.github/screen.gif)
 
 
 <!-- TABLE OF CONTENTS 
@@ -53,6 +75,7 @@
   </ul>
 
 </details>
+
 
 <!--
 ![screen](.github/screen.gif)
