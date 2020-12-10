@@ -45,16 +45,13 @@
 
 <details>
   <summary>How to download and manually run this app using node instead</summary>
+
   <ul>
-    <li>
-      <a href="#manually-run-using-node">Manually run using node</a>
-      <ul>
-        <li><a href="#manually-run-using-node-on-windows">Windows</a></li>
-        <li><a href="#manually-run-using-node-on-linux">Linux</a></li>
-        <li><a href="#manually-run-using-node-on-mac">Mac/OSx</a></li>
-      </ul>
-    </li>
+    <li><a href="#manually-run-using-node-on-windows">Windows</a></li>
+    <li><a href="#manually-run-using-node-on-linux">Linux</a></li>
+    <li><a href="#manually-run-using-node-on-mac">Mac/OSx</a></li>
   </ul>
+
 </details>
 
 <!--
