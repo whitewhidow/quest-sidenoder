@@ -1,11 +1,12 @@
 {
   "name": "sidenoder",
-  "version": "0.0.5-alpha",
+  "version": "0.0.6-alpha",
   "description": "SideNoder",
   "main": "main.js",
   "dependencies": {
     "adbkit": "^2.11.1",
     "command-exists": "^1.2.9",
+    "compare-versions": "^3.6.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
     "fix-path": "^3.0.0",
