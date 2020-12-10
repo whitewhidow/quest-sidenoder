@@ -10,11 +10,17 @@ What makes sidenoder better than other sideloaders ?
 ---
   
 - **Automatically scan** hmd and drive, to **find available updates**.
+
 - Apps automatically **update without losing app/cache/save data**.
+
 - Apps can update **across mismatching apk signatures**.
+
 - Drive list indicates **availability of working multiplayer functionality**.
+
 - Drive list is **sorted** by date and offers **search function**.
+
 - Drive list offers **pictures and versionCodes**.
+
 - Much much more.
 
 ---
