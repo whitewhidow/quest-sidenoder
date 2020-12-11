@@ -12,7 +12,7 @@ addToSyncedFile () {
     DIRZ=${DIRZ%%\ -packageName*}
     DIRZ=${DIRZ%%\ -MP-*}
     DIRZ=${DIRZ%%\ -NA-*}
-    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
+    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../blacklist.txt"
 }
 
 
@@ -65,7 +65,7 @@ for d in ./*/; do
     DIRZ=${DIRZ%%\ -versionCode*}
     DIRZ=${DIRZ%%\ -packageName*}
     DIRZ=${DIRZ%%\ -MP-*}
-    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
+    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../blacklist.txt"
     #echo "skipping $DIRZ already fixed"
   fi
 
@@ -74,8 +74,8 @@ addToSyncedFile "$d"
 done
 
 
-sort -u "$ORIPATH/../synced.txt" > "$ORIPATH/../syncedUNIQUE.txt"
-mv "$ORIPATH/../syncedUNIQUE.txt" "$ORIPATH/../synced.txt"
+sort -u "$ORIPATH/../blacklist.txt" > "$ORIPATH/../blacklistUNIQUE.txt"
+mv "$ORIPATH/../blacklistUNIQUE.txt" "$ORIPATH/../blacklist.txt"
 
 
 echo "$COUNT items looped"

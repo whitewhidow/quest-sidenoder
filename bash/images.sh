@@ -13,12 +13,11 @@ addToSyncedFile () {
     DIRZ=${DIRZ%%\ -packageName*}
     DIRZ=${DIRZ%%\ -MP-*}
     DIRZ=${DIRZ%%\ -NA-*}
-    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
+    echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../blacklist.txt"
 }
 
 
 cd /tmp/mnt
-#echo -ne '' > "$ORIPATH/../synced.txt"
 COUNT=0
 FAILCOUNT=0
 ALLCOUNT=$(ls -l -d */ | grep "^d" | wc -l)
@@ -89,16 +88,9 @@ for d in ./*/; do
       echo "d: $DIRZ"
       cd ../
 
-      #old_mtime=$(stat -c%Y "$DIRZ")
 
       mv "$DIRZ" "${d::-1} -steam-$ID"
 
-      #touch -t"$old_mtime" "${d::-1} -steam-$ID"
-
-
-
-      #echo "$DIRZ/**" | cut -c 3- >> "$ORIPATH/../synced.txt"
-      #${var%%SubStr*}
     else
       cd ../
     fi
@@ -110,8 +102,8 @@ for d in ./*/; do
   addToSyncedFile "$d"
 done
 
-sort -u "$ORIPATH/../synced.txt" > "$ORIPATH/../syncedUNIQUE.txt"
-mv "$ORIPATH/../syncedUNIQUE.txt" "$ORIPATH/../synced.txt"
+sort -u "$ORIPATH/../blacklist.txt" > "$ORIPATH/../blacklistUNIQUE.txt"
+mv "$ORIPATH/../blacklistUNIQUE.txt" "$ORIPATH/../blacklist.txt"
 
 
 echo "$COUNT items looped"

@@ -52,6 +52,7 @@ Contractors VR [1.0.50] S2.11/**
 Contractors VR [1.1.51] S2.11/**
 Contractors VR v1.0.48 -QuestUnderground/**
 Contractors VR v1.0.50 -QuestUnderground/**
+Contractors VR v1.1.51 -QuestUnderground/**
 Control Tower VR v0.61/**
 Cook-Out [1.3.97509.103097509] S2.11/**
 Cook-Out v1.2.92260-Q2Patched -QuestUnderground/**
@@ -158,6 +159,7 @@ I Expect You to Die v1.0.141516-Q2Patched -QuestUnderground/**
 In Death - Unchained [1.1.2.26234694] S2.11/**
 In Death - Unchained v1.1.2.26234694 -QuestUnderground/**
 In Death - Unchained v1.1.3.26344904 -QuestUnderground/**
+In Death - Unchained v1.2.0.27439902 -QuestUnderground/**
 Ironlights v108 -QuestUnderground/**
 Ironlights v123 -QuestUnderground/**
 Jigsaw 360 v3.0/**
@@ -195,6 +197,7 @@ National Geographic Explore VR v1.2.1.674692 -VRP/**
 Nature Treks VR v1.17-Q2Patch90Hz/**
 Nature Treks VR v1.17 -QuestUnderground/**
 Nature Treks VR v1.20.19 /**
+Nature Treks VR v1.20.19 -QuestUnderground/**
 Neon Sprint v1.0/**
 NES Space Quest v1.0.2/**
 Ninja Legends v1.0.1068-Q2Patch90Hz -QuestUnderground/**
@@ -218,6 +221,7 @@ Pig Dissection v1.0/**
 Pinball FX2 VR v1.0.0 -QuestUnderground/**
 Pistol Whip v0.6.20.228-Q2Patched -QuestUnderground/**
 Pistol Whip v0.6.26.46-402 -VRP/**
+Pistol Whip v0.6.26.96.415 -QuestUnderground/**
 Pixel Ripped 1995 v103-Q2Patched -QuestUnderground/**
 Please, Dont Touch Anything v2.1/**
 Pop Shot v1.0/**

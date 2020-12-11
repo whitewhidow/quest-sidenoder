@@ -43,7 +43,7 @@ setx PATH "%userpath%;%~dp0sideloader_deps\platform-tools"
 cd ..
 
 
-IF EXIST "%~dp0SideNoder.exe" (
+IF EXIST "%~dp0sidenoder.exe" (
   echo .
 ) else (
     IF EXIST "%programfiles(x86)%\nodejs\node.exe" (
