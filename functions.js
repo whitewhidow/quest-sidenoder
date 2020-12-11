@@ -174,14 +174,14 @@ async function checkDeps(){
         exists = await commandExists('adb');
     }
     catch (e) {
-        returnError("ADB global installation not found.")
+        returnError("ADB global installation not found, please read the README on github.")
         return
     }
     try {
         exists = await commandExists('rclone');
     }
     catch (e) {
-        returnError("RCLONE global installation not found.")
+        returnError("RCLONE global installation not found, please read the README on github.")
         return
     }
     //wtf werkt nie
