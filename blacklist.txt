@@ -4,9 +4,12 @@ Accounting+ v1.24.35-Q2Patched -QuestUnderground/**
 Acron - Attack of the Squirrels v1.14.94392.114094392 -QuestUnderground/**
 Acron - Attack of the Squirrels! v1.14.94392.114094392 -QuestUnderground/**
 AFFECTED - The Manor v1.26.1.75 -QuestUnderground/**
+A Fisherman's Tale v1.056 -QuestUnderground/**
 A Fishermans Tale v1.056 -QuestUnderground/**
 Air Brigade 2 v0.2/**
+ALTDEUS - Beyond Chronos [1.0.420] S2.11 /**
 ALTDEUS - Beyond Chronos v1.0.414/**
+ALTDEUS - Beyond Chronos v1.0.420 -QuestUnderground/**
 A Lullaby of Colors v1.2.2/**
 A Moment in Cannes v0.3.22/**
 Angry Birds VR Isle of Pigs v3.4.92967.304092967 -Q2-90Hz-CustomRes -QuestUnderground/**
@@ -115,11 +118,13 @@ Espire 1 VR Operative v1.6.289 -QuestUnderground/**
 Espire 1 VR Operative v1.7.218-1546 -VRP/**
 Evryway Visualiser v0.79/**
 Exorcist Legion VR v1.0.9 -QuestUnderground/**
+Face Your Fears 1 and DLC v1.0.406218 (Spoofed as Pyramids Roller Coaster) (Q1 only) -QuestUnderground/**
 Face Your Fears 1 and DLC v1.0.536957 (Spoofed as Neverthink) (Q2 only) -QuestUnderground/**
 Face Your Fears 2 v1.0.487009 -QuestUnderground/**
 Fail Factory v1.0.54-Q2Patched -QuestUnderground/**
 Falcon Age v1.00-8 -QuestUnderground/**
 Fast Formula v1.0/**
+Fear Within v1.0.0.2/**
 Five Nights at Freddys Help Wanted v1.0.9-Q2Patched -QuestUnderground/**
 Food Flinger v1.0/**
 FREEDIVER - Triton Down v1.0 -QuestUnderground/**
@@ -140,10 +145,13 @@ Gloomy Eyes v33 -QuestUnderground/**
 Gravity Lab v1.12.0-Q2Patched -QuestUnderground/**
 Gravity Sketch v5.0.3-qc.2021 -QuestUnderground/**
 Guided Tai Chi v1.2.35/**
+Gun Club VR [1.1.82.215] S2.11 /**
 Gun Club VR v1.0.31.168-Q2Patched -QuestUnderground/**
+Gun Club VR v1.1.82.215 -QuestUnderground/**
 Guns N Stories - Bulletproof VR v1.0.155 -QuestUnderground/**
 GunSpinning VR v1.0/**
 Half-Life VR **
+Half-Life VR v1.4.5 modified -DrBeef/**
 Hatsune Miku v3.01-10 -VRP/**
 Hatsune Miku VR [3.01.10] S2.11 + DLC Unlocked/**
 Hatsune Miku VR v3.01.10 -QuestUnderground (with DLC)/**
@@ -157,9 +165,11 @@ HumanAnatomyVR 2.9.17/**
 Hyper Dash v1.5.5/**
 I Expect You to Die v1.0.141516-Q2Patched -QuestUnderground/**
 In Death - Unchained [1.1.2.26234694] S2.11/**
+In Death - Unchained [1.2.1.27610269] S2.11/**
 In Death - Unchained v1.1.2.26234694 -QuestUnderground/**
 In Death - Unchained v1.1.3.26344904 -QuestUnderground/**
 In Death - Unchained v1.2.0.27439902 -QuestUnderground/**
+In Death - Unchained v1.2.1.27610269 -QuestUnderground/**
 Ironlights v108 -QuestUnderground/**
 Ironlights v123 -QuestUnderground/**
 Jigsaw 360 v3.0/**
@@ -186,11 +196,15 @@ Let's Play with Anna!/**
 Lets Play with Anna!/**
 Lets Play with Anna! -NA-/**
 Lies Beneath v1.0-55518/**
+Little Witch Academia - VR Broom Racing [1.1.1.690] S2.11 /**
 Little Witch Academia - VR Broom Racing v1.0.1-639/**
+Little Witch Academia - VR Broom Racing v1.1.1.690 -QuestUnderground/**
 .meta/**
 Mini Motor Racing X v1.2.4.90 -QuestUnderground/**
 Moss v1.0.0.22600 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
 Mr. Scribbles v0.1/**
+Myst [1.0.194] S2.11/**
+Myst v1.0.194 -QuestUnderground/**
 Myth - A Frozen Tale v1.0/**
 National Geographic Explore VR v1.2.1.674692 -QuestUnderground/**
 National Geographic Explore VR v1.2.1.674692 -VRP/**
@@ -219,10 +233,13 @@ Physics Playground v12.6/**
 Pigasus VR Media Player v3.1.0/**
 Pig Dissection v1.0/**
 Pinball FX2 VR v1.0.0 -QuestUnderground/**
+Pistol Whip [0.6.26.94.418] S2.11 /**
 Pistol Whip v0.6.20.228-Q2Patched -QuestUnderground/**
 Pistol Whip v0.6.26.46-402 -VRP/**
+Pistol Whip v0.6.26.94.418 -QuestUnderground/**
 Pistol Whip v0.6.26.96.415 -QuestUnderground/**
 Pixel Ripped 1995 v103-Q2Patched -QuestUnderground/**
+Please, Don't Touch Anything v2.1/**
 Please, Dont Touch Anything v2.1/**
 Pop Shot v1.0/**
 Pop Shot v1.0 -NA-/**
@@ -230,7 +247,9 @@ Premium Bowling v1.17.10.63 -QuestUnderground/**
 Premium Bowling v1.18.1-75 -VRP/**
 Prison Boss VR v1.6.0.16 -VRP/**
 Pro Putt by Topgolf v0.285-Q2Patch90Hz -QuestUnderground/**
+Pteranodon's Flight - The Flying Dinosaur Game v1.0/**
 Pteranodons Flight - The Flying Dinosaur Game v1.0/**
+Puzzling Places v1.0/**
 Raccoon Lagoon v1.0.235238 -QuestUnderground/**
 Racket Fury - Table Tennis VR v7.0.0/**
 Racket Fury - Table Tennis VR v7.06.706 -QuestUnderground/**
@@ -250,6 +269,7 @@ Real VR Fishing v1.416.83 -QuestUnderground/**
 Red Matter v1.0.009 -Q2Patched-90Hz -QuestUnderground/**
 Reflex Unit 2 v4.2/**
 Refuge VR v0.1/**
+Relay v1.0.11/**
 République VR v1.2 -QuestUnderground/**
 Rest in Pieces v1.0/**
 Return to Castle Wolfenstein v1.5 -DrBeef/**
@@ -290,15 +310,19 @@ Star Wars - Tales from the Galaxys Edge v1.0.1/**
 Star Wars - Tales from the Galaxys Edge v1.0.1-166201.cl.288006 -VRP/**
 Star Wars - Tales from the Galaxy's Edge v1.0.2-170084.cl.288493 -VRP/**
 Star Wars - Tales from the Galaxys Edge v1.0.2-170084.cl.288493 -VRP/**
+SUPERHOT VR [1.126] S2.11 SUPERHOT VR v1.113-10-30 -QuestUnderground/**
 SUPERHOT VR v1.113-10-30 -QuestUnderground/**
+SUPERHOT VR v1.126 -QuestUnderground/**
 Supermedium v1.0/**
 Swarm v473/**
 Sweet Escape VR v0.03/**
 Symphony of Stars v1.73/**
 Synth Riders 2.3.3.a11-204 -VRP (Includes DLC)/**
+Synth Riders [2.3.4.a4.207] S2.11 /**
 Synth Riders v2.3.2.a20.197 -VRP (Includes DLC)/**
 SynthRiders v2.3.2.a20.197 -VRP (Includes DLC)/**
 Synth Riders v2.3.3.a11.204 -QuestUndeground/**
+Synth Riders v2.3.4.a4.207 -QuestUnderground/**
 Tetris Effect v1.0.34-Q2Patch90Hz -QuestUnderground/**
 The Brookhaven Experiment v1.0259/**
 The Climb v612.0 -QuestUnderground/**
@@ -307,6 +331,7 @@ The Climb v612-Q2Patch -QuestUnderground/**
 The Curious Tale of the Stolen Pets v1.04-Q2Patched -QuestUnderground/**
 The Exorcist - Legion VR v1.0.9/**
 The Island Odyssey! Hi Spec v1.2.0.7/**
+The Last place v0.2/**
 The Line v32 -QuestUnderground/**
 The Purge Day v1.0/**
 The Room VR - A Dark Matter v1.02 -QuestUndeground/**
@@ -329,13 +354,17 @@ Topgolf with Pro Putt v344 -QuestUnderground/**
 Topgolf with Pro Putt v344 -QuestUnderground -2412327085529357-431240/**
 To The Top v0.11.version2/**
 Toy Clash v1.4.0/**
+Tribe XR - DJ in VR [0.09.2.78] S2.11/**
 Tribe XR - DJ in VR v0.09.1 -QuestUnderground/**
+Tribe XR - DJ in VR v0.09.2.78 -QuestUnderground/**
 Triton v1.0/**
 Trover Saves the Universe v1.0.21 -QuestUnderground/**
 Tsuro - The Game of The Path v1.12.15 -QuestUnderground/**
 Ultrawings v2.02 -QuestUnderground/**
 Until You Fall v1.0.5.160981 -QuestUnderground/**
+Vacation Simulator [1.3.0-37980] S2.11 /**
 Vacation Simulator v1.3.0-37919 -QuestUnderground/**
+Vacation Simulator v1.3.0-37980 -QuestUnderground/**
 Vader Immortal - Episode III v3.0.2-Q2Patched -QuestUnderground/**
 Vader Immortal - Episode II v2.0.2-Q2Patched -QuestUnderground/**
 Vader Immortal - Episode I v1.1.0-Q2Patched -QuestUnderground/**
@@ -348,7 +377,9 @@ VRKarts Sprint v1.18.28 -Q2Patched-90Hz-CustomRes -QuestUnderground/**
 VRtuos Pro v2.0/**
 VR Workout v0.9.8/**
 Walkabout Mini Golf v0.92.920 -QuestUnderground/**
+Waltz of the Wizard - Extended Edition [1.6.0.398] S2.11 /**
 Waltz of the Wizard - Extended Edition v1.5.5.365 -QuestUnderground/**
+Waltz of the Wizard - Extended Edition v1.6.0.398 -QuestUnderground/**
 Wander v0.3394/**
 Wands v1.62 -QuestUnderground/**
 Wands v1.6.2 -VRP/**
