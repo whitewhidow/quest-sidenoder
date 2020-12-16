@@ -548,7 +548,10 @@ async function getInstalledApps(send = true) {
         apps[x] = apps[x].slice(8);
         appinfo[x] = []
         info = await execShellCommand(`adb shell dumpsys package ${apps[x]}`);
-        appinfo[x]['packageName'] = apps[x];
+
+        propername = apps[x].replace(/(\r\n|\n|\r)/gm,"");
+
+        appinfo[x]['packageName'] = propername;
         appinfo[x]['versionCode'] = info.match(/versionCode=[0-9]*/)[0].slice(12);
         if (info.match(/ DEBUGGABLE /)) {
             appinfo[x]['debug'] = true
