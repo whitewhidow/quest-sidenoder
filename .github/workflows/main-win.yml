@@ -28,10 +28,8 @@ jobs:
         run: |
 
           npm install
-          sudo dpkg --add-architecture i386
-          sudo apt update
-          sudo apt-get install wine32
-          sudo apt install wine64
+          sudo apt install wine64 --fix-missing
+          sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32
           sudo npm install electron-packager -g
           sudo electron-packager ./ sidenoder --platform=win32 --arch=x64 --icon=build/icon.png
 
