@@ -135,7 +135,7 @@
 
         $("#mountBadge").removeClass("badge-warning");
         $("#mountBadge").addClass("badge-success");
-        $("#mountBadge").html(`<a onclick="getDir('${JSON.parse(arg).mountFolder}')"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
+        $("#mountBadge").html(`<a data-path="${JSON.parse(arg).mountFolder}" onclick="getDir(this)"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
 
         $("#updateBadge").removeClass("badge-warning");
         $("#updateBadge").addClass("badge-success");

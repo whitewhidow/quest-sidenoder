@@ -323,7 +323,7 @@ async function getDir(folder){
                     infoLink: infoLink,
                     info: info,
                     createdAt: new Date(info.mtimeMs),
-                    filePath: path.join(folder, fileEnt.name).replace(/\\/g,"/"),
+                    filePath: folder + "/" + fileEnt.name.replace(/\\/g,"/"),
                 }
             })
         );
