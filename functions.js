@@ -15,6 +15,7 @@ var ApkReader = require('node-apk-parser')
 const fixPath = require('fix-path');
 fixPath();
 
+const configLocation = require('path').join(homedir, "sidenoder-config.json")
 
 if (`${platform}` != "win64" && `${platform}` != "win32") {
     global.nullcmd = "> /dev/null"
@@ -40,7 +41,9 @@ module.exports =
     uninstall,
     getDirListing,
     getPackageInfo,
-    getStorageInfo
+    getStorageInfo,
+    changeConfig,
+    reloadConfig
     // ...
 }
 
@@ -659,4 +662,30 @@ function updateRcloneProgress() {
             win.webContents.send('rclone_data','');
             setTimeout(updateRcloneProgress, 2000);
         });
+}
+
+function reloadConfig() {
+    console.log(configLocation)
+    const defaultConfig = {autoMount: false};
+    try {
+        if (fs.existsSync(configLocation)) {
+            console.log("Config exist, using");
+            global.currentConfiguration = require(configLocation);
+        } else {
+            console.log("Config doesnt exist, creating");
+            fs.writeFileSync(configLocation, JSON.stringify(defaultConfig))
+            global.currentConfiguration = defaultConfig;
+        }
+    } catch(err) {
+        console.error(err);
+    }
+    console.log(global.currentConfiguration);
+}
+
+
+
+function changeConfig(key, value) {
+    global.currentConfiguration[key] = value;
+    console.log(global.currentConfiguration[key]);
+    fs.writeFileSync(configLocation, JSON.stringify(global.currentConfiguration))
 }

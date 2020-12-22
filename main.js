@@ -10,7 +10,7 @@ global.adbDevice = false
 global.mounted = false
 global.updateAvailable = false
 global.installedApps = []
-
+global.currentConfiguration = {}
 
 
 
@@ -200,7 +200,8 @@ function createWindow () {
         tmpdir: global.tmpdir,
         platform: global.platform,
         mountFolder: global.mountFolder,
-        version: global.version
+        version: global.version,
+        currentConfiguration: global.currentConfiguration
 }
 
 
@@ -247,6 +248,27 @@ ipcMain.on('uninstall', async (event, arg) => {
     return
 })
 
+// ipcMain.on('change_config', async (event, arg) => {
+//     console.log("change_config received");
+//     await changeConfig('autoMount', true)
+//     event.reply('change_config', {"success":true, config: global.currentConfiguration})
+//     return
+// })
+
+ipcMain.on('change_config_autoMount', async (event, arg) => {
+    console.log("change_config_autoMount received");
+    await tools.changeConfig('autoMount', arg)
+    event.reply('change_config_autoMount', {"success":true, config: global.currentConfiguration})
+    return
+})
+
+try {
+    tools.reloadConfig();
+}
+catch (e) {
+    returnError("Could not (re)load config file.")
+    return
+}
 
 // DEFAULT
 app.whenReady().then(createWindow)
