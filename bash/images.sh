@@ -30,7 +30,7 @@ for d in ./*/; do
 
   if [[ ! ($d =~ .*\ -steam-.*) ]] && [[ ! ($d =~ .*\ -oculus-.*) ]] && [[ ! ($d =~ .*\ -NA-.*) ]]; then
 
-  sleep 3
+
 
     cd "$d"
 
