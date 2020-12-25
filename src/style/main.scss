@@ -1,0 +1,14 @@
+@import "~bootswatch/dist/darkly/variables";
+@import "~bootstrap";
+@import "~bootstrap-vue";
+@import "~bootswatch/dist/darkly/bootswatch";
+
+::-webkit-scrollbar {
+  background-color: #dee2e6;
+  width: 0.4em;
+}
+
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb {
+  background: #375a7f;
+}
