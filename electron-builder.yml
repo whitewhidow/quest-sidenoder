@@ -1,0 +1,12 @@
+win:
+  target:
+    - portable
+
+linux:
+  target:
+    - AppImage
+
+mac:
+  target:
+    - dmg
+    - zip

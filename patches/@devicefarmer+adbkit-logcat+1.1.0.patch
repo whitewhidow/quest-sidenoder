@@ -1,0 +1,18 @@
+diff --git a/node_modules/@devicefarmer/adbkit-logcat/index.js b/node_modules/@devicefarmer/adbkit-logcat/index.js
+index 607433c..62da930 100644
+--- a/node_modules/@devicefarmer/adbkit-logcat/index.js
++++ b/node_modules/@devicefarmer/adbkit-logcat/index.js
+@@ -4,12 +4,7 @@
+   Path = require('path');
+ 
+   module.exports = (function() {
+-    switch (Path.extname(__filename)) {
+-      case '.coffee':
+-        return require('./src/logcat');
+-      default:
+-        return require('./lib/logcat');
+-    }
++    return require('./lib/logcat');
+   })();
+ 
+ }).call(this);

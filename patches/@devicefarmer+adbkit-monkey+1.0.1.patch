@@ -1,0 +1,18 @@
+diff --git a/node_modules/@devicefarmer/adbkit-monkey/index.js b/node_modules/@devicefarmer/adbkit-monkey/index.js
+index a81226d..f320644 100644
+--- a/node_modules/@devicefarmer/adbkit-monkey/index.js
++++ b/node_modules/@devicefarmer/adbkit-monkey/index.js
+@@ -4,12 +4,7 @@
+   Path = require('path');
+ 
+   module.exports = (function() {
+-    switch (Path.extname(__filename)) {
+-      case '.coffee':
+-        return require('./src/monkey');
+-      default:
+-        return require('./lib/monkey');
+-    }
++    return require('./lib/monkey');
+   })();
+ 
+ }).call(this);

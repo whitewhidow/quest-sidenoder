@@ -1,0 +1,32 @@
+diff --git a/node_modules/@devicefarmer/adbkit/lib/adb/client.js b/node_modules/@devicefarmer/adbkit/lib/adb/client.js
+index be20142..545c89e 100644
+--- a/node_modules/@devicefarmer/adbkit/lib/adb/client.js
++++ b/node_modules/@devicefarmer/adbkit/lib/adb/client.js
+@@ -225,9 +225,9 @@ Client = (function(superClass) {
+     }).nodeify(callback);
+   };
+ 
+-  Client.prototype.getPackages = function(serial, callback) {
++  Client.prototype.getPackages = function(serial, args, callback) {
+     return this.transport(serial).then(function(transport) {
+-      return new GetPackagesCommand(transport).execute();
++      return new GetPackagesCommand(transport).execute(args);
+     }).nodeify(callback);
+   };
+ 
+diff --git a/node_modules/@devicefarmer/adbkit/lib/adb/command/host-transport/getpackages.js b/node_modules/@devicefarmer/adbkit/lib/adb/command/host-transport/getpackages.js
+index 56d9a63..bc1da76 100644
+--- a/node_modules/@devicefarmer/adbkit/lib/adb/command/host-transport/getpackages.js
++++ b/node_modules/@devicefarmer/adbkit/lib/adb/command/host-transport/getpackages.js
+@@ -17,8 +17,9 @@ GetPackagesCommand = (function(superClass) {
+ 
+   RE_PACKAGE = /^package:(.*?)\r?$/gm;
+ 
+-  GetPackagesCommand.prototype.execute = function() {
+-    this._send('shell:pm list packages 2>/dev/null');
++  GetPackagesCommand.prototype.execute = function(args) {
++    if(!args) args = '';
++    this._send('shell:pm list packages ' + args + ' 2>/dev/null');
+     return this.parser.readAscii(4).then((function(_this) {
+       return function(reply) {
+         switch (reply) {
