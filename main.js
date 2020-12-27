@@ -15,6 +15,9 @@ global.currentConfiguration = {}
 
 
 
+
+
+
 const pkg = require('./package.json');
 global.version = pkg.version
 
@@ -46,7 +49,7 @@ async function checkVersion() {
 
 app.disableHardwareAcceleration()
 
-var tools = require("./functions")
+var tools = require("./tools")
 const { ipcMain } = require('electron')
 
 
@@ -182,39 +185,6 @@ ipcMain.on('get_dir', async (event, arg) => {
 
 
 
-function createWindow () {
-    global.win = new BrowserWindow({
-        width: 1000,
-        height: 800,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    })
-    win.setMenu(null);
-
-    win.webContents.openDevTools()
-
-    win.maximize(true)
-    win.loadURL(`file://${__dirname}/views/index.twig`)
-    twig.view = {
-        tmpdir: global.tmpdir,
-        platform: global.platform,
-        mountFolder: global.mountFolder,
-        version: global.version,
-        currentConfiguration: global.currentConfiguration
-}
-
-
-    //tools.checkUpdateAvailable()
-
-    setTimeout(function(){ checkVersion(); }, 2000);
-    //
-
-}
-
-
-
-
 ipcMain.on('update', async (event, arg) => {
     console.log("update received");
 
@@ -261,6 +231,47 @@ ipcMain.on('change_config_autoMount', async (event, arg) => {
     event.reply('change_config_autoMount', {"success":true, config: global.currentConfiguration})
     return
 })
+
+
+
+
+function createWindow () {
+    global.win = new BrowserWindow({
+        width: 1000,
+        height: 800,
+        title:"Quest-Sidenoder",
+        //frame:false,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule:true,
+        }
+    })
+    win.setMenu(null);
+
+    win.webContents.openDevTools()
+
+    win.maximize(true)
+    win.loadURL(`file://${__dirname}/views/index.twig`)
+    twig.view = {
+        tmpdir: global.tmpdir,
+        platform: global.platform,
+        mountFolder: global.mountFolder,
+        version: global.version,
+        currentConfiguration: global.currentConfiguration
+}
+
+
+    //tools.checkUpdateAvailable()
+
+    setTimeout(function(){ checkVersion(); }, 2000);
+    //
+
+}
+
+
+
+
+
 
 try {
     tools.reloadConfig();
