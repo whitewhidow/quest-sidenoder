@@ -3,7 +3,7 @@
         $("#updateBadge").hide();
         $("#listTable tbody").html('');
         ipcRenderer.send('get_installed', '');
-        ipcRenderer.send('get_storage', '');
+
 
         loadInclude('storagebar.twig', 'storageinfodiv');
 
@@ -21,6 +21,7 @@
 
     function update(elem) {
         path = elem.dataset.path
+        elem.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`
         ipcRenderer.send('update', path);
     }
 
@@ -40,7 +41,14 @@
 <div class="card text-white bg-secondary">
     <div class="card-header">
         <h2 class="pull-left push-left">Installed APP's</h2>
-        <h2 class="pull-right push-right"><span id="updateBadge" class="badge badge-warning badge-md">Drive not mounted, cannot check for updates</span>
+        <h2 class="pull-right push-right" id="updateheader">
+            <script>
+                if (remote.getGlobal('mounted')) {
+                    $('#updateheader').html(`<span id="updateBadge" class="badge badge-success badge-md"><a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a></span>`)
+                } else {
+                    $('#updateheader').html(`<span id="updateBadge" class="badge badge-danger badge-md">Drive not mounted, cannot check for updates</span>`);
+                }
+            </script>
         </h2>
     </div>
     <div class="card-body">

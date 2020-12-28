@@ -48,6 +48,22 @@
   <script>
 
 
+    ipcRenderer.on('get_storage', (event, arg) => {
+      console.log("get_storage ! ");
+      console.log(arg)
+      if (arg.success) {
+        $("#storageDiv").html(`
+<span class="pull-left push-left">Size: ${arg.storage[0]}</span>
+<span class="pull-right push-right">Available: ${arg.storage[2]}</span>
+<center>Used: ${arg.storage[1]}(${arg.storage[3]})</center>
+              <div class="progress">
+  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${arg.storage[3]}" aria-valuenow="${arg.storage[3].replace('%', '')}" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<br>
+          `)
+      }
+    });
+
     ipcRenderer.on('notify_update', (event, arg) => {
       console.log("notify_update msg came ! ");
       dialog.showMessageBox(null, {

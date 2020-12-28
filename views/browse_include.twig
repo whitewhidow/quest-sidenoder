@@ -4,6 +4,7 @@
         ipcRenderer.send('get_dir', '');
         //load in searchform
         loadInclude('searchform.twig', 'searchformdiv');
+        loadInclude('storagebar.twig', 'storageinfodiv');
 
         // call get_dir when selection is made
         function getDir(elem) {
@@ -69,7 +70,8 @@
     }
 </style>
 
-
+<div id="storageinfodiv">
+</div>
 
 <div class="card text-white bg-secondary">
     <div class="card-header">
@@ -79,7 +81,7 @@
             if (remote.getGlobal('mounted')) {
                 $('#browseheader').html(`<a data-path="${remote.getGlobal('mountFolder')}" onclick="getDir(this)"><span id="mountBadge" class="badge badge-success badge-md"><i id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a></span></a>`)
             } else {
-                $('#browseheader').html(`<span id="mountBadge" class="badge badge-warning badge-md">Drive not mounted, browsing local content only</span>`);
+                $('#browseheader').html(`<span id="mountBadge" class="badge badge-danger badge-md">Drive not mounted, browsing local content only</span>`);
             }
         </script>
 
