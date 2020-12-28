@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron')
+app.disableHardwareAcceleration()
+
 global.twig = require('electron-twig');
 global.tmpdir = require('os').tmpdir()
 global.tmpdir = global.tmpdir.replace(/\\/g,"/");
@@ -13,43 +15,15 @@ global.installedApps = []
 global.currentConfiguration = {}
 
 
+eval(require('fs').readFileSync('test.js')+'');
 
 
+eval(require('fs').readFileSync('versioncheck.js')+'');
 
-
-
-const pkg = require('./package.json');
-global.version = pkg.version
-
-async function checkVersion() {
-    var fetch = require('node-fetch')
-    var compareVersions = require('compare-versions');
-    content = await fetch("https://api.github.com/repos/whitewhidow/quest-sidenoder/releases/latest")
-    remoteversion = JSON.parse(await content.text()).name;
-    console.log("Current version: "+pkg.version);
-    console.log("Github version: "+remoteversion);
-    if (compareVersions.compare(remoteversion, pkg.version, '=')) {
-        console.log("Using latest version");
-    } else {
-        console.log("requires update");
-        win.webContents.send('notify_update',{success:true, current: pkg.version, remote: remoteversion});
-    }
-}
-
-
-// if (pkg.version !== latestVersion) {
-//     await installPackageVersion(pkg.name, latestVersion)
-//
-//     console.log(`Upgraded from ${pkg.version} to ${latestVersion}. Restarting...`)
-//
-//     respawnProcess()
-// }
-
-
-
-app.disableHardwareAcceleration()
 
 var tools = require("./tools")
+
+
 const { ipcMain } = require('electron')
 
 
@@ -63,17 +37,7 @@ ipcMain.on('test', async (event, arg) => {
     //     event.reply('log', template);
     // });
 
-    event.reply('log', template);
-
-    return
-
-    test = await tools.getPackageInfo(arg)
-    event.reply('log', test);
-    return
-
-   test = await tools.getDirListing(global.mountFolder);
-    test = test.join(global.endOfLine);
-    event.reply('log', test);
+    event.reply('log', arg);
     return
 })
 
