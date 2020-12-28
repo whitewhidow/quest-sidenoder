@@ -18,7 +18,7 @@ global.currentConfiguration = {}
 
 
 
-eval(require('fs').readFileSync('versioncheck.js')+'');
+eval(require('fs').readFileSync(__dirname+'/versioncheck.js')+'');
 
 
 var tools = require("./tools")

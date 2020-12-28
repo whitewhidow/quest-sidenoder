@@ -19,8 +19,10 @@ const configLocation = require('path').join(homedir, "sidenoder-config.json")
 
 if (`${platform}` != "win64" && `${platform}` != "win32") {
     global.nullcmd = "> /dev/null"
+    global.nullerror = "2> /dev/null"
 } else {
     global.nullcmd = "> null"
+    global.nullerror = "2> null"
 }
 
 
@@ -111,12 +113,15 @@ function execShellCommand(cmd, buffer = 5000) {
     return new Promise((resolve, reject) => {
         exec(cmd,  {maxBuffer: 1024 * buffer}, (error, stdout, stderr) => {
             if (error) {
-                console.warn(error);
+                console.log('exec_error')
+                //console.warn(error);
             }
             if (stdout) {
+                console.log('exec_stdout')
                 console.log(stdout)
                 resolve(stdout);
             } else {
+                console.log('exec_stderr')
                 console.log(stderr)
                 resolve(stderr);
             }
@@ -226,22 +231,22 @@ async function mount(){
 
 
     if (`${global.platform}` != "win64" && `${global.platform}` != "win32") {
-        await execShellCommand(`umount ${mountFolder}`);
-        await execShellCommand(`fusermount -uz ${mountFolder}`);
-        console.log(mountFolder);
+        await execShellCommand(`umount ${mountFolder} ${global.nullerror}`);
+        await execShellCommand(`fusermount -uz ${mountFolder} ${global.nullerror}`);
         await fs.mkdir(mountFolder, {}, ()=>{}) // folder must exist on windows
-        console.log(mountFolder);
     }
+
     if (`${global.platform}` == "win64" || `${global.platform}` == "win32") {
-        await execShellCommand(`rmdir "${mountFolder}"`); // folder must NOT exist on windows
+        await execShellCommand(`rmdir "${mountFolder}" ${global.nullerror}`); // folder must NOT exist on windows
     }
+
     let content = await fetch("https://raw.githubusercontent.com/whitewhidow/quest-sideloader-linux/main/extras/k")
     content = await content.text()
     let buff = Buffer.from(content, 'base64');
     const key = buff.toString('ascii');
 
     kpath = require('path').join(tmpdir, "k")
-    console.log(kpath)
+    //console.log(kpath)
     fs.writeFileSync(kpath, key)
 
 
@@ -252,11 +257,11 @@ async function mount(){
 
     config = config.replace("XXX", kpath);
     cpath = require('path').join(tmpdir, "c")
-    console.log(cpath)
+    //console.log(cpath)
 
     fs.writeFileSync(cpath, config)
 
-    console.log("voor")
+    //console.log("voor")
 
     if (`${platform}` === "darwin") {
         var mountCmd = "cmount"
@@ -279,7 +284,7 @@ async function mount(){
         console.log(`stdout: ${stdout}`);
     });
 
-    console.log("na")
+    //console.log("na")
 }
 
 
@@ -681,21 +686,19 @@ function updateRcloneProgress() {
 }
 
 function reloadConfig() {
-    console.log(configLocation)
     const defaultConfig = {autoMount: false};
     try {
         if (fs.existsSync(configLocation)) {
-            console.log("Config exist, using");
+            console.log("Config exist, using " + configLocation);
             global.currentConfiguration = require(configLocation);
         } else {
-            console.log("Config doesnt exist, creating");
+            console.log("Config doesnt exist, creating ") + configLocation;
             fs.writeFileSync(configLocation, JSON.stringify(defaultConfig))
             global.currentConfiguration = defaultConfig;
         }
     } catch(err) {
         console.error(err);
     }
-    console.log(global.currentConfiguration);
 }
 
 
