@@ -149,27 +149,41 @@ function trackDevices(){
         })
 }
 
-async function checkMount(){
+// async function checkMount(){
+//     console.log("checkMount()")
+//     try {
+//         await fsPromise.readdir(`${mountFolder}`);
+//         list = await getDir(`${mountFolder}`);
+//         if (list.length > 0) {
+//             global.mounted = true
+//             updateRcloneProgress();
+//             return true
+//         }
+//         global.mounted = false
+//         return false;
+//     }
+//     catch (e) {
+//         console.log("entering catch block");
+//         console.log(e);
+//         console.log("leaving catch block");
+//         global.mounted = false
+//         return false
+//     }
+//     return false;
+// }
+
+async function checkMount() {
     console.log("checkMount()")
     try {
-        await fsPromise.readdir(`${mountFolder}`);
-        list = await getDir(`${mountFolder}`);
-        if (list.length > 0) {
-            global.mounted = true
-            updateRcloneProgress();
-            return true
-        }
+        const resp = await fetch("http://127.0.0.1:5572/rc/noop", {
+            method: "post",
+        });
+        global.mounted = resp.ok
+        return resp.ok
+    } catch (e) {
         global.mounted = false
         return false;
     }
-    catch (e) {
-        console.log("entering catch block");
-        console.log(e);
-        console.log("leaving catch block");
-        global.mounted = false
-        return false
-    }
-    return false;
 }
 
 async function checkDeps(){

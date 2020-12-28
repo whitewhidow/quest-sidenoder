@@ -111,12 +111,9 @@
 
     ipcRenderer.on('rclone_data', (event, arg) => {
       data=arg;
-      //console.log(arg)
       if(data.transferring && data.transferring.length > 0) {
-          $("#progressstatus").text(data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta));
           $(".mountcopystatus").text("(Downloading: "+data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta) + ")");
       } else {
-          $("#progressstatus").text("CONNECTED");
         $(".mountcopystatus").text('')
       }
     });
@@ -191,7 +188,7 @@
         $("#mountbtn").removeClass("btn-warning");
         $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-success");
-        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
+        $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br>Connected.`)
         $("#mountbtn").onclick = function() {return false;}
       } else {
         $("#mountrefresh").removeClass("fa-spin");
