@@ -59,7 +59,9 @@ ipcMain.on('test', async (event, arg) => {
     //const { shell } = require('electron')
     //await shell.openExternal('https://electronjs.org')
 
-    event.reply('log', '');
+    template = twig.
+
+    event.reply('log', 'KK');
     return
 
     test = await tools.getPackageInfo(arg)

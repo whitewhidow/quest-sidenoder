@@ -1,6 +1,5 @@
 {% extends 'layout.twig' %}
 
-
 {% block onload %}
   {{ parent() }}
 <script>
@@ -36,6 +35,9 @@
 
 
 
+<div id="mainbody">
+
+
     <div class="card text-white bg-{% if depsok %}success{% else %}warning{% endif %}">
         <div class="card-header">System check</div>
         <div class="card-body">
@@ -62,5 +64,5 @@
 
 
 
-
+</div>
 {% endblock %}

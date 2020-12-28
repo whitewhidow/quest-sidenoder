@@ -1,0 +1,27 @@
+<script>
+    $(document).ready(function () {
+        console.log("ONLOAD settings");
+        $('#customSwitch1').on('change.bootstrapSwitch', function (e) {
+            ipcRenderer.send('change_config_autoMount', e.target.checked);
+        });
+    });
+</script>
+
+<div class="card text-white bg-secondary">
+    <div class="card-header">
+        <h2 class="">Settings</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1"
+                   {% if currentConfiguration.autoMount %}checked{% endif %}>
+            <label class="custom-control-label" for="customSwitch1">Automatically mount drive on startup (if not already
+                mounted)</label>
+        </div>
+
+        </p>
+    </div>
+</div>
+

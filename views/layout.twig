@@ -27,12 +27,26 @@
   </style>
 
   <script>
-    const { ipcRenderer } = require('electron')
+    const electron = window.require('electron');
+    const { ipcRenderer } = electron
+    const remote = electron.remote
+    const {dialog} = remote
+
+    function loadInclude(template) {
+      $('#mainbody').load(template);
+    }
+
+
 
     ipcRenderer.on('notify_update', (event, arg) => {
       console.log("notify_update msg came ! ");
-      $('#updateModal').modal('show');
-      $("#updateModal > div > div > div.modal-body").html(`<b>sidenoder-${arg.remote}<b> is now available on github.<br><br>Please visit https://github.com/whitewhidow/quest-sidenoder/releases`)
+      dialog.showMessageBox(null, {
+        type: 'info',
+        buttons: ['Understood'],
+        title: 'Update available',
+        message: `sidenoder-${arg.remote} is now available on github.`,
+        detail: 'Please visit https://github.com/whitewhidow/quest-sidenoder/releases',
+      })
     });
 
     ipcRenderer.on('ask_sideload', (event, arg) => {
@@ -189,6 +203,22 @@
   {% block onload %}
     <script>
       $(document).ready(function() {
+
+
+        // dialog.showMessageBox(null, {
+        //   type: 'info',
+        //   //buttons: ['Cancel', 'Yes, please', 'No, thanks'],
+        //   //defaultId: 2,
+        //   title: 'Update availablee',
+        //   message: 'A',
+        //   detail: 'It does not really matter',
+        //   checkboxLabel: 'Remember my answer',
+        //   checkboxChecked: true,
+        // })
+
+
+
+
         console.log("ONLOAD");
         ipcRenderer.send('check_mount', 'bla');
         //checkMount()
@@ -197,7 +227,12 @@
         console.log("setup ask device listener")
         ipcRenderer.on('ask_device', (event, arg) => {
           console.log("ask_device msg came ! ");
-          $('#deviceModal').modal('show');
+          dialog.showMessageBox(null, {
+            type: 'info',
+            buttons: ['Understood'],
+            title: 'Missing device',
+            message: `This action cannot be performed without a device attached.`,
+          })
         });
 
 
@@ -237,7 +272,7 @@
       </li>
       #}
       <li class="nav-item">
-        <a class="btn btn-primary" style="margin-right: 20px" href="browse.twig">
+        <a class="btn btn-primary" style="margin-right: 20px"  onclick="loadInclude('browse_include.twig')">
           <i class="fa fa-folder-open-o" aria-hidden="true"></i> Browse
         </a>
       </li>
@@ -253,7 +288,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-primary" style="margin-right: 20px" href="settings.twig">
+        <a class="btn btn-primary" style="margin-right: 20px"  onclick="loadInclude('settings_include.twig')">
           <i class="fa fa-cog" aria-hidden="true"></i>
            Settings
         </a>
@@ -308,38 +343,6 @@
     <br>
   </center>
 </div>
-
-
-
-
-<div class="modal fade" id="deviceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Please connect a device first</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        This action cannot be performed without a device attached.
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="confirmDeviceButton" class="btn btn-primary"  data-dismiss="modal">ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- Modal -->
@@ -401,27 +404,6 @@
     </div>
   </div>
 </div>
-
-
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-upload" aria-hidden="true"></i>  Update available</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        An update is available on github.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">I Understand</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 
