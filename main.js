@@ -15,7 +15,7 @@ global.installedApps = []
 global.currentConfiguration = {}
 
 
-eval(require('fs').readFileSync('test.js')+'');
+
 
 
 eval(require('fs').readFileSync('versioncheck.js')+'');
