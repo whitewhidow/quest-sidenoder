@@ -15,8 +15,12 @@
         <p class="card-text">
 
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1"
-                   {% if currentConfiguration.autoMount %}checked{% endif %}>
+            <script>
+                if (remote.getGlobal('currentConfiguration').autoMount) {
+                    $('#customSwitch1').prop("checked", true);
+                }
+            </script>
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
             <label class="custom-control-label" for="customSwitch1">Automatically mount drive on startup (if not already
                 mounted)</label>
         </div>
