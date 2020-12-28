@@ -4,7 +4,6 @@
         //open start dir
         ipcRenderer.send('get_dir', '');
         ipcRenderer.send('check_mount', 'bla');
-
         //load in searchform
         loadInclude('searchform.twig', 'searchformdiv');
     });
@@ -80,21 +79,6 @@
 </style>
 
 
-<script> // search stuff
-    function findString(str) {
-        var strFound;
-        strFound = self.find(str);
-        if (strFound && self.getSelection && !self.getSelection().anchorNode) {
-            strFound = self.find(str)
-        }
-        if (!strFound) {
-            strFound = self.find(str, 0, 1)
-            while (self.find(str, 0, 1)) continue
-        }
-        if (!strFound) alert("String '" + str + "' not found!")
-        return;
-    };
-</script>
 
 
 <script> // browse stuff
