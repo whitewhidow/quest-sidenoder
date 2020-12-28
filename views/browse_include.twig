@@ -4,8 +4,11 @@
         //open start dir
         ipcRenderer.send('get_dir', '');
         ipcRenderer.send('check_mount', 'bla');
+
+        //load in searchform
         loadInclude('searchform.twig', 'searchformdiv');
     });
+
     // hover icons
     function fixIcons() {
       $(".browse-folder").hover(

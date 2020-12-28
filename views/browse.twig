@@ -117,38 +117,6 @@
 
 
 
-
-
-
-
-
-      function findString(str) {
-        var strFound;
-        strFound = self.find(str);
-        if (strFound && self.getSelection && !self.getSelection().anchorNode) {
-          strFound = self.find(str)
-        }
-        if (!strFound) {
-          strFound = self.find(str, 0, 1)
-          while (self.find(str, 0, 1)) continue
-        }
-        if (!strFound) alert("String '" + str + "' not found!")
-        return;
-      };
-      document.getElementById('f1').onsubmit = function() {
-        findString(this.t1.value);
-        return false;
-      };
-    });
-
-
-
-
-
-
-
-
-
     // call get_dir when selection is made
     function getDir(elem) {
       newpath = elem.dataset.path
