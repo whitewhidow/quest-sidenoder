@@ -49,6 +49,22 @@
 
     $(function() {
       loadInclude('sideloadmodal.twig', 'sideloadmodaldiv');
+
+
+
+      document.ondragover = document.ondrop = (ev) => {
+        ev.preventDefault()
+      }
+
+      document.body.ondrop = (ev) => {
+        if (ev.dataTransfer.files[0].path.endsWith(".apk")) {
+          ipcRenderer.send('filedrop', ev.dataTransfer.files[0].path);
+        }
+        ev.preventDefault()
+      }
+
+
+
     });
 
 

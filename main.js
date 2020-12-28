@@ -166,11 +166,7 @@ ipcMain.on('get_dir', async (event, arg) => {
 
 ipcMain.on('update', async (event, arg) => {
     console.log("update received");
-
     let path = arg
-
-
-
     if (!global.adbDevice) {
         console.log("Missing device, sending ask_device")
         //tools.returnError("This action cannot be performed without a device attached.")
@@ -178,17 +174,25 @@ ipcMain.on('update', async (event, arg) => {
         event.reply('ask_device', ``)
         return
     }
-
     console.log("for path "+path)
     apkpath = await tools.getApkFromFolder(path);
-
-
     event.reply('ask_sideload', `{"success":true, "path": "${apkpath}"}`)
-
     return
 })
 
+ipcMain.on('filedrop', async (event, arg) => {
+    console.log("filedrop received");
+    let path = arg
+    if (!global.adbDevice) {
+        console.log("Missing device, sending ask_device")
+        //tools.returnError("This action cannot be performed without a device attached.")
 
+        event.reply('ask_device', ``)
+        return
+    }
+    event.reply('ask_sideload', `{"success":true, "path": "${path}"}`)
+    return
+})
 
 ipcMain.on('uninstall', async (event, arg) => {
     console.log("uninstall received");
