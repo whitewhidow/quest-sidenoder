@@ -1,0 +1,52 @@
+<!-- Modal -->
+<div class="modal fade" id="sideloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><i  id="sideloadRefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
+                <span class="mountcopystatus"></span>
+            </div>
+            <div class="modal-body">
+                <span id="sideloadText"></span>
+                <br>
+                <span class="deviceBadge badge badge-warning badge-md">Check device</span>
+                <br>
+                <span class="aaptDoneBadge badge badge-warning badge-md">Read Packageinfo</span>
+                <br>
+                <span class="checkDoneBadge badge badge-warning badge-md">Check if installed</span>
+                <br>
+                <span class="backupDoneBadge badge badge-warning badge-md">Backup Appdata</span>
+                <br>
+                <span class="uninstallDoneBadge badge badge-warning badge-md">Uninstall APK</span>
+                <br>
+                <span class="restoreDoneBadge badge badge-warning badge-md">Restore Appdata</span>
+                <br>
+                <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
+                <br>
+                <span class="copyObbDoneBadge badge badge-warning badge-md">Copy OBB's</span>
+                <br>
+                <span class="moveObbDoneBadge badge badge-warning badge-md">Move OBB's</span>
+                <br>
+                <span class="sideloadDoneBadge badge badge-warning badge-md">Sideload finished</span>
+                <br>
+            </div>
+            <div class="modal-footer">
+                {# <button type="button" class="btn btn-secondary disabled" data-dismiss="modal">Close</button> #}
+                <button type="button" id="sideloadDoneBtn" class="btn btn-primary disabled">Please wait for the process to finish</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#sideloadDoneBtn").on("click", function(){
+        $('#sideloadModal').modal('hide');
+        $('.modal-backdrop').remove();
+        loadInclude('sideloadmodal.twig', 'sideloadmodaldiv');
+        //clear it
+        //loadInclude('browse_include.twig');
+        filepath = `${$("#confirmSideloadButton").data('path')}`
+        filepath = filepath.match(/(^.*[\\\/])/g);
+        ipcRenderer.send('get_dir', filepath);
+        alert(filepath)
+    });
+</script>
