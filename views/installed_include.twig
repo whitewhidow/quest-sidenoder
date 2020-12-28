@@ -21,11 +21,12 @@
 
     function update(elem) {
         path = elem.dataset.path
-        elem.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`
+        elem.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`;
         ipcRenderer.send('update', path);
     }
 
     function uninstall(element, packageName) {
+        $(element).children("span").innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`;
         ipcRenderer.send('uninstall', packageName);
     }
 

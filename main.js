@@ -24,6 +24,14 @@ eval(require('fs').readFileSync('versioncheck.js')+'');
 var tools = require("./tools")
 
 
+// try {
+//     tools.execShellCommand('/home/sam/test.sh');
+// }
+// catch (e) {
+//     console.error(e)
+//     return
+// }
+
 const { ipcMain } = require('electron')
 
 
@@ -64,7 +72,7 @@ ipcMain.on('get_installed_with_updates', async (event, arg) => {
 
     //console.log(apps)
 
-    event.reply('get_installed', {"success": true, "apps": global.installedApps});
+    event.reply('get_installed_with_updates', {"success": true, "apps": global.installedApps});
     return
 })
 

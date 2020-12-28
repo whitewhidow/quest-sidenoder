@@ -43,7 +43,8 @@ module.exports =
     getPackageInfo,
     getStorageInfo,
     changeConfig,
-    reloadConfig
+    reloadConfig,
+    execShellCommand
     // ...
 }
 
@@ -106,9 +107,9 @@ function getDeviceSync(){
  * @param cmd {string}
  * @return {Promise<string>}
  */
-function execShellCommand(cmd) {
+function execShellCommand(cmd, buffer = 5000) {
     return new Promise((resolve, reject) => {
-        exec(cmd, (error, stdout, stderr) => {
+        exec(cmd,  {maxBuffer: 1024 * buffer}, (error, stdout, stderr) => {
             if (error) {
                 console.warn(error);
             }
@@ -424,7 +425,7 @@ async function sideloadFolder(location) {
         console.log('doing adb pull appdata (ignore error)');
         try {
             //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
-            await execShellCommand(`adb pull "/sdcard/Android/data/${packageName}" "${global.tmpdir}"  ${nullcmd}`);
+            await execShellCommand(`adb pull "/sdcard/Android/data/${packageName}" "${global.tmpdir}"`, 100000);
         }  catch (e) {
             //console.log(e);
         }
@@ -447,7 +448,7 @@ async function sideloadFolder(location) {
         console.log('doing adb push appdata (ignore error)');
         try {
             await execShellCommand(`adb shell mkdir -p /sdcard/Android/data/${packageName}/`);
-            await execShellCommand(`adb push ${global.tmpdir}/${packageName}/* /sdcard/Android/data/${packageName}/ ${nullcmd}`);
+            await execShellCommand(`adb push ${global.tmpdir}/${packageName}/* /sdcard/Android/data/${packageName}/`, 100000);
 
             try {
                 fs.rmdirSync(`${global.tmpdir}/${packageName}/`, { recursive: true });
