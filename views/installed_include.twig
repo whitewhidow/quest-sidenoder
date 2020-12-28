@@ -26,7 +26,6 @@
     }
 
     function uninstall(element, packageName) {
-        element.querySelector('h2').innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`
         ipcRenderer.send('uninstall', packageName);
     }
 

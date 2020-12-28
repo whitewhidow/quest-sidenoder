@@ -172,7 +172,7 @@
     // edit btn on installed apps page
     ipcRenderer.on('check_mount', (event, arg) => {
       if (JSON.parse(arg).success) {
-        $("#updateBadge").removeClass("badge-warning");
+        $("#updateBadge").removeClass("badge-danger");
         $("#updateBadge").addClass("badge-success");
         $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
       }
@@ -184,14 +184,14 @@
       console.log(JSON.parse(arg));
       if (JSON.parse(arg).success) {
         $("#mountrefresh").removeClass("fa-spin");
-        $("#mountbtn").removeClass("btn-warning");
+        $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-success");
         $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
         $("#mountbtn").onclick = function() {return false;}
       } else {
         $("#mountrefresh").removeClass("fa-spin");
-        $("#mountbtn").removeClass("btn-warning");
+        $("#mountbtn").removeClass("btn-danger");
         $("#mountbtn").addClass("btn-danger");
       }
     });
