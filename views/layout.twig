@@ -27,12 +27,56 @@
   </style>
 
   <script>
-    const { ipcRenderer } = require('electron')
+    const electron = window.require('electron');
+    const { ipcRenderer } = electron
+    const remote = electron.remote
+    const {dialog} = remote
+
+    function loadInclude(template, id = null) {
+      if (!id) {
+        $('#mainbody').html('');
+        $('#mainbody').load(template);
+      } else {
+        $(`#${id}`).load(template);
+      }
+    }
+  </script>
+
+  <script src="browse.js"></script>
+  <script src="installed.js"></script>
+
+  <script>
+
+    $(function() {
+      loadInclude('sideloadmodal.twig', 'sideloadmodaldiv');
+    });
+
+
+    ipcRenderer.on('get_storage', (event, arg) => {
+      console.log("get_storage ! ");
+      console.log(arg)
+      if (arg.success) {
+        $("#storageDiv").html(`
+<span class="pull-left push-left">Size: ${arg.storage[0]}</span>
+<span class="pull-right push-right">Available: ${arg.storage[2]}</span>
+<center>Used: ${arg.storage[1]}(${arg.storage[3]})</center>
+              <div class="progress">
+  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: ${arg.storage[3]}" aria-valuenow="${arg.storage[3].replace('%', '')}" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<br>
+          `)
+      }
+    });
 
     ipcRenderer.on('notify_update', (event, arg) => {
       console.log("notify_update msg came ! ");
-      $('#updateModal').modal('show');
-      $("#updateModal > div > div > div.modal-body").html(`<b>sidenoder-${arg.remote}<b> is now available on github.<br><br>Please visit https://github.com/whitewhidow/quest-sidenoder/releases`)
+      dialog.showMessageBox(null, {
+        type: 'info',
+        buttons: ['Understood'],
+        title: 'Update available',
+        message: `sidenoder-${arg.remote} is now available on github.`,
+        detail: 'Please visit https://github.com/whitewhidow/quest-sidenoder/releases',
+      })
     });
 
     ipcRenderer.on('ask_sideload', (event, arg) => {
@@ -120,8 +164,25 @@
       console.log(arg)
     });
 
+    // edit btn on browse page
+    ipcRenderer.on('check_mount', (event, arg) => {
+      if (JSON.parse(arg).success) {
+        $("#browseheader").html(`<span id="mountBadge" class="badge badge-warning badge-md"><a data-path="${JSON.parse(arg).mountFolder}" onclick="getDir(this)"><i id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a></span>`)
+        $("#mountBadge").removeClass("badge-warning");
+        $("#mountBadge").addClass("badge-success");
+      }
+    });
 
+    // edit btn on installed apps page
+    ipcRenderer.on('check_mount', (event, arg) => {
+      if (JSON.parse(arg).success) {
+        $("#updateBadge").removeClass("badge-danger");
+        $("#updateBadge").addClass("badge-success");
+        $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
+      }
+    });
 
+    //edit btn on top
     ipcRenderer.on('check_mount', (event, arg) => {
       console.log("check_mount responded: "+arg); // prints "ping"
       console.log(JSON.parse(arg));
@@ -132,18 +193,9 @@
         $("#mountbtn").addClass("btn-success");
         $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
         $("#mountbtn").onclick = function() {return false;}
-
-        $("#mountBadge").removeClass("badge-warning");
-        $("#mountBadge").addClass("badge-success");
-        $("#mountBadge").html(`<a onclick="getDir('${JSON.parse(arg).mountFolder}')"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
-
-        $("#updateBadge").removeClass("badge-warning");
-        $("#updateBadge").addClass("badge-success");
-        $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
-        
       } else {
         $("#mountrefresh").removeClass("fa-spin");
-        $("#mountbtn").removeClass("btn-warning");
+        $("#mountbtn").removeClass("btn-success");
         $("#mountbtn").addClass("btn-danger");
       }
     });
@@ -186,9 +238,55 @@
 
   </script>
 
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js">// screenshot stuff</script>
+  <script> // screenhot stuff
+    async function makeScreenshot(selector = "body") {
+      return new Promise((resolve, reject) => {
+        let node = document.querySelector(selector);
+        html2canvas(node, {
+          onrendered: (canvas) => {
+            let pngUrl = canvas.toDataURL();
+            resolve(pngUrl);
+          }, allowTaint: true
+        });
+      });
+    }
+    async function report() {
+      let screenshot = await makeScreenshot(); // png dataUrl
+      console.log(screenshot)
+      var fs = require("fs");
+      const base64Data = screenshot.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+      fs.writeFile("outt.png", base64Data, 'base64', (err) => {
+        console.log(err);
+      });
+    }
+  </script>
+
+
+
   {% block onload %}
     <script>
       $(document).ready(function() {
+
+
+        // dialog.showMessageBox(null, {
+        //   type: 'info',
+        //   //buttons: ['Cancel', 'Yes, please', 'No, thanks'],
+        //   //defaultId: 2,
+        //   title: 'Update availablee',
+        //   message: 'A',
+        //   detail: 'It does not really matter',
+        //   checkboxLabel: 'Remember my answer',
+        //   checkboxChecked: true,
+        // })
+
+
+
+
         console.log("ONLOAD");
         ipcRenderer.send('check_mount', 'bla');
         //checkMount()
@@ -197,7 +295,12 @@
         console.log("setup ask device listener")
         ipcRenderer.on('ask_device', (event, arg) => {
           console.log("ask_device msg came ! ");
-          $('#deviceModal').modal('show');
+          dialog.showMessageBox(null, {
+            type: 'info',
+            buttons: ['Understood'],
+            title: 'Missing device',
+            message: `This action cannot be performed without a device attached.`,
+          })
         });
 
 
@@ -206,10 +309,16 @@
           $('#confirmModal').modal('hide');
           ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
         });
-        $("#sideloadDoneBtn").on("click", function(){
-          $('#sideloadModal').modal('hide');
-          location.reload();
-        });
+        // $("#sideloadDoneBtn").on("click", function(){
+        //   $('#sideloadModal').modal('hide');
+        //   loadInclude('sideloadmodal.twig', 'sideloadmodaldiv');
+        //   //clear it
+        //   //loadInclude('browse_include.twig');
+        //   filepath = `${$("#confirmSideloadButton").data('path')}`
+        //   filepath = filepath.match(/(^.*[\\\/])/g);
+        //   ipcRenderer.send('get_dir', filepath);
+        //   alert(filepath)
+        // });
 
       });
     </script>
@@ -237,7 +346,7 @@
       </li>
       #}
       <li class="nav-item">
-        <a class="btn btn-primary" style="margin-right: 20px" href="browse.twig">
+        <a class="btn btn-primary" style="margin-right: 20px"  onclick="loadInclude('browse_include.twig');">
           <i class="fa fa-folder-open-o" aria-hidden="true"></i> Browse
         </a>
       </li>
@@ -247,13 +356,13 @@
       </li>
       #}
       <li class="nav-item">
-        <a id="installedAppsNav" class="btn btn-secondary disabled" style="margin-right: 20px" href="installed.twig">
+        <a id="installedAppsNav" class="btn btn-secondary disabled" style="margin-right: 20px" onclick="loadInclude('installed_include.twig')">
           <i class="fa fa-list" aria-hidden="true"></i>
            Installed APP's
         </a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-primary" style="margin-right: 20px" href="settings.twig">
+        <a class="btn btn-primary" style="margin-right: 20px"  onclick="loadInclude('settings_include.twig')">
           <i class="fa fa-cog" aria-hidden="true"></i>
            Settings
         </a>
@@ -310,77 +419,9 @@
 </div>
 
 
-
-
-<div class="modal fade" id="deviceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Please connect a device first</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        This action cannot be performed without a device attached.
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="confirmDeviceButton" class="btn btn-primary"  data-dismiss="modal">ok</button>
-      </div>
-    </div>
-  </div>
+<div id="sideloadmodaldiv">
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="sideloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i  id="sideloadRefresh" class="fa fa-refresh fa-spin"></i> Sideloading</h5>
-        <span class="mountcopystatus"></span>
-      </div>
-      <div class="modal-body">
-        <span id="sideloadText"></span>
-        <br>
-        <span class="deviceBadge badge badge-warning badge-md">Check device</span>
-        <br>
-        <span class="aaptDoneBadge badge badge-warning badge-md">Read Packageinfo</span>
-        <br>
-        <span class="checkDoneBadge badge badge-warning badge-md">Check if installed</span>
-        <br>
-        <span class="backupDoneBadge badge badge-warning badge-md">Backup Appdata</span>
-        <br>
-        <span class="uninstallDoneBadge badge badge-warning badge-md">Uninstall APK</span>
-        <br>
-        <span class="restoreDoneBadge badge badge-warning badge-md">Restore Appdata</span>
-        <br>
-        <span class="apkDoneBadge badge badge-warning badge-md">Install APK</span>
-        <br>
-        <span class="copyObbDoneBadge badge badge-warning badge-md">Copy OBB's</span>
-        <br>
-        <span class="moveObbDoneBadge badge badge-warning badge-md">Move OBB's</span>
-        <br>
-        <span class="sideloadDoneBadge badge badge-warning badge-md">Sideload finished</span>
-        <br>
-      </div>
-      <div class="modal-footer">
-        {# <button type="button" class="btn btn-secondary disabled" data-dismiss="modal">Close</button> #}
-        <button type="button" id="sideloadDoneBtn" class="btn btn-primary disabled">Please wait for the process to finish</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
@@ -401,27 +442,6 @@
     </div>
   </div>
 </div>
-
-
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-upload" aria-hidden="true"></i>  Update available</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        An update is available on github.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">I Understand</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 

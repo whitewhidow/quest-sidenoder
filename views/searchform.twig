@@ -1,0 +1,42 @@
+<form name="f1" id="f1" action="">
+    <div class="input-group">
+        <input class="form-control" placeholder="Type a word and find occurrences using [ENTER]" type="text"
+               name="t1" value=""/>
+        <div class="input-group-append">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Sort
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="0">Sort by update
+                    decending</a>
+                <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="1">Sort by update</a>
+                <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="1">Sort by name</a>
+                <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="0">Sort by name
+                    decending</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    function findString(str) {
+        var strFound;
+        strFound = self.find(str);
+        if (strFound && self.getSelection && !self.getSelection().anchorNode) {
+            strFound = self.find(str)
+        }
+        if (!strFound) {
+            strFound = self.find(str, 0, 1)
+            while (self.find(str, 0, 1)) continue
+        }
+        if (!strFound) alert("String '" + str + "' not found!")
+        return;
+    };
+
+    //search btn bind
+    document.getElementById('f1').onsubmit = function () {
+        findString(this.t1.value);
+        return false;
+    };
+</script>

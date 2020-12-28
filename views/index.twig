@@ -1,6 +1,5 @@
 {% extends 'layout.twig' %}
 
-
 {% block onload %}
   {{ parent() }}
 <script>
@@ -25,7 +24,7 @@
             }
         });
 
-        //ipcRenderer.send('mount', 'bla');
+        {% if currentConfiguration.autoMount %}ipcRenderer.send('mount', 'foo');{% endif %}
     });
 </script>
 {% endblock %}
@@ -34,6 +33,9 @@
 
 {% block body %}
 
+
+
+<div id="mainbody">
 
 
     <div class="card text-white bg-{% if depsok %}success{% else %}warning{% endif %}">
@@ -62,5 +64,5 @@
 
 
 
-
+</div>
 {% endblock %}

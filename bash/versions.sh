@@ -30,8 +30,6 @@ for d in ./*/; do
 
   if [[ ! ($d =~ .*\ -versionCode-.*) ]] && [[ ! ($d =~ .*\ -packageName-.*) ]]; then
 
-    sleep 10
-
     cd "$d"
 
 
@@ -82,4 +80,3 @@ echo "$COUNT items looped"
 #echo "$FAILCOUNT items failed"
 #echo "$(cat $ORIPATH/../quotesynced.txt | wc -l) from quotesynced.txt"
 paplay /usr/share/sounds/ubuntu/ringtones/Bliss.ogg
-sleep 99

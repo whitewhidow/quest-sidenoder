@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron')
+app.disableHardwareAcceleration()
+
 global.twig = require('electron-twig');
 global.tmpdir = require('os').tmpdir()
 global.tmpdir = global.tmpdir.replace(/\\/g,"/");
@@ -10,43 +12,26 @@ global.adbDevice = false
 global.mounted = false
 global.updateAvailable = false
 global.installedApps = []
+global.currentConfiguration = {}
 
 
+eval(require('fs').readFileSync('test.js')+'');
 
 
-
-const pkg = require('./package.json');
-global.version = pkg.version
-
-async function checkVersion() {
-    var fetch = require('node-fetch')
-    var compareVersions = require('compare-versions');
-    content = await fetch("https://api.github.com/repos/whitewhidow/quest-sidenoder/releases/latest")
-    remoteversion = JSON.parse(await content.text()).name;
-    console.log("Current version: "+pkg.version);
-    console.log("Github version: "+remoteversion);
-    if (compareVersions.compare(remoteversion, pkg.version, '=')) {
-        console.log("Using latest version");
-    } else {
-        console.log("requires update");
-        win.webContents.send('notify_update',{success:true, current: pkg.version, remote: remoteversion});
-    }
-}
+eval(require('fs').readFileSync('versioncheck.js')+'');
 
 
-// if (pkg.version !== latestVersion) {
-//     await installPackageVersion(pkg.name, latestVersion)
-//
-//     console.log(`Upgraded from ${pkg.version} to ${latestVersion}. Restarting...`)
-//
-//     respawnProcess()
+var tools = require("./tools")
+
+
+// try {
+//     tools.execShellCommand('/home/sam/test.sh');
+// }
+// catch (e) {
+//     console.error(e)
+//     return
 // }
 
-
-
-app.disableHardwareAcceleration()
-
-var tools = require("./functions")
 const { ipcMain } = require('electron')
 
 
@@ -56,16 +41,11 @@ ipcMain.on('test', async (event, arg) => {
     //const { shell } = require('electron')
     //await shell.openExternal('https://electronjs.org')
 
-    event.reply('log', '');
-    return
+    // template = require('twig').renderFile('views/error.twig', {}, (error, template) => {
+    //     event.reply('log', template);
+    // });
 
-    test = await tools.getPackageInfo(arg)
-    event.reply('log', test);
-    return
-
-   test = await tools.getDirListing(global.mountFolder);
-    test = test.join(global.endOfLine);
-    event.reply('log', test);
+    event.reply('log', arg);
     return
 })
 
@@ -92,7 +72,7 @@ ipcMain.on('get_installed_with_updates', async (event, arg) => {
 
     //console.log(apps)
 
-    event.reply('get_installed', {"success": true, "apps": global.installedApps});
+    event.reply('get_installed_with_updates', {"success": true, "apps": global.installedApps});
     return
 })
 
@@ -147,6 +127,7 @@ ipcMain.on('start_sideload', async (event, arg) => {
 
 
 ipcMain.on('get_dir', async (event, arg) => {
+    console.log("get_dir received");
     if ((typeof arg === 'string') && arg.endsWith(".apk")) {
         event.reply('ask_sideload', `{"success":true, "path": "${arg}"}`)
         return
@@ -177,40 +158,9 @@ ipcMain.on('get_dir', async (event, arg) => {
     response.success = true
     response.list = incList
     response.path = folder
-    event.reply('get_dir', response)
+    win.webContents.send('get_dir',response);
+    //event.reply('get_dir', response)
 })
-
-
-
-function createWindow () {
-    global.win = new BrowserWindow({
-        width: 1000,
-        height: 800,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    })
-    win.setMenu(null);
-
-    win.webContents.openDevTools()
-
-    win.maximize(true)
-    win.loadURL(`file://${__dirname}/views/index.twig`)
-    twig.view = {
-        tmpdir: global.tmpdir,
-        platform: global.platform,
-        mountFolder: global.mountFolder,
-        version: global.version
-}
-
-
-    //tools.checkUpdateAvailable()
-
-    setTimeout(function(){ checkVersion(); }, 2000);
-    //
-
-}
-
 
 
 
@@ -247,6 +197,68 @@ ipcMain.on('uninstall', async (event, arg) => {
     return
 })
 
+// ipcMain.on('change_config', async (event, arg) => {
+//     console.log("change_config received");
+//     await changeConfig('autoMount', true)
+//     event.reply('change_config', {"success":true, config: global.currentConfiguration})
+//     return
+// })
+
+ipcMain.on('change_config_autoMount', async (event, arg) => {
+    console.log("change_config_autoMount received");
+    await tools.changeConfig('autoMount', arg)
+    event.reply('change_config_autoMount', {"success":true, config: global.currentConfiguration})
+    return
+})
+
+
+
+
+function createWindow () {
+    global.win = new BrowserWindow({
+        width: 1000,
+        height: 800,
+        title:"Quest-Sidenoder",
+        //frame:false,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule:true,
+        }
+    })
+    win.setMenu(null);
+
+    win.webContents.openDevTools()
+
+    win.maximize(true)
+    win.loadURL(`file://${__dirname}/views/index.twig`)
+    twig.view = {
+        tmpdir: global.tmpdir,
+        platform: global.platform,
+        mountFolder: global.mountFolder,
+        version: global.version,
+        currentConfiguration: global.currentConfiguration
+}
+
+
+    //tools.checkUpdateAvailable()
+
+    setTimeout(function(){ checkVersion(); }, 2000);
+    //
+
+}
+
+
+
+
+
+
+try {
+    tools.reloadConfig();
+}
+catch (e) {
+    returnError("Could not (re)load config file.")
+    return
+}
 
 // DEFAULT
 app.whenReady().then(createWindow)
