@@ -4,8 +4,12 @@
         $("#updateBadge").hide();
         ipcRenderer.send('get_installed', '');
         ipcRenderer.send('get_storage', '');
-        //$("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
+    });
+</script>
 
+
+<script>
+    $(document).ready(function () {
         ipcRenderer.on('list_installed_app', (event, arg) => {
             console.log("list_installed_app msg came ! ");
             console.log(arg)

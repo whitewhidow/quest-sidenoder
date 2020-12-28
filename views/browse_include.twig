@@ -123,6 +123,7 @@
     //when dir listing comes back, list it
     ipcRenderer.on('get_dir', (event, arg) => {
         console.log("get_dir msg came: ");
+        console.log(arg);
         $("#listTable tbody").html('');
         if (arg.success) {
             $("#path").html(arg.path);
@@ -133,7 +134,7 @@
 
     function loadDir(path, list) {
         let UpDir = path.substr(0, path.lastIndexOf("/"));
-        $("#listTable tbody").append(`<tr><td class="browse-folder "><a data-path="${UpDir}" onclick="getDir(this)"><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
+        $("#listTableStart tbody").html(`<tr><td class="browse-folder "><a data-path="${UpDir}" onclick="getDir(this)"><i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
         $("#browseCardBody").html('');
         for (item in list) {
             let name = list[item].name
@@ -142,9 +143,9 @@
 
             if (list[item].isFile) {
                 if (list[item].name.endsWith(".apk")) {
-                    row = $("#listTable tbody").append(`<tr><td><a data-path="${fullPath}" onclick='getDir(this)'><b><i class="browse-file fa fa-upload" aria-hidden="true"></i> &nbsp;` + `${name}</b></a><td></tr>`)
+                    row = $("#listTable tbody").append(`<tr class="listitem" data-name="${list[item].name.toUpperCase()}" data-createdat="${list[item].createdAt.getTime()}"><td><a data-path="${fullPath}" onclick='getDir(this)'><b><i class="browse-file fa fa-upload" aria-hidden="true"></i> &nbsp;` + `${name}</b></a><td></tr>`)
                 } else {
-                    row = $("#listTable tbody").append("<tr><td><i class=\"browse-file fa fa-file-o\" aria-hidden=\"true\"></i> &nbsp;" + `${name}<td></tr>`)
+                    row = $("#listTable tbody").append(`<tr class="listitem" data-name="${list[item].name.toUpperCase()}" data-createdat="${list[item].createdAt.getTime()}"><td><i class="browse-file fa fa-file-o" aria-hidden="true"></i> &nbsp;` + `${name}<td></tr>`)
                 }
             } else {
                 if (list[item].imagePath) {
@@ -186,7 +187,7 @@ ${selectBtn}
         </div>`);
                 } else {
 
-                    row = $("#listTable tbody").append(`<tr><td class='browse-folder' >
+                    row = $("#listTable tbody").append(`<tr class="listitem" data-name="${list[item].name.toUpperCase()}" data-createdat="${list[item].createdAt.getTime()}"><td class='browse-folder'>
 <a data-path="${fullPath}" onclick='getDir(this)'>
 <i class=\"fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;` + `${name}</a><td></tr>`)
                 }
@@ -197,11 +198,14 @@ ${selectBtn}
 
         $("#browseCardBody .listitem").sort(sortBy('createdat', false)).appendTo('#browseCardBody');
 
-        $("#listTable tbody").append(`<tr><td class="browse-folder "><a data-path="${UpDir}" onclick="getDir(this)"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
+        $("#listTableEnd tbody").html(`<tr><td class="browse-folder "><a data-path="${UpDir}" onclick="getDir(this)"><i class=\"browse-folder fa fa-folder-o\" aria-hidden=\"true\"></i> &nbsp;../ (up one directory)</a><td></tr>`)
     }
 
     $(document).on('click', '.set-sort', (el) => {
         $("#browseCardBody .listitem").sort(sortBy($(el.target).data('key'), $(el.target).data('asc') == '1')).appendTo('#browseCardBody');
+        $("#listTable tbody .listitem").sort(sortBy($(el.target).data('key'), $(el.target).data('asc') == '1')).appendTo('#listTable');
+
+        //TODO: sort doesnt work on regular folders, only cards
     });
 
 </script>
@@ -216,23 +220,24 @@ ${selectBtn}
         <p class="card-text">
 
         <div id="searchformdiv"></div>
-
-
-
-
         <br>
 
-        <div id="browseCardBody" class="row row-cols-2 row-cols-md-6" style="font-size: smaller">
 
+        <div id="browseCardBody" class="row row-cols-2 row-cols-md-6" style="font-size: smaller">
         </div>
 
-
-        <table class="table table-striped table-condensed" id="listTable">
+        <table class="table table-striped table-condensed" id="listTableStart">
             <tbody>
-
             </tbody>
         </table>
-
+        <table class="table table-striped table-condensed" id="listTable">
+            <tbody>
+            </tbody>
+        </table>
+        <table class="table table-striped table-condensed" id="listTableEnd">
+            <tbody>
+            </tbody>
+        </table>
 
         </p>
     </div>
