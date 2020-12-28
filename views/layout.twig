@@ -147,7 +147,16 @@
       }
     });
 
+    // edit btn on installed apps page
+    ipcRenderer.on('check_mount', (event, arg) => {
+      if (JSON.parse(arg).success) {
+        $("#updateBadge").removeClass("badge-warning");
+        $("#updateBadge").addClass("badge-success");
+        $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
+      }
+    });
 
+    //edit btn on top
     ipcRenderer.on('check_mount', (event, arg) => {
       console.log("check_mount responded: "+arg); // prints "ping"
       console.log(JSON.parse(arg));
@@ -158,12 +167,6 @@
         $("#mountbtn").addClass("btn-success");
         $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
         $("#mountbtn").onclick = function() {return false;}
-
-
-        $("#updateBadge").removeClass("badge-warning");
-        $("#updateBadge").addClass("badge-success");
-        $("#updateBadge").html(`<a onclick="getUpdates(this)">Click to check mount for updates [BETA]</a>`)
-        
       } else {
         $("#mountrefresh").removeClass("fa-spin");
         $("#mountbtn").removeClass("btn-warning");
