@@ -34,12 +34,18 @@
 
     function loadInclude(template, id = null) {
       if (!id) {
+        $('#mainbody').html('');
         $('#mainbody').load(template);
       } else {
         $(`#${id}`).load(template);
       }
     }
+  </script>
 
+  <script src="browse.js"></script>
+  <script src="installed.js"></script>
+
+  <script>
 
 
     ipcRenderer.on('notify_update', (event, arg) => {
@@ -324,7 +330,7 @@
       </li>
       #}
       <li class="nav-item">
-        <a id="installedAppsNav" class="btn btn-secondary disabled" style="margin-right: 20px" href="installed.twig">
+        <a id="installedAppsNav" class="btn btn-secondary disabled" style="margin-right: 20px" onclick="loadInclude('installed_include.twig')">
           <i class="fa fa-list" aria-hidden="true"></i>
            Installed APP's
         </a>

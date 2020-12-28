@@ -59,9 +59,12 @@ ipcMain.on('test', async (event, arg) => {
     //const { shell } = require('electron')
     //await shell.openExternal('https://electronjs.org')
 
-    template = twig.
+    // template = require('twig').renderFile('views/error.twig', {}, (error, template) => {
+    //     event.reply('log', template);
+    // });
 
-    event.reply('log', 'KK');
+    event.reply('log', template);
+
     return
 
     test = await tools.getPackageInfo(arg)
@@ -152,6 +155,7 @@ ipcMain.on('start_sideload', async (event, arg) => {
 
 
 ipcMain.on('get_dir', async (event, arg) => {
+    console.log("get_dir received");
     if ((typeof arg === 'string') && arg.endsWith(".apk")) {
         event.reply('ask_sideload', `{"success":true, "path": "${arg}"}`)
         return
@@ -182,7 +186,8 @@ ipcMain.on('get_dir', async (event, arg) => {
     response.success = true
     response.list = incList
     response.path = folder
-    event.reply('get_dir', response)
+    win.webContents.send('get_dir',response);
+    //event.reply('get_dir', response)
 })
 
 

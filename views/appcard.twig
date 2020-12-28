@@ -1,0 +1,22 @@
+<div class="col mb-4 listitem" data-name="${list[item].name.toUpperCase()}" data-createdat="${list[item].createdAt.getTime()}">
+    <div class="card h-100">
+
+        ${mpribbon}
+
+        {# <a href="${list[item].infoLink}" target=_blank> #}
+        <img src="${list[item].imagePath}" style="max-height: 100px" class="card-img-top" alt="...">
+        {# </a> #}
+        <div class="card-body">
+
+            <p class="card-text" style="color: black">
+                ${list[item].simpleName}<br><br>
+
+                ${selectBtn}
+
+
+            </p>
+        </div>
+        <div style="color: gray" class="card-footer">v. ${list[item].versionCode}</div>
+        {# <div style="color: gray" class="card-footer">VersionCode: ${list[item].versionCode}</div> #}
+    </div>
+</div>
