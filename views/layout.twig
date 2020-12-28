@@ -138,6 +138,14 @@
       console.log(arg)
     });
 
+    // edit btn on browse page
+    ipcRenderer.on('check_mount', (event, arg) => {
+      if (JSON.parse(arg).success) {
+        $("#browseheader").html(`<span id="mountBadge" class="badge badge-warning badge-md"><a data-path="${JSON.parse(arg).mountFolder}" onclick="getDir(this)"><i id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a></span>`)
+        $("#mountBadge").removeClass("badge-warning");
+        $("#mountBadge").addClass("badge-success");
+      }
+    });
 
 
     ipcRenderer.on('check_mount', (event, arg) => {
@@ -151,9 +159,6 @@
         $("#mountbtn").html(`<i  id="mountrefresh" class="fa fa-check-circle-o"></i> | Mount status:</br><span id="progressstatus"></span>`)
         $("#mountbtn").onclick = function() {return false;}
 
-        $("#mountBadge").removeClass("badge-warning");
-        $("#mountBadge").addClass("badge-success");
-        $("#mountBadge").html(`<a data-path="${JSON.parse(arg).mountFolder}" onclick="getDir(this)"><i  id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a>`)
 
         $("#updateBadge").removeClass("badge-warning");
         $("#updateBadge").addClass("badge-success");

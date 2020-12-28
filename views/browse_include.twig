@@ -3,7 +3,7 @@
         console.log("ONLOAD BROWSE");
         //open start dir
         ipcRenderer.send('get_dir', '');
-        ipcRenderer.send('check_mount', 'bla');
+        //ipcRenderer.send('check_mount', 'bla');
         //load in searchform
         loadInclude('searchform.twig', 'searchformdiv');
     });
@@ -197,7 +197,16 @@ ${selectBtn}
 <div class="card text-white bg-secondary">
     <div class="card-header">
         <h2 class="pull-left push-left">Browsing <b><u id="path"></u></b></h2>
-        <h2 class="pull-right push-right"><span id="mountBadge" class="badge badge-warning badge-md">Drive not mounted, browsing local content only</span>
+        <h2 class="pull-right push-right"  id="browseheader">
+        <script>
+            if (remote.getGlobal('mounted')) {
+                $('#browseheader').html(`<a data-path="${remote.getGlobal('mountFolder')}" onclick="getDir(this)"><span id="mountBadge" class="badge badge-success badge-md"><i id="mountrefresh" class="fa fa-check-circle-o"></i> Click to browse mount</a></span></a>`)
+            } else {
+                $('#browseheader').html(`<span id="mountBadge" class="badge badge-warning badge-md">Drive not mounted, browsing local content only</span>`);
+            }
+        </script>
+
+
         </h2>
     </div>
     <div class="card-body">
