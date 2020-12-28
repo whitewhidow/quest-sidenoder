@@ -4,6 +4,7 @@
         //open start dir
         ipcRenderer.send('get_dir', '');
         ipcRenderer.send('check_mount', 'bla');
+        loadInclude('searchform.twig', 'searchformdiv');
     });
     // hover icons
     function fixIcons() {
@@ -20,31 +21,6 @@
     }
 </script>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js">// screenshot stuff</script>
-<script> // screenhot stuff
-    async function makeScreenshot(selector = "body") {
-        return new Promise((resolve, reject) => {
-            let node = document.querySelector(selector);
-            html2canvas(node, {
-                onrendered: (canvas) => {
-                    let pngUrl = canvas.toDataURL();
-                    resolve(pngUrl);
-                }, allowTaint: true
-            });
-        });
-    }
-
-    async function report() {
-        let screenshot = await makeScreenshot(); // png dataUrl
-        console.log(screenshot)
-        var fs = require("fs");
-        const base64Data = screenshot.replace(/^data:([A-Za-z-+/]+);base64,/, '');
-        fs.writeFile("outt.png", base64Data, 'base64', (err) => {
-            console.log(err);
-        });
-    }
-</script>
 
 <style>
     .ribbon-wrapper-green {
@@ -114,12 +90,6 @@
         }
         if (!strFound) alert("String '" + str + "' not found!")
         return;
-    };
-
-    //search btn bind
-    document.getElementById('f1').onsubmit = function () {
-        findString(this.t1.value);
-        return false;
     };
 </script>
 
@@ -233,11 +203,6 @@ ${selectBtn}
 
 </script>
 
-
-<div class="container">
-    <img width="75%" class="screen">
-</div>
-
 <div class="card text-white bg-secondary">
     <div class="card-header">
         <h2 class="pull-left push-left">Browsing <b><u id="path"></u></b></h2>
@@ -247,25 +212,11 @@ ${selectBtn}
     <div class="card-body">
         <p class="card-text">
 
-        <form name="f1" id="f1" action="">
-            <div class="input-group">
-                <input class="form-control" placeholder="Type a word and find occurrences using [ENTER]" type="text"
-                       name="t1" value=""/>
-                <div class="input-group-append">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Sort
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="0">Sort by update
-                            decending</a>
-                        <a class="dropdown-item set-sort" href="#" data-key="createdat" data-asc="1">Sort by update</a>
-                        <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="1">Sort by name</a>
-                        <a class="dropdown-item set-sort" href="#" data-key="name" data-asc="0">Sort by name
-                            decending</a>
-                    </div>
-                </div>
-            </div>
-        </form>
+        <div id="searchformdiv"></div>
+
+
+
+
         <br>
 
         <div id="browseCardBody" class="row row-cols-2 row-cols-md-6" style="font-size: smaller">

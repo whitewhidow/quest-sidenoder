@@ -32,8 +32,12 @@
     const remote = electron.remote
     const {dialog} = remote
 
-    function loadInclude(template) {
-      $('#mainbody').load(template);
+    function loadInclude(template, id = null) {
+      if (!id) {
+        $('#mainbody').load(template);
+      } else {
+        $(`#${id}`).load(template);
+      }
     }
 
 
@@ -199,6 +203,36 @@
 
 
   </script>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js">// screenshot stuff</script>
+  <script> // screenhot stuff
+    async function makeScreenshot(selector = "body") {
+      return new Promise((resolve, reject) => {
+        let node = document.querySelector(selector);
+        html2canvas(node, {
+          onrendered: (canvas) => {
+            let pngUrl = canvas.toDataURL();
+            resolve(pngUrl);
+          }, allowTaint: true
+        });
+      });
+    }
+    async function report() {
+      let screenshot = await makeScreenshot(); // png dataUrl
+      console.log(screenshot)
+      var fs = require("fs");
+      const base64Data = screenshot.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+      fs.writeFile("outt.png", base64Data, 'base64', (err) => {
+        console.log(err);
+      });
+    }
+  </script>
+
+
 
   {% block onload %}
     <script>
