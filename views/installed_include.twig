@@ -51,7 +51,7 @@
 
         ipcRenderer.on('uninstall', (event, arg) => {
             console.log("uninstall msg came ! ");
-            location.reload()
+            loadInclude('installed_include.twig');
         });
 
 

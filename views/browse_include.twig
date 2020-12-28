@@ -37,11 +37,6 @@
 
     async function report() {
         let screenshot = await makeScreenshot(); // png dataUrl
-        let img = document.querySelector(".screen");
-        img.src = screenshot;
-        var a = document.createElement("a"); //Create <a>
-        a.href = screenshot; //Image Base64 Goes here
-        a.download = "Image.png"; //File name Here
         console.log(screenshot)
         var fs = require("fs");
         const base64Data = screenshot.replace(/^data:([A-Za-z-+/]+);base64,/, '');
