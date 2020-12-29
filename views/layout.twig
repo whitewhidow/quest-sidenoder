@@ -58,7 +58,7 @@
 
       document.body.ondrop = (ev) => {
         if (ev.dataTransfer.files[0].path.endsWith(".apk")) {
-          ipcRenderer.send('filedrop', ev.dataTransfer.files[0].path);
+          ipcRenderer.send('filedrop', ev.dataTransfer.files[0].path.replace(/\\/g,"/"));
         }
         ev.preventDefault()
       }
