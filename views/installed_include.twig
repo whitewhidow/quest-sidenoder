@@ -23,7 +23,7 @@
 
     function update(elem) {
         path = elem.dataset.path
-        elem.parentElement.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`;
+        //elem.parentElement.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`;
         ipcRenderer.send('update', path);
     }
 
