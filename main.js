@@ -99,14 +99,20 @@ ipcMain.on('mount', async (event, arg) => {
     await setTimeout(async function(){
         await tools.checkMount()
         event.reply('check_mount', `{"success":${global.mounted}, "mountFolder": "${global.mountFolder}"}`)
+        if (global.mounted) {
+            tools.updateRcloneProgress()
+        }
     }, 2000);
-
+    //tools.setTimeout(updateRcloneProgress, 2000);
     return;
 })
 
 ipcMain.on('check_mount', async (event, arg) => {
     await tools.checkMount();
     event.reply('check_mount', `{"success":${global.mounted}, "mountFolder": "${global.mountFolder}"}`)
+    if (global.mounted) {
+        setTimeout(tools.updateRcloneProgress(), 2000);
+    }
     return
 })
 
@@ -119,8 +125,8 @@ ipcMain.on('start_sideload', async (event, arg) => {
         event.reply('ask_device', ``)
         return
     }
-    event.reply('start_sideload', `{"success":true, "path": "${arg}"}`)
-    tools.sideloadFolder(`${arg}`)
+    event.reply('start_sideload', `{"success":true, "path": "${arg.path}"}`)
+    tools.sideloadFolder(arg)
     event.reply('get_device', `{success:true}`)
     return
 })
@@ -129,7 +135,7 @@ ipcMain.on('start_sideload', async (event, arg) => {
 ipcMain.on('get_dir', async (event, arg) => {
     console.log("get_dir received");
     if ((typeof arg === 'string') && arg.endsWith(".apk")) {
-        event.reply('ask_sideload', `{"success":true, "path": "${arg}"}`)
+        event.reply('ask_sideload', `{"success":true, "path": "${arg}", "update": false}`)
         return
     }
 
@@ -176,7 +182,7 @@ ipcMain.on('update', async (event, arg) => {
     }
     console.log("for path "+path)
     apkpath = await tools.getApkFromFolder(path);
-    event.reply('ask_sideload', `{"success":true, "path": "${apkpath}"}`)
+    event.reply('ask_sideload', `{"success":true, "path": "${apkpath}", "update": true}`)
     return
 })
 
@@ -190,7 +196,7 @@ ipcMain.on('filedrop', async (event, arg) => {
         event.reply('ask_device', ``)
         return
     }
-    event.reply('ask_sideload', `{"success":true, "path": "${path}"}`)
+    event.reply('ask_sideload', `{"success":true, "path": "${path}", "update": false}`)
     return
 })
 

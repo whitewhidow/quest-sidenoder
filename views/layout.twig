@@ -100,10 +100,16 @@
       console.log(arg)
       if (JSON.parse(arg).success) {
         var path = JSON.parse(arg).path
+        if (JSON.parse(arg).update) {
+          var isUpdate = true
+        } else {
+          var isUpdate = false
+        }
         var lastslashindex = path.lastIndexOf('/');
         var file= path.substring(lastslashindex  + 1)
 
         $("#confirmSideloadButton").data('path', path)
+        $("#confirmSideloadButton").data('update', isUpdate)
         $('#confirmModal').modal('show');
         $("#confirmModal > div > div > div.modal-body").html("Do you want to sideload: <br><b>"+file+"</b>")
 
@@ -153,9 +159,16 @@
       $(".moveObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
     ipcRenderer.on('sideload_done', (event, arg) => {
-      $(".sideloadDoneBadge").removeClass("badge-warning").addClass("badge-success");
-      $("#sideloadDoneBtn").removeClass("disabled").removeClass("btn-primary").addClass("btn-success").html("Done")
-      $("#sideloadRefresh").removeClass("fa-refresh").removeClass("fa-spin").addClass("fa-check-circle-o")
+      console.log('sideload done received')
+      console.log(arg);
+      if (JSON.parse(arg).success) {
+        $(".sideloadDoneBadge").removeClass("badge-warning").addClass("badge-success");
+        $("#sideloadDoneBtn").removeClass("disabled").removeClass("btn-primary").addClass("btn-success").html("Done")
+        $("#sideloadRefresh").removeClass("fa-refresh").removeClass("fa-spin").addClass("fa-check-circle-o")
+      }
+      if (JSON.parse(arg).update === true) {
+        getUpdates();
+      }
     });
 
     function checkMount() {
@@ -312,6 +325,7 @@
 
         ipcRenderer.on('rclone_data', (event, arg) => {
           data=arg;
+          //console.log('rclone_data received')
           if(data.transferring && data.transferring.length > 0) {
             $(".mountcopystatus").text("(Downloading: "+data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta) + ")");
           } else {

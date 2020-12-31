@@ -22,6 +22,8 @@
     //setup listener for confirm btn, takes path form data dir, and sends start_sideload
     $("#confirmSideloadButton").on("click", function(){
         $('#confirmModal').modal('hide');
-        ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
+        //
+        data = {path: $("#confirmSideloadButton").data('path'), update: $("#confirmSideloadButton").data('update')}
+        ipcRenderer.send('start_sideload', data);
     });
 </script>
