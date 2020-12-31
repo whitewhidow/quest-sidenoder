@@ -675,12 +675,11 @@ function updateRcloneProgress() {
     const response = fetch('http://127.0.0.1:5572/core/stats', {method: 'POST'})
         .then(response => response.json())
         .then(data => {
-            console.log('sending rclone data');
             win.webContents.send('rclone_data',data);
             setTimeout(updateRcloneProgress, 2000);
         })
         .catch((error) => {
-            console.error('Fetch-Error:', error);
+            //console.error('Fetch-Error:', error);
             win.webContents.send('rclone_data','');
             setTimeout(updateRcloneProgress, 2000);
         });

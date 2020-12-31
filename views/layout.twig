@@ -313,7 +313,6 @@
         ipcRenderer.on('rclone_data', (event, arg) => {
           data=arg;
           if(data.transferring && data.transferring.length > 0) {
-            console.log('receiving rclone data');
             $(".mountcopystatus").text("(Downloading: "+data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta) + ")");
           } else {
             $(".mountcopystatus").text('')
