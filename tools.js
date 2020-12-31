@@ -283,7 +283,7 @@ async function mount(){
         }
         console.log(`stdout: ${stdout}`);
     });
-
+    setTimeout(updateRcloneProgress, 2000);
     //console.log("na")
 }
 
@@ -675,6 +675,7 @@ function updateRcloneProgress() {
     const response = fetch('http://127.0.0.1:5572/core/stats', {method: 'POST'})
         .then(response => response.json())
         .then(data => {
+            console.log('sending rclone data');
             win.webContents.send('rclone_data',data);
             setTimeout(updateRcloneProgress, 2000);
         })

@@ -49,7 +49,7 @@
 
     $(function() {
       loadInclude('sideloadmodal.twig', 'sideloadmodaldiv');
-
+      loadInclude('confirmmodal.twig', 'confirmmodaldiv');
 
 
       document.ondragover = document.ondrop = (ev) => {
@@ -125,14 +125,7 @@
     });
 
 
-    ipcRenderer.on('rclone_data', (event, arg) => {
-      data=arg;
-      if(data.transferring && data.transferring.length > 0) {
-          $(".mountcopystatus").text("(Downloading: "+data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta) + ")");
-      } else {
-        $(".mountcopystatus").text('')
-      }
-    });
+
 
 
     ipcRenderer.on('sideload_aapt_done', (event, arg) => {
@@ -317,21 +310,15 @@
         });
 
 
-        //setup listener for confirm btn, takes path form data dir, and sends start_sideload
-        $("#confirmSideloadButton").on("click", function(){
-          $('#confirmModal').modal('hide');
-          ipcRenderer.send('start_sideload', `${$("#confirmSideloadButton").data('path')}`);
+        ipcRenderer.on('rclone_data', (event, arg) => {
+          data=arg;
+          if(data.transferring && data.transferring.length > 0) {
+            console.log('receiving rclone data');
+            $(".mountcopystatus").text("(Downloading: "+data.transferring[0].percentage + "% - " + formatBytes(data.transferring[0].speedAvg) + "/s" + " - " + formatEta(data.transferring[0].eta) + ")");
+          } else {
+            $(".mountcopystatus").text('')
+          }
         });
-        // $("#sideloadDoneBtn").on("click", function(){
-        //   $('#sideloadModal').modal('hide');
-        //   loadInclude('sideloadmodal.twig', 'sideloadmodaldiv');
-        //   //clear it
-        //   //loadInclude('browse_include.twig');
-        //   filepath = `${$("#confirmSideloadButton").data('path')}`
-        //   filepath = filepath.match(/(^.*[\\\/])/g);
-        //   ipcRenderer.send('get_dir', filepath);
-        //   alert(filepath)
-        // });
 
       });
     </script>
@@ -435,26 +422,10 @@
 <div id="sideloadmodaldiv">
 </div>
 
-
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" id="confirmSideloadButton" class="btn btn-primary disabled">Yes</button>
-      </div>
-    </div>
-  </div>
+<div id="confirmmodaldiv">
 </div>
+
+
 
 
 
