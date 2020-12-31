@@ -2,6 +2,7 @@ const exec = require('child_process').exec;
 var adb = require('adbkit')
 var client = adb.createClient();
 const fs = require('fs');
+const fsExtra = require('fs-extra');
 const fsPromise = fs.promises;
 var platform = require('os').platform;
 
@@ -409,6 +410,13 @@ async function sideloadFolder(arg) {
 
     console.log("start sideload: "+apkfile)
 
+    fromremote = false
+    if (location.includes(global.mountFolder)) {
+        fromremote = true
+    }
+
+    console.log("fromremote:" + fromremote);
+
     packageName = ''
     try {
         console.log("attempting to read package info")
@@ -417,7 +425,23 @@ async function sideloadFolder(arg) {
         if (apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)) {
             packageName = apkfile.match(/-packageName-([a-zA-Z\d\_.]*)/)[1]
         } else {
-            packageinfo = await getPackageInfo(apkfile)
+            //TODO: copy
+
+            if (fromremote) {
+                tempapk = global.tmpdir+"/"+path.basename(apkfile);
+                console.log('is remote, copying to '+ tempapk)
+
+                if (fsExtra.existsSync(`${tempapk}`)) {
+                    console.log('is remote, '+ tempapk+ 'already exists, using')
+                } else {
+                    await fsExtra.copyFile(`${apkfile}`, `${tempapk}`);
+                }
+
+                packageinfo = await getPackageInfo(`${tempapk}`)
+            } else {
+                packageinfo = await getPackageInfo(apkfile)
+            }
+
             packageName = packageinfo.packageName
         }
 
@@ -445,8 +469,13 @@ async function sideloadFolder(arg) {
     if (installed) {
         console.log('doing adb pull appdata (ignore error)');
         try {
+
+            if (!fs.existsSync(global.tmpdir+"/sidenoder_restore_backup")){
+                fs.mkdirSync(global.tmpdir+"/sidenoder_restore_backup");
+            }
+
             //await execShellCommand(`adb shell pm uninstall -k "${packageinfo.packageName}"`);
-            await execShellCommand(`adb pull "/sdcard/Android/data/${packageName}" "${global.tmpdir}"`, 100000);
+            await execShellCommand(`adb pull "/sdcard/Android/data/${packageName}" "${global.tmpdir}/sidenoder_restore_backup"`, 100000);
         }  catch (e) {
             //console.log(e);
         }
@@ -469,10 +498,11 @@ async function sideloadFolder(arg) {
         console.log('doing adb push appdata (ignore error)');
         try {
             await execShellCommand(`adb shell mkdir -p /sdcard/Android/data/${packageName}/`);
-            await execShellCommand(`adb push ${global.tmpdir}/${packageName}/* /sdcard/Android/data/${packageName}/`, 100000);
+            await execShellCommand(`adb push ${global.tmpdir}/sidenoder_restore_backup/${packageName}/* /sdcard/Android/data/${packageName}/`, 100000);
 
             try {
-                fs.rmdirSync(`${global.tmpdir}/${packageName}/`, { recursive: true });
+                //TODO: check settings
+                //fs.rmdirSync(`${global.tmpdir}/sidenoder_restore_backup/${packageName}/`, { recursive: true });
             } catch (err) {
                 //console.error(`Error while deleting ${dir}.`);
             }
@@ -488,7 +518,26 @@ async function sideloadFolder(arg) {
 
     console.log('doing adb install');
     try {
-        await execShellCommand(`adb install -g -d "${apkfile}"`);
+
+        if (fromremote) {
+            tempapk = global.tmpdir+"/"+path.basename(apkfile);
+            console.log('is remote, copying to '+ tempapk)
+
+            if (fsExtra.existsSync(`${tempapk}`)) {
+                console.log('is remote, '+ tempapk+ 'already exists, using')
+            } else {
+                await fsExtra.copyFile(`${apkfile}`, `${tempapk}`);
+            }
+
+            win.webContents.send('sideload_download_done',`{"success":true}`);
+            await execShellCommand(`adb install -g -d "${tempapk}"`);
+            //TODO: check settings
+            //execShellCommand(`rm "${tempapk}"`);
+        } else {
+            win.webContents.send('sideload_download_done',`{"success":true}`);
+            await execShellCommand(`adb install -g -d "${apkfile}"`);
+        }
+
         win.webContents.send('sideload_apk_done',`{"success":true}`);
     }  catch (e) {
         console.log(e);
@@ -516,13 +565,38 @@ async function sideloadFolder(arg) {
         if (obbFiles.length > 0) {
             //console.log("obbFiles: "+obbFiles)
 
+            if (!fs.existsSync(global.tmpdir+"/"+packageName)){
+                fs.mkdirSync(global.tmpdir+"/"+packageName);
+            } else {
+                console.log(global.tmpdir+"/"+packageName+ ' already exists')
+            }
+
             //TODO, make name be packageName instead of foldername
             for (const item of obbFiles) {
                 console.log("obb File: "+item)
                 console.log('doing obb push');
                 var n = item.lastIndexOf('/');
                 var name = item.substring(n + 1);
-                await execShellCommand(`adb push "${item}" "/sdcard/Download/obb/${obbFolder}/${name}" ${nullcmd}`);
+
+
+                if (fromremote) {
+                    tempobb = global.tmpdir+"/"+packageName+"/"+path.basename(item);
+                    console.log('obb is remote, copying to '+ tempobb)
+
+                    if (fsExtra.existsSync(tempobb)) {
+                        console.log('obb is remote, '+ tempobb+ 'already exists, using')
+                    } else {
+                        await fsExtra.copyFile(`${item}`, `${tempobb}`);
+                    }
+                    await execShellCommand(`adb push "${tempobb}" "/sdcard/Download/obb/${obbFolder}/${name}" ${nullcmd}`);
+                    //TODO: check settings
+                    //execShellCommand(`rm "${tempobb}"`);
+                } else {
+                    await execShellCommand(`adb push "${item}" "/sdcard/Download/obb/${obbFolder}/${name}" ${nullcmd}`);
+                }
+
+
+
             }
             win.webContents.send('sideload_copy_obb_done',`{"success":true}`);
             console.log('doing shell mv');
@@ -531,6 +605,7 @@ async function sideloadFolder(arg) {
 
         }
     } else {
+        win.webContents.send('sideload_download_obb_done',`{"success":true}`);
         win.webContents.send('sideload_copy_obb_done',`{"success":true}`);
         win.webContents.send('sideload_move_obb_done',`{"success":true}`);
 
