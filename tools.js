@@ -46,7 +46,8 @@ module.exports =
     getStorageInfo,
     changeConfig,
     reloadConfig,
-    execShellCommand
+    execShellCommand,
+    updateRcloneProgress,
     // ...
 }
 
@@ -185,6 +186,7 @@ async function checkMount() {
         });
         global.mounted = resp.ok
         return resp.ok
+        //setTimeout(updateRcloneProgress, 2000);
     } catch (e) {
         global.mounted = false
         return false;
@@ -283,7 +285,6 @@ async function mount(){
         }
         console.log(`stdout: ${stdout}`);
     });
-
     //console.log("na")
 }
 
@@ -396,7 +397,8 @@ async function getDirListing(folder){
     return fileNames;
 }
 
-async function sideloadFolder(location) {
+async function sideloadFolder(arg) {
+    location = arg.path;
     console.log("sideloadFolder()")
     if (location.endsWith(".apk")) {
         apkfile = location;
@@ -533,7 +535,7 @@ async function sideloadFolder(location) {
         win.webContents.send('sideload_move_obb_done',`{"success":true}`);
 
     }
-    win.webContents.send('sideload_done',`{"success":true}`);
+    win.webContents.send('sideload_done',`{"success":true, "update": ${arg.update}}`);
     console.log('DONE');
     return;
 }
@@ -675,11 +677,12 @@ function updateRcloneProgress() {
     const response = fetch('http://127.0.0.1:5572/core/stats', {method: 'POST'})
         .then(response => response.json())
         .then(data => {
+            //console.log('sending rclone data');
             win.webContents.send('rclone_data',data);
             setTimeout(updateRcloneProgress, 2000);
         })
         .catch((error) => {
-            console.error('Fetch-Error:', error);
+            //console.error('Fetch-Error:', error);
             win.webContents.send('rclone_data','');
             setTimeout(updateRcloneProgress, 2000);
         });

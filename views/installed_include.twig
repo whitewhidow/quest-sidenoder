@@ -12,8 +12,10 @@
 
 <script>
 
-    function getUpdates(element) {
-        element.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`
+    function getUpdates(element = null) {
+        if (element) {
+            element.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`
+        }
         //$("#updateBadge").html(`<i class="fa fa-refresh fa-spin"></i> Please wait`)
         $("#listTable tbody").html('');
         ipcRenderer.send('get_installed_with_updates', ``);
@@ -21,7 +23,7 @@
 
     function update(elem) {
         path = elem.dataset.path
-        elem.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`;
+        //elem.parentElement.innerHTML = `<i class="fa fa-refresh fa-spin"></i> Please wait`;
         ipcRenderer.send('update', path);
     }
 
