@@ -10,6 +10,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-twig": "^1.1.1",
     "fix-path": "^3.0.0",
+    "fs-extra": "^9.0.1",
     "jquery": "^3.5.1",
     "node-apk-parser": "^0.2.3",
     "node-fetch": "^2.6.1"

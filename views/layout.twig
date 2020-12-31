@@ -149,13 +149,17 @@
     ipcRenderer.on('sideload_restore_done', (event, arg) => {
       $(".restoreDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
+    ipcRenderer.on('sideload_download_done', (event, arg) => {
+      $(".downloadDoneBadge").removeClass("badge-warning").addClass("badge-success");
+    });
     ipcRenderer.on('sideload_apk_done', (event, arg) => {
       $(".apkDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
     ipcRenderer.on('sideload_copy_obb_done', (event, arg) => {
       $(".copyObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
+      $(".downloadObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
-    ipcRenderer.on('sideload_copy_obb_done', (event, arg) => {
+    ipcRenderer.on('sideload_move_obb_done', (event, arg) => {
       $(".moveObbDoneBadge").removeClass("badge-warning").addClass("badge-success");
     });
     ipcRenderer.on('sideload_done', (event, arg) => {
