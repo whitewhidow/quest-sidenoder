@@ -532,7 +532,7 @@ async function sideloadFolder(arg) {
             win.webContents.send('sideload_download_done',`{"success":true}`);
             await execShellCommand(`adb install -g -d "${tempapk}"`);
             //TODO: check settings
-            //execShellCommand(`rm "${tempapk}"`);
+            execShellCommand(`rm "${tempapk}"`);
         } else {
             win.webContents.send('sideload_download_done',`{"success":true}`);
             await execShellCommand(`adb install -g -d "${apkfile}"`);
