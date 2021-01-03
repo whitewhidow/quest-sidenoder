@@ -60,7 +60,7 @@ function loadDir(path, list) {
                 }
 
                 if (list[item].versionCode !== 'PROCESSING') {
-                    selectBtn = `<a  data-path="${fullPath}" onclick='getDir(this)'><span class="btn btn-outline-secondary btn-block">select</span></a>`
+                    selectBtn = `<a data-path="${fullPath}" onclick='getDir(this)'><span class="btn btn-primary btn-block">Select</span></a>`
                 } else {
                     selectBtn = `<a><span class="btn btn-outline-secondary btn-block">${list[item].versionCode}</span></a>`
                 }
