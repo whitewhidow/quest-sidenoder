@@ -105,9 +105,9 @@ What makes sidenoder better than other sideloaders ?
 1. Install ADB, RCLONE and OSXFUSE:
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew cask install android-platform-tools
+brew install android-platform-tools
 curl https://rclone.org/install.sh | sudo bash
-brew cask install osxfuse
+brew install osxfuse
 ```
 2. Download and unpack the latest mac release (.App / .dmg) from `https://github.com/whitewhidow/quest-sidenoder/releases/latest`
 3. Run the .App or .dmg
