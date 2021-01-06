@@ -315,6 +315,13 @@ async function getDir(folder){
                 imagePath = "https://vrdb.app/oculus/images/"+oculusid+".jpg"
                 infoLink = "https://www.oculus.com/experiences/quest/"+oculusid+"/"
             }
+
+            if (  (new RegExp(".*v[0-9]+\\+[0-9].*")).test(fileEnt.name)  ) {
+                //oculusid = fileEnt.name.split('oculus-')[1]
+                versionCode = fileEnt.name.match(/.*v([0-9]+)\+[0-9].*/)[1]
+                simpleName = simpleName.split(' -versionCode-')[0]
+            }
+
             if (  (new RegExp(".*\ -versionCode-")).test(fileEnt.name)  ) {
                 //oculusid = fileEnt.name.split('oculus-')[1]
                 versionCode = fileEnt.name.match(/-versionCode-([0-9]*)/)[1]
