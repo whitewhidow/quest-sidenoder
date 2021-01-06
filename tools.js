@@ -319,7 +319,6 @@ async function getDir(folder){
             if (  (new RegExp(".*v[0-9]+\\+[0-9].*")).test(fileEnt.name)  ) {
                 //oculusid = fileEnt.name.split('oculus-')[1]
                 versionCode = fileEnt.name.match(/.*v([0-9]+)\+[0-9].*/)[1]
-                simpleName = simpleName.split(' -versionCode-')[0]
             }
 
             if (  (new RegExp(".*\ -versionCode-")).test(fileEnt.name)  ) {
@@ -695,7 +694,14 @@ async function getInstalledAppsWithUpdates() {
             for (line in linematch) {
 
                 console.log(linematch[line])
-                remoteversion = linematch[line].match(/-versionCode-([0-9.]*)/)[1];
+
+                if (  (new RegExp(".*v[0-9]+\\+[0-9].*")).test(linematch[line])  ) {
+                    remoteversion = linematch[line].match(/.*v([0-9]+)\+[0-9].*/)[1];
+                }
+                if (  (new RegExp(".*\ -versionCode-")).test(linematch[line])  ) {
+                    remoteversion = linematch[line].match(/-versionCode-([0-9.]*)/)[1];
+                }
+
                 installedVersion = apps[x]['versionCode'];
 
                 properpath = linematch[line].replace(/\\/g, "/").replace(/(\r\n|\n|\r)/gm, "");
