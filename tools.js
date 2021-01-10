@@ -503,8 +503,9 @@ async function sideloadFolder(arg) {
     if (installed) {
         console.log('doing adb push appdata (ignore error)');
         try {
-            await execShellCommand(`adb shell mkdir -p /sdcard/Android/data/${packageName}/`);
-            await execShellCommand(`adb push ${global.tmpdir}/sidenoder_restore_backup/${packageName}/* /sdcard/Android/data/${packageName}/`, 100000);
+            //await execShellCommand(`adb shell mkdir -p /sdcard/Android/data/${packageName}/`);
+            //await execShellCommand(`adb push ${global.tmpdir}/sidenoder_restore_backup/${packageName}/* /sdcard/Android/data/${packageName}/`, 100000);
+            await execShellCommand(`adb push ${global.tmpdir}/sidenoder_restore_backup/${packageName}/ /sdcard/Android/data/`, 100000);
 
             try {
                 //TODO: check settings
