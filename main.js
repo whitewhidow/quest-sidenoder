@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, powerSaveBlocker } = require('electron')
+
 app.disableHardwareAcceleration()
 
 global.twig = require('electron-twig');
@@ -33,6 +34,10 @@ var tools = require("./tools")
 // }
 
 const { ipcMain } = require('electron')
+
+const id = powerSaveBlocker.start('prevent-display-sleep')
+console.log(powerSaveBlocker.isStarted(id))
+
 
 
 ipcMain.on('test', async (event, arg) => {
@@ -273,6 +278,8 @@ catch (e) {
 // DEFAULT
 app.whenReady().then(createWindow)
 app.on('window-all-closed', () => {
+    powerSaveBlocker.stop(id)
+    console.log('close')
     if (process.platform !== 'darwin') {
         app.quit()
     }
