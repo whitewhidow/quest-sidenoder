@@ -55,12 +55,77 @@ for d in ./*/; do
 
     echo "Generating $SEARCH for $d"
 
+    regex="-packageName-([a-zA-Z\d\_.]*)"
+    if [[ $d =~ $regex ]]; then
+        name="${BASH_REMATCH[1]}"
+        #echo "packagename in map: ${name}"
+
+        existingDir=''
+        existingDir=$(find ../ -maxdepth 1 -type d -name "*${name}*" -print)
+        if [[ "$existingDir" != "" ]]; then
+          echo "existingDir found: ${existingDir}"
+          idregex="-steam-([0-9]*)"
+          if [[ $existingDir =~ $idregex ]]; then
+            foundif="${BASH_REMATCH[1]}"
+            echo "REUSING foundid found: ${foundif}"
+            DIRZ=${d::-1}
+            cd ../
+            mv "$DIRZ" "${d::-1} -steam-${foundif}"
+            addToSyncedFile "$d"
+            continue
+          fi
+
+          idregex="-oculus-([0-9]*)"
+          if [[ $existingDir =~ $idregex ]]; then
+            foundif="${BASH_REMATCH[1]}"
+            echo "REUSING foundid found: ${foundif}"
+            DIRZ=${d::-1}
+            cd ../
+            mv "$DIRZ" "${d::-1} -oculus-${foundif}"
+            addToSyncedFile "$d"
+            continue
+          fi
+
+          idregex="-NA-"
+          if [[ $existingDir == *"-NA-"* ]]; then
+            echo "-NA- found:"
+            DIRZ=${d::-1}
+            cd ../
+            mv "$DIRZ" "${d::-1} -NA-"
+            addToSyncedFile "$d"
+            continue
+          fi
+
+#          if [[ "$existingDir" != *"-NA-"* ]]; then
+#            foundif="${BASH_REMATCH[1]}"
+#            echo "REUSING foundid found: ${foundif}"
+#            DIRZ=${d::-1}
+#            cd ../
+#            mv "$DIRZ" "${d::-1} -oculus-${foundif}"
+#            addToSyncedFile "$d"
+#            continue
+#          fi
+
+        fi
+
+    fi
+
+#    if compgen -G "${PROJECT_DIR}/*.png" > /dev/null; then
+#        echo "pattern exists!"
+#    fi
+    #sleep 1
+#    cd ..
+#    continue
+#    sleep 19
+#    exit
+
+
 
     link=$(curl  -G --silent --data-urlencode "vrsupport=1" --data-urlencode "term=$SEARCH" -L "https://store.steampowered.com/search/" | sed -En '/search_capsule"><img/s/.*src="([^"]*)".*/\1/p' | head -n 1)
 
     link=${link%%\?*}
 
-    echo "$link"
+    echo "$link\n"
 
     if [[ "$link" != *".jpg" ]] || [[ "$link" == *"/bundles/"* ]] || [[ "$link" == "" ]] || [[ "$link" != *"jpg" ]] ;then
       echo "NOT A REAL IMAGE -> $link"
@@ -85,7 +150,7 @@ for d in ./*/; do
       ID=${ID##*apps/}
       echo "ID FOUND: $ID"
       DIRZ=${d::-1}
-      echo "d: $DIRZ"
+      #echo "d: $DIRZ"
       cd ../
 
 
