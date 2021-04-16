@@ -29,8 +29,11 @@ echo Unzipping adb
 "C:\Program Files\7-Zip\7z.exe" x -y android-tools.zip > NUL
 echo Combining folders
 SET COPYCMD=/Y
-move /y rclone-v1.55.0-windows-amd64\rclone.exe platform-tools\rclone.exe > NUL
-del /F /Q rclone-v1.55.0-windows-amd64\  > NUL
+for /d %%a in (rclone-*) do (
+    move /y %%a\rclone.exe platform-tools\ > NUL
+    del /F /Q %%a > NUL
+    rmdir %%a > NUL
+)
 echo Adding to PATH
 :: Get System PATH
 for /f "tokens=2*" %%A in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set syspath=%%B
