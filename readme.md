@@ -1,3 +1,9 @@
+# NOTICE: SIDENODER DISCONTINUED - DRIVES ARE NO LONGER UPDATED AND SHUTTING DOWN SOON
+
+---
+---
+---
+
 **SideNoder** - A **cross platform sideloader** for Quest(1&2) standalone vr headset.
 
 <details>
